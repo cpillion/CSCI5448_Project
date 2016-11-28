@@ -1,7 +1,8 @@
-package com.csci5448.pages;
+package com.csci5448.pages.common_pages;
 
-import com.csci5448.pages.login_actions.JournalistLoginAction;
-import com.csci5448.pages.login_actions.UserLoginAction;
+import com.csci5448.pages.Page;
+import com.csci5448.pages.common_pages.JournalistLoginAction;
+import com.csci5448.pages.common_pages.UserLoginAction;
 
 public class LoginPage extends Page {
 

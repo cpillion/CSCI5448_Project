@@ -2,7 +2,7 @@ package com.csci5448.main;
 
 import com.csci5448.accounts.Credentials;
 import com.csci5448.control.Controller;
-import com.csci5448.pages.LoginPage;
+import com.csci5448.pages.common_pages.LoginPage;
 
 public class Main {
 
