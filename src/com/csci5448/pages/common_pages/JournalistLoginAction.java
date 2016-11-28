@@ -1,4 +1,4 @@
-package com.csci5448.pages.login_actions;
+package com.csci5448.pages.common_pages;
 
 import com.csci5448.accounts.Credentials;
 import com.csci5448.control.Controller;
