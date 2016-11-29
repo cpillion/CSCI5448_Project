@@ -2,9 +2,11 @@ package com.csci5448.pages.common_pages;
 
 import com.csci5448.accounts.Account;
 import com.csci5448.accounts.JournalistAccount;
+import com.csci5448.accounts.UserAccount;
 import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
 import com.csci5448.pages.journalist_pages.JournalistLobbyPage;
+import com.csci5448.pages.user_pages.SportLobbyPage;
 import org.hibernate.Session;
 
 public class LoginPage extends Page {
@@ -24,6 +26,19 @@ public class LoginPage extends Page {
             return;
         }
         System.out.println("Attempting to log in as " + credentials[0] + "...");
+
+        UserAccount userAccount = login(new UserAccount(credentials[0], credentials[1], false),
+                UserAccount.class);
+
+        if (userAccount == null) {
+            System.out.println("Username or password incorrect.");
+            return;
+        }
+
+        System.out.println("Login successful.\nYou are now being taken to the ESP-NGen Lobby Page. "+
+                "You may logout at any time by typing \'logout\'.\n");
+        Controller.setCurrentAccount(userAccount);
+        Controller.setCurrentPage(new SportLobbyPage());
     }
 
     private void journalistLoginAction(String[] credentials) {
@@ -40,8 +55,8 @@ public class LoginPage extends Page {
             return;
         }
 
-        System.out.println("Login successful. You are now being taken to the Journalist Lobby. "+
-                "You may logout at any time by typing \'logout\'.");
+        System.out.println("Login successful.\nYou are now being taken to the Journalist Lobby. "+
+                "You may logout at any time by typing \'logout\'.\n");
         Controller.setCurrentAccount(journalistAccount);
         Controller.setCurrentPage(new JournalistLobbyPage());
     }
