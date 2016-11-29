@@ -3,21 +3,24 @@ package com.csci5448.pages;
 import com.csci5448.control.Controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
 
 public abstract class Page {
 
     public static final String PREVIOUS_PAGE_ID = "previous_page";
     public static final String LOGOUT_ID = "logout";
 
-    private List<PageAction> pageActions;
+    private Map<String, Consumer> pageActions;
 
     public Page() {
-        pageActions = new ArrayList<>();
+        pageActions = new HashMap<>();
     }
 
-    public void addPageAction(PageAction action) {
-        pageActions.add(action);
+    public <T> void addPageAction(String identifier, Consumer<T> pageAction) {
+        pageActions.put(identifier, pageAction);
     }
 
     public void performAction(String identifier, Object arg) {
@@ -30,11 +33,9 @@ public abstract class Page {
             return;
         }
 
-        for (PageAction pageAction: pageActions) {
-            if (!pageAction.getIdentifier().equals(identifier)) {
-                continue;
-            }
-            pageAction.performAction(arg);
+        Consumer pageAction = pageActions.get(identifier);
+        if (pageAction != null) {
+            pageAction.accept(arg);
         }
     }
 

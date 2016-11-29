@@ -1,8 +1,7 @@
 package com.csci5448.pages.common_pages;
 
+import com.csci5448.accounts.Credentials;
 import com.csci5448.pages.Page;
-import com.csci5448.pages.common_pages.JournalistLoginAction;
-import com.csci5448.pages.common_pages.UserLoginAction;
 
 public class LoginPage extends Page {
 
@@ -10,8 +9,17 @@ public class LoginPage extends Page {
     public static final String JOURNALIST_LOGIN_ID = "journalist_login";
 
     public LoginPage() {
-        super.addPageAction(new UserLoginAction(USER_LOGIN_ID));
-        super.addPageAction(new JournalistLoginAction(JOURNALIST_LOGIN_ID));
+        super.addPageAction(USER_LOGIN_ID, this::userLoginAction);
+        super.addPageAction(JOURNALIST_LOGIN_ID, this::journalistLoginAction);
+    }
+
+    private void userLoginAction(Credentials credentials) {
+        System.out.println("logging in as a user with\n\tusername: " + credentials.getUsername() +
+                "\n\tpassword: " + credentials.getPassword());
+    }
+
+    private void journalistLoginAction(Credentials credentials) {
+
     }
 
     public void displayPage() {
