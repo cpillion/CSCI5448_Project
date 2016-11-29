@@ -59,7 +59,8 @@ public class Controller {
 
         System.out.println("Logging out...");
         currentAccount = null;
-        previousPages.clear();
+        currentPage = null;
+        previousPages = new LinkedList<>();
         setCurrentPage(new LoginPage());
     }
 

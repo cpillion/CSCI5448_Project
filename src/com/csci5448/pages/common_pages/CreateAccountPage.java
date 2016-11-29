@@ -27,7 +27,8 @@ public class CreateAccountPage extends Page {
             return;
         }
 
-        System.out.println("Signup successfull! You are now being taken to the Sport Lobby Page.");
+        System.out.println("Signup successfull! You are now being taken to the Sport Lobby Page. "+
+                "You may logout at any time by typing \'logout\'.");
         Controller.setCurrentAccount(userAccount);
         Controller.setCurrentPage(new SportLobbyPage());
     }
@@ -38,7 +39,8 @@ public class CreateAccountPage extends Page {
             return;
         }
 
-        System.out.println("Signup successfull! You are now being taken to the Journalist Lobby Page.");
+        System.out.println("Signup successfull! You are now being taken to the Journalist Lobby Page. j"+
+                "You may logout at any time by typing \'logout\'.");
         Controller.setCurrentAccount(journalistAccount);
         Controller.setCurrentPage(new JournalistLobbyPage());
     }

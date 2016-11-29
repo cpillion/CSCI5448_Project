@@ -7,6 +7,8 @@ import javax.persistence.Table;
 @Table(name = "journalists")
 public class JournalistAccount extends Account {
 
+    public JournalistAccount() {}
+
     public JournalistAccount(String username, String password, boolean activated) {
         super(username, password, activated);
     }

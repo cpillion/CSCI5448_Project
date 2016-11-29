@@ -1,8 +1,13 @@
 package com.csci5448.pages.common_pages;
 
+import com.csci5448.accounts.Account;
 import com.csci5448.accounts.Credentials;
+import com.csci5448.accounts.JournalistAccount;
 import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
+import com.csci5448.pages.journalist_pages.JournalistLobbyPage;
+import org.hibernate.Session;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 public class LoginPage extends Page {
 
@@ -31,8 +36,39 @@ public class LoginPage extends Page {
         if (credentials == null || credentials.length != 2) {
             return;
         }
-        System.out.println("Attempting to log in as a journalist with\n\tusername: " + credentials[0] +
-                "\n\tpassword: " + credentials[1]);
+        System.out.println("Attempting to log in as a journalist...");
+
+        JournalistAccount journalistAccount = login(new JournalistAccount(credentials[0], credentials[1], false),
+                JournalistAccount.class);
+
+        if (journalistAccount == null) {
+            System.out.println("Username or password incorrect.");
+            return;
+        }
+
+        System.out.println("Login successful. You are now being taken to the Journalist Lobby. "+
+                "You may logout at any time by typing \'logout\'.");
+        Controller.setCurrentAccount(journalistAccount);
+        Controller.setCurrentPage(new JournalistLobbyPage());
+    }
+
+    private <T extends Account> T login(T account, Class<T> clazz) {
+        if (account.getUsername().length() == 0 || account.getPassword().length() == 0) {
+            return null;
+        }
+
+        try (Session session = Controller.sessionFactory.openSession()) {
+            T existingAccount = session.get(clazz, account.getUsername());
+            if (existingAccount == null) {
+                return null;
+            }
+
+            if (!account.getPassword().equals(existingAccount.getPassword())) {
+                return null;
+            }
+
+            return existingAccount;
+        }
     }
 
     public void displayPage() {
