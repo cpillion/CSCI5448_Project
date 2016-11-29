@@ -1,9 +1,12 @@
 package com.csci5448.main;
 
 import com.csci5448.accounts.Credentials;
+import com.csci5448.accounts.UserAccount;
 import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
 import com.csci5448.pages.common_pages.LoginPage;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.Scanner;
 import java.util.function.Consumer;
@@ -11,6 +14,8 @@ import java.util.function.Consumer;
 public class Main {
 
     public static void main(String[] args) {
+        Controller.initSessionFactory();
+
         System.out.println("Welcome to ESPNGen!\nWhile navigating through the pages,"
                 + " please type \'" + Page.PREVIOUS_PAGE_ID + "\' at any time to return to the previous page.");
         Controller.setCurrentPage(new LoginPage());

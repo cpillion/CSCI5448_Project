@@ -1,14 +1,16 @@
 package com.csci5448.accounts;
 
-import com.csci5448.content.Player;
-import com.csci5448.content.Team;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-import java.util.List;
-
+@Entity
+@Table(name = "users")
 public class UserAccount extends Account {
 
-    public UserAccount(String username, boolean activated) {
-        super(username, activated);
+    public UserAccount() {}
+
+    public UserAccount(String username, String password, boolean activated) {
+        super(username, password, activated);
     }
 
 }

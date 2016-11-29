@@ -1,5 +1,6 @@
 package com.csci5448.pages.journalist_pages;
 
+import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
 
 public class JournalistLobbyPage extends Page {
@@ -15,7 +16,7 @@ public class JournalistLobbyPage extends Page {
     }
 
     public void displayPage() {
-        //TODO
+        System.out.println("Welcome to the Journalist Lobby Page!");
     }
 
 }

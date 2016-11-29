@@ -41,7 +41,7 @@ public class SportLobbyPage extends Page {
     }
 
     public void displayPage() {
-        //TODO
+        System.out.println("Welcome to the Sport Lobby Page!");
     }
 
 }
