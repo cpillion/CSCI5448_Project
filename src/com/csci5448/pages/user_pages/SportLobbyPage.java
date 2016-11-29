@@ -41,7 +41,12 @@ public class SportLobbyPage extends Page {
     }
 
     public void displayPage() {
-        System.out.println("Welcome to the Sport Lobby Page!");
+        String[] navPages = {"View News", "View Leagues", "View Teams", "View Players"};
+        System.out.println("Welcome to the Sport Lobby Page!\n\n" +
+                            "Please select an option from the menu below:");
+        for (int i = 0; i < navPages.length; i++) {
+            System.out.println("   " + navPages[i]);
+        }
     }
 
 }
