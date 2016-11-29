@@ -21,23 +21,6 @@ public class Controller {
     private static Sport currentSport;
     private static Account currentAccount;
 
-    public static void processUserInput(String input) {
-        if (!input.contains(" ")) {
-            sendCommandToPage(input, null);
-            return;
-        }
-
-        int endOfCommandIndex = input.indexOf(" ");
-        String command = input.substring(0, endOfCommandIndex);
-        String[] args = input.substring(input.indexOf(" ")+1).split(" ");
-
-        if (args.length == 1) {
-            sendCommandToPage(command, args[0]);
-        } else {
-            sendCommandToPage(command, args);
-        }
-    }
-
     public static void setCurrentAccount(Account account) {
         currentAccount = account;
     }
