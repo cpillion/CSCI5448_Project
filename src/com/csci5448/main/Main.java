@@ -1,16 +1,9 @@
 package com.csci5448.main;
 
-import com.csci5448.accounts.Credentials;
-import com.csci5448.accounts.UserAccount;
 import com.csci5448.control.Controller;
-import com.csci5448.pages.Page;
-import com.csci5448.pages.common_pages.LoginPage;
 import com.csci5448.pages.common_pages.WelcomePage;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.util.Scanner;
-import java.util.function.Consumer;
 
 public class Main {
 

@@ -1,12 +1,10 @@
 package com.csci5448.control;
 
 import com.csci5448.accounts.Account;
-import com.csci5448.content.Sport;
 import com.csci5448.data.JournalistAccountDAO;
 import com.csci5448.data.SportDAO;
 import com.csci5448.data.UserAccountDAO;
 import com.csci5448.pages.Page;
-import com.csci5448.pages.common_pages.LoginPage;
 import com.csci5448.pages.common_pages.WelcomePage;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

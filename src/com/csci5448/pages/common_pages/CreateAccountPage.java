@@ -22,6 +22,10 @@ public class CreateAccountPage extends Page {
     }
 
     private void createUserAccount(String[] credentials) {
+        if (credentials == null || credentials.length != 2) {
+            return;
+        }
+
         UserAccount userAccount = new UserAccount(credentials[0], credentials[1], false);
         if (!saveAccount(userAccount, UserAccount.class)) {
             return;
@@ -34,6 +38,10 @@ public class CreateAccountPage extends Page {
     }
 
     private void createJournalistAccount(String[] credentials) {
+        if (credentials == null || credentials.length != 2) {
+            return;
+        }
+
         JournalistAccount journalistAccount = new JournalistAccount(credentials[0], credentials[1], false, false);
         if (!saveAccount(journalistAccount, JournalistAccount.class)) {
             return;

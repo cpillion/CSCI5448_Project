@@ -1,13 +1,11 @@
 package com.csci5448.pages.common_pages;
 
 import com.csci5448.accounts.Account;
-import com.csci5448.accounts.Credentials;
 import com.csci5448.accounts.JournalistAccount;
 import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
 import com.csci5448.pages.journalist_pages.JournalistLobbyPage;
 import org.hibernate.Session;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 public class LoginPage extends Page {
 
