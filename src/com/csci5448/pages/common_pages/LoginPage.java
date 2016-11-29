@@ -38,7 +38,7 @@ public class LoginPage extends Page {
         }
         System.out.println("Attempting to log in as a journalist...");
 
-        JournalistAccount journalistAccount = login(new JournalistAccount(credentials[0], credentials[1], false),
+        JournalistAccount journalistAccount = login(new JournalistAccount(credentials[0], credentials[1], false, false),
                 JournalistAccount.class);
 
         if (journalistAccount == null) {

@@ -33,7 +33,7 @@ public class Main {
 
         int endOfCommandIndex = input.indexOf(" ");
         String command = input.substring(0, endOfCommandIndex);
-        String[] args = input.substring(input.indexOf(" ")+1).split(" ");
+        String[] args = input.substring(endOfCommandIndex+1).split(" ");
 
         if (args.length == 1) {
             Controller.sendCommandToPage(command, args[0]);

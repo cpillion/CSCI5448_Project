@@ -27,19 +27,19 @@ public class CreateAccountPage extends Page {
             return;
         }
 
-        System.out.println("Signup successfull! You are now being taken to the Sport Lobby Page. "+
+        System.out.println("Signup successful! You are now being taken to the Sport Lobby Page. "+
                 "You may logout at any time by typing \'logout\'.");
         Controller.setCurrentAccount(userAccount);
         Controller.setCurrentPage(new SportLobbyPage());
     }
 
     private void createJournalistAccount(String[] credentials) {
-        JournalistAccount journalistAccount = new JournalistAccount(credentials[0], credentials[1], false);
+        JournalistAccount journalistAccount = new JournalistAccount(credentials[0], credentials[1], false, false);
         if (!saveAccount(journalistAccount, JournalistAccount.class)) {
             return;
         }
 
-        System.out.println("Signup successfull! You are now being taken to the Journalist Lobby Page. j"+
+        System.out.println("Signup successful! You are now being taken to the Journalist Lobby Page. "+
                 "You may logout at any time by typing \'logout\'.");
         Controller.setCurrentAccount(journalistAccount);
         Controller.setCurrentPage(new JournalistLobbyPage());
