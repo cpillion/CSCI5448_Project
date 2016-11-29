@@ -7,6 +7,7 @@ import com.csci5448.data.SportDAO;
 import com.csci5448.data.UserAccountDAO;
 import com.csci5448.pages.Page;
 import com.csci5448.pages.common_pages.LoginPage;
+import com.csci5448.pages.common_pages.WelcomePage;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -61,7 +62,7 @@ public class Controller {
         currentAccount = null;
         currentPage = null;
         previousPages = new LinkedList<>();
-        setCurrentPage(new LoginPage());
+        setCurrentPage(new WelcomePage());
     }
 
     public static void sendCommandToPage(String command, Object arg) {

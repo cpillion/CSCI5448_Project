@@ -5,6 +5,7 @@ import com.csci5448.accounts.UserAccount;
 import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
 import com.csci5448.pages.common_pages.LoginPage;
+import com.csci5448.pages.common_pages.WelcomePage;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -16,9 +17,7 @@ public class Main {
     public static void main(String[] args) {
         Controller.initSessionFactory();
 
-        System.out.println("Welcome to ESPNGen!\nWhile navigating through the pages,"
-                + " please type \'" + Page.PREVIOUS_PAGE_ID + "\' at any time to return to the previous page.");
-        Controller.setCurrentPage(new LoginPage());
+        Controller.setCurrentPage(new WelcomePage());
         Scanner userInput = new Scanner(System.in);
         while (true) {
             processUserInput(userInput.nextLine());
