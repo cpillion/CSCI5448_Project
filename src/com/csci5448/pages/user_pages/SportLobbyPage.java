@@ -2,7 +2,9 @@ package com.csci5448.pages.user_pages;
 
 import com.csci5448.accounts.Account;
 import com.csci5448.content.Sport;
+import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
+import java.util.*;
 
 public class SportLobbyPage extends Page {
 
@@ -21,7 +23,7 @@ public class SportLobbyPage extends Page {
     }
 
     private void viewNewsAction(Sport sport) {
-
+        //Controller.setCurrentPage(new NewsArticlePage());
     }
 
     private void viewLeagueAction(Sport sport) {
@@ -41,9 +43,15 @@ public class SportLobbyPage extends Page {
     }
 
     public void displayPage() {
-        String[] navPages = {"View News", "View Leagues", "View Teams", "View Players"};
-        System.out.println("Welcome to the Sport Lobby Page!\n\n" +
-                            "Please select an option from the menu below:");
+        String[] navPages = {"View News", "View Leagues", "View Teams", "View Favorite Teams", "View Favorite Players"};
+        Map content = new HashMap();
+        content.put(navPages[0], VIEW_NEWS_ID);
+        content.put(navPages[1], VIEW_LEAGUE_ID);
+        content.put(navPages[2], VIEW_TEAMS_ID);
+        content.put(navPages[3], VIEW_FAVORITE_TEAMS_ID);
+        content.put(navPages[4], VIEW_FAVORITE_PLAYERS_ID);
+        System.out.println("Welcome to the ESP-NGen Lobby Page!\n\n" +
+                            "Please select an option from the menu below by typing it into your console:");
         for (int i = 0; i < navPages.length; i++) {
             System.out.println("   " + navPages[i]);
         }
