@@ -18,11 +18,7 @@ public class LoginPage extends Page {
     public LoginPage() {
         super.addPageAction(USER_LOGIN_ID, this::userLoginAction);
         super.addPageAction(JOURNALIST_LOGIN_ID, this::journalistLoginAction);
-        super.addPageAction(SIGNUP_ID, this::signupAction);
-    }
-
-    private void signupAction(Object o) {
-        Controller.setCurrentPage(new CreateAccountPage());
+        super.addPageAction(SIGNUP_ID, o -> Controller.setCurrentPage(new CreateAccountPage()));
     }
 
     private void userLoginAction(String[] credentials) {
