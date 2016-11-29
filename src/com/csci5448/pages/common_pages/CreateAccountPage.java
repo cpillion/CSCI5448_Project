@@ -16,9 +16,6 @@ public class CreateAccountPage extends Page {
     private static final String CREATE_USER_ACCOUNT_ID = "create_user_account";
     private static final String CREATE_JOURNALIST_ACCOUNT_ID = "create_journalist_account";
 
-    private static final String JOURNALIST_ACCOUNT_TYPE = "journalist";
-    private static final String USER_ACCOUNT_TYPE = "user";
-
     public CreateAccountPage() {
         super.addPageAction(CREATE_USER_ACCOUNT_ID, this::createUserAccount);
         super.addPageAction(CREATE_JOURNALIST_ACCOUNT_ID, this::createJournalistAccount);
