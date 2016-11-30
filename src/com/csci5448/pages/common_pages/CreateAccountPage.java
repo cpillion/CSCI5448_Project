@@ -7,7 +7,7 @@ import com.csci5448.control.Controller;
 import com.csci5448.control.EmailControl;
 import com.csci5448.pages.Page;
 import com.csci5448.pages.journalist_pages.JournalistLobbyPage;
-import com.csci5448.pages.user_pages.SportLobbyPage;
+import com.csci5448.pages.user_pages.UserLobbyPage;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -32,7 +32,7 @@ public class CreateAccountPage extends Page {
             return;
         }
 
-        Controller.setCurrentPage(new EmailVerificationPage(userAccount, new SportLobbyPage()));
+        Controller.setCurrentPage(new EmailVerificationPage(userAccount, new UserLobbyPage()));
         Controller.sendCommandToPage(EmailVerificationPage.RESEND_EMAIL_ID, null);
     }
 

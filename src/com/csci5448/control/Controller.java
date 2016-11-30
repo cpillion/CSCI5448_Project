@@ -9,7 +9,7 @@ import com.csci5448.data.UserAccountDAO;
 import com.csci5448.pages.Page;
 import com.csci5448.pages.common_pages.WelcomePage;
 import com.csci5448.pages.journalist_pages.JournalistLobbyPage;
-import com.csci5448.pages.user_pages.SportLobbyPage;
+import com.csci5448.pages.user_pages.UserLobbyPage;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -72,7 +72,7 @@ public class Controller {
             return;
         }
         if (currentAccount instanceof UserAccount) {
-            Controller.setCurrentPage(new SportLobbyPage());
+            Controller.setCurrentPage(new UserLobbyPage());
         } else if (currentAccount instanceof JournalistAccount) {
             Controller.setCurrentPage(new JournalistLobbyPage());
         }

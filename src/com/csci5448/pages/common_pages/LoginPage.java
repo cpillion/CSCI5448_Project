@@ -6,7 +6,7 @@ import com.csci5448.accounts.UserAccount;
 import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
 import com.csci5448.pages.journalist_pages.JournalistLobbyPage;
-import com.csci5448.pages.user_pages.SportLobbyPage;
+import com.csci5448.pages.user_pages.UserLobbyPage;
 import org.hibernate.Session;
 
 public class LoginPage extends Page {
@@ -37,7 +37,7 @@ public class LoginPage extends Page {
 
         System.out.println("Login successful. You may logout at any time by typing \'" + Page.LOGOUT_ID + "\'.");
         Controller.setCurrentAccount(userAccount);
-        checkEmailVerification(userAccount, new SportLobbyPage());
+        checkEmailVerification(userAccount, new UserLobbyPage());
     }
 
     private void journalistLoginAction(String[] credentials) {
