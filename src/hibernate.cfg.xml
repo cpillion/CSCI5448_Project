@@ -21,5 +21,6 @@
         </property>
         <mapping class="com.csci5448.accounts.UserAccount"/>
         <mapping class="com.csci5448.accounts.JournalistAccount"/>
+        <mapping class="com.csci5448.content.News"/>
     </session-factory>
 </hibernate-configuration>

@@ -1,10 +1,14 @@
 package com.csci5448.pages.journalist_pages;
 
+import com.csci5448.accounts.Account;
 import com.csci5448.content.News;
 import com.csci5448.content.Sport;
 import com.csci5448.content.SportFactory;
 import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.Scanner;
 
@@ -24,6 +28,19 @@ public class WriteArticlePage extends Page {
                             "\nHeadline: " + news.getHeadline() +
                             "\nAuthor: " + news.getAuthor() +
                             "\nBody: " + news.getBody());
+
+        try (Session session = Controller.sessionFactory.openSession()) {
+
+            Transaction transaction = session.beginTransaction();
+            try {
+                session.save(news);
+                transaction.commit();
+            } catch (HibernateException e) {
+                transaction.rollback();
+                e.printStackTrace();
+            }
+        }
+
     }
 
     private void selectSport() {
