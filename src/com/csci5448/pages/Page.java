@@ -1,6 +1,8 @@
 package com.csci5448.pages;
 
 import com.csci5448.control.Controller;
+import com.csci5448.pages.user_pages.SelectSportPage;
+import com.csci5448.pages.user_pages.SportLobbyPage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +12,7 @@ public abstract class Page {
 
     public static final String PREVIOUS_PAGE_ID = "previous_page";
     public static final String LOGOUT_ID = "logout";
+    public static final String HOME_ID = "home";
 
     private Map<String, Consumer> pageActions;
 
@@ -28,6 +31,10 @@ public abstract class Page {
         }
         if (identifier.equals(LOGOUT_ID)) {
             Controller.logout();
+            return;
+        }
+        if (identifier.equals(HOME_ID)) {
+            Controller.setCurrentPage(new SportLobbyPage());
             return;
         }
 
