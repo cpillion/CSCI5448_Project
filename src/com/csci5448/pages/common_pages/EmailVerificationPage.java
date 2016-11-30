@@ -1,6 +1,7 @@
 package com.csci5448.pages.common_pages;
 
 import com.csci5448.accounts.Account;
+import com.csci5448.accounts.JournalistAccount;
 import com.csci5448.control.Controller;
 import com.csci5448.control.EmailControl;
 import com.csci5448.pages.Page;
@@ -43,18 +44,19 @@ public class EmailVerificationPage extends Page {
     }
 
     private void codeEnteredCorrectlyAction(Object o) {
-        System.out.println("Thank you for verifying your email.\n" +
-                            "A system admin will verify your profession shortly. Once this happens," +
-                            " you will be able to write and submit news articles for approval.");
-        try {
-            EmailControl.getEmailControl().sendEmail("espngen@gmail.com", "ESPNGen Journalist Profession Verification",
-                    "A new Journalist Account has been created for " + account.getUsername() + "!\n" +
-                    "If you would like to approve this person's profession, please update the journalist database.");
-        } catch (MessagingException e) {
-            e.printStackTrace();
-            return;
+        System.out.println("Thank you for verifying your email.");
+        if (account instanceof JournalistAccount) {
+            System.out.println("A system admin will verify your profession shortly. Once this happens," +
+                    " you will be able to write and submit news articles for approval.");
+            try {
+                EmailControl.getEmailControl().sendEmail("espngen@gmail.com", "ESPNGen Journalist Profession Verification",
+                        "A new Journalist Account has been created for " + account.getUsername() + "!\n" +
+                                "If you would like to approve this person's profession, please update the journalist database.");
+            } catch (MessagingException e) {
+                e.printStackTrace();
+                return;
+            }
         }
-
 
         try (Session session = Controller.sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
