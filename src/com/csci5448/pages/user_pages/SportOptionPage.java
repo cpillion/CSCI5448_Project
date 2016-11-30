@@ -28,7 +28,7 @@ public class SportOptionPage extends Page {
     }
 
     private void viewLeagueAction(Object obj) {
-        System.out.println("Loading all relevant leagues for " + sport);
+        System.out.println("Loading all relevant league info for " + sport);
     }
 
     private void viewTeamsAction(Sport sport) {

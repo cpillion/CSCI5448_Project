@@ -1,10 +1,22 @@
 package com.csci5448.content;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "news")
 public class News {
 
+    @Id
+    @Column
     private final Sport sport;
+    @Column
     private final String headline;
+    @Column
     private final String author;
+    @Column
     private final String body;
 
     public News(Sport sport, String headline, String author, String body) {
