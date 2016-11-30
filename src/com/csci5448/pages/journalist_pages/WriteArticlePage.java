@@ -12,7 +12,7 @@ import org.hibernate.Transaction;
 public class WriteArticlePage extends Page {
 
     public static final String SUBMIT_ARTICLE_ID = "submit_article";
-    public static final String SELECT_SPORT_ID =  "select_sport";
+    public static final String SPORT_ID =  "sport";
     public static final String HEADLINE_ID = "headline";
     public static final String AUTHOR_ID = "author";
     public static final String BODY_ID = "body";
@@ -24,7 +24,7 @@ public class WriteArticlePage extends Page {
 
     public WriteArticlePage() {
         super.addPageAction(SUBMIT_ARTICLE_ID, this::submitArticleAction);
-        super.addPageAction(SELECT_SPORT_ID, this::selectSportAction);
+        super.addPageAction(SPORT_ID, this::selectSportAction);
         super.addPageAction(HEADLINE_ID, this::headlineAction);
         super.addPageAction(AUTHOR_ID, this::authorAction);
         super.addPageAction(BODY_ID, this::bodyAction);
@@ -85,7 +85,7 @@ public class WriteArticlePage extends Page {
 
     public void displayPage() {
         System.out.println("Thank you for your interest in contributing to ESP-NGen News!\n\n");
-        System.out.println("Please type \'" + SELECT_SPORT_ID + " <sport>\' to select the sport the article will be " +
+        System.out.println("Please type \'" + SPORT_ID + " <sport>\' to select the sport the article will be " +
                 "about,\n" + "\'" + AUTHOR_ID + " <author>\' to specify the author of the article,\n\'" +
                 HEADLINE_ID + " <headline>\' to specify " +
                 "the headline of the article\n, and \'" + BODY_ID + " <body>\' to specify the body of the article.\n" +
