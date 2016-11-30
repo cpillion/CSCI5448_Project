@@ -1,15 +1,14 @@
 package com.csci5448.content;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "news")
 public class News {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     @Column
     private final Sport sport;
     @Column
@@ -24,6 +23,14 @@ public class News {
         this.headline = headline;
         this.author = author;
         this.body = body;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public Sport getSport() { return sport; }
