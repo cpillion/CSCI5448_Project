@@ -17,14 +17,17 @@ public class News {
     private String author;
     @Column
     private String body;
+    @Column
+    private boolean approved;
 
     public News() {}
 
-    public News(Sport sport, String headline, String author, String body) {
+    public News(Sport sport, String headline, String author, String body, boolean approved) {
         this.sport = sport;
         this.headline = headline;
         this.author = author;
         this.body = body;
+        this.approved = approved;
     }
 
     public void setId(long id) {
@@ -65,6 +68,14 @@ public class News {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public boolean getApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 
 }
