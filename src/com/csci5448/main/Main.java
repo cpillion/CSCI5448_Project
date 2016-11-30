@@ -28,7 +28,11 @@ public class Main {
         String[] args = input.substring(endOfCommandIndex+1).split(" ");
 
         if (args.length == 1) {
-            Controller.sendCommandToPage(command, args[0]);
+            try {
+                Controller.sendCommandToPage(command, args[0]);
+            } catch (ClassCastException e) {
+                Controller.sendCommandToPage(command, args);
+            }
         } else {
             Controller.sendCommandToPage(command, args);
         }

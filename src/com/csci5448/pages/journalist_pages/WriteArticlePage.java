@@ -1,6 +1,5 @@
 package com.csci5448.pages.journalist_pages;
 
-import com.csci5448.accounts.Account;
 import com.csci5448.content.News;
 import com.csci5448.content.Sport;
 import com.csci5448.content.SportFactory;
@@ -10,24 +9,35 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.util.Scanner;
-
 public class WriteArticlePage extends Page {
 
-    private Sport sport;
     public static final String SUBMIT_ARTICLE_ID = "submit_article";
+    public static final String SELECT_SPORT_ID =  "select_sport";
+    public static final String HEADLINE_ID = "headline";
+    public static final String AUTHOR_ID = "author";
+    public static final String BODY_ID = "body";
+
+    private Sport sport;
+    private String headline;
+    private String author;
+    private String body;
 
     public WriteArticlePage() {
-        sport = Sport.FOOTBALL;
         super.addPageAction(SUBMIT_ARTICLE_ID, this::submitArticleAction);
+        super.addPageAction(SELECT_SPORT_ID, this::selectSportAction);
+        super.addPageAction(HEADLINE_ID, this::headlineAction);
+        super.addPageAction(AUTHOR_ID, this::authorAction);
+        super.addPageAction(BODY_ID, this::bodyAction);
     }
 
-    private void submitArticleAction(News news) {
-        System.out.println("Your news has been submitted.");
-        System.out.println("Sport: " + news.getSport() +
-                            "\nHeadline: " + news.getHeadline() +
-                            "\nAuthor: " + news.getAuthor() +
-                            "\nBody: " + news.getBody());
+    private void submitArticleAction(Object o) {
+        if (sport == null || headline == null || author == null || body == null) {
+            System.out.println("Please ensure that you have set the sport, headline, author," +
+                    " and body before submitting.");
+            return;
+        }
+
+        News news = new News(sport, headline, author, body);
 
         try (Session session = Controller.sessionFactory.openSession()) {
 
@@ -38,49 +48,49 @@ public class WriteArticlePage extends Page {
             } catch (HibernateException e) {
                 transaction.rollback();
                 e.printStackTrace();
+                return;
             }
         }
 
+        System.out.println("Your news has been submitted.");
+        System.out.println("Sport: " + news.getSport() +
+                "\nHeadline: " + news.getHeadline() +
+                "\nAuthor: " + news.getAuthor() +
+                "\nBody: " + news.getBody() + "\n\n");
+        Controller.goToLobbyPage();
     }
 
-    private void selectSport() {
-        Sport allSports[] = Sport.values();
-        for (Sport sportI : allSports) {
-            System.out.println("   " + sportI);
+    private void selectSportAction(String sport) {
+        Sport selectedSport = SportFactory.chooseSport(sport);
+        if (selectedSport != null) {
+            System.out.println(selectedSport + " has been selected.");
+            this.sport = selectedSport;
         }
-        System.out.print("   Selection: ");
-        Scanner scanner = new Scanner(System.in);
-        String currentSport = scanner.next();
-        sport = SportFactory.chooseSport(currentSport);
-        System.out.println("Current Sport Selection: " + sport.toString());
+    }
+
+    private void headlineAction(String[] headline) {
+        System.out.println("Headline successfully set.");
+        this.headline = String.join(" ", headline);
+    }
+
+    private void authorAction(String[] author) {
+        System.out.println("Author successfully set.");
+        this.author = String.join(" ", author);
+    }
+
+    private void bodyAction(String[] body) {
+        System.out.println("Body successfully set.");
+        this.body = String.join(" ", body);
     }
 
     public void displayPage() {
-        System.out.println("Thank you for your interest in contributing to ESP-NGen News!\n\n" +
-                           "Please fill out each section when prompted and press Enter to move to the next section.");
-        // Select the sport to write about
-        System.out.println("Select the sport the news will be related to:");
-        selectSport();
+        System.out.println("Thank you for your interest in contributing to ESP-NGen News!\n\n");
+        System.out.println("Please type \'" + SELECT_SPORT_ID + " <sport>\' to select the sport the article will be " +
+                "about,\n" + "\'" + AUTHOR_ID + " <author>\' to specify the author of the article,\n\'" +
+                HEADLINE_ID + " <headline>\' to specify " +
+                "the headline of the article\n, and \'" + BODY_ID + " <body>\' to specify the body of the article.\n" +
+                "Finally, please type \'" + SUBMIT_ARTICLE_ID + "\' to submit your article.");
 
-        Scanner scanner = new Scanner(System.in);
-        // Write Headline
-        System.out.println("Write the headline for your article:");
-        String newsHeadline = scanner.nextLine();
-        // Write Author Name
-        System.out.println("Author's Name:");
-        String author = scanner.nextLine();
-        // Write article story
-        System.out.println("Write the body of your news article. Press Enter when finished.");
-        String newsBody = scanner.nextLine();
-        News addedNews = new News(sport, newsHeadline, author, newsBody);
-
-        System.out.println("Please review your submission: When you are finished, type \"done\"");
-        while (true) {
-            if (scanner.nextLine().equalsIgnoreCase("done")) {
-                Controller.sendCommandToPage(SUBMIT_ARTICLE_ID, addedNews);
-                break;
-            }
-        }
     }
 
 }

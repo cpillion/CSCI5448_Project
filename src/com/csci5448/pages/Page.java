@@ -41,7 +41,7 @@ public abstract class Page {
             try {
                 pageAction.accept(arg);
             } catch (ClassCastException e) { //this can happen if the wrong number/type of arguments are passed
-                return;
+                throw e;
             }
         }
     }
