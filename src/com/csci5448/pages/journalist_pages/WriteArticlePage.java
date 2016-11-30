@@ -4,10 +4,13 @@ import com.csci5448.content.News;
 import com.csci5448.content.Sport;
 import com.csci5448.content.SportFactory;
 import com.csci5448.control.Controller;
+import com.csci5448.control.EmailControl;
 import com.csci5448.pages.Page;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import javax.mail.MessagingException;
 
 public class WriteArticlePage extends Page {
 
@@ -37,7 +40,7 @@ public class WriteArticlePage extends Page {
             return;
         }
 
-        News news = new News(sport, headline, author, body);
+        News news = new News(sport, headline, author, body, false);
 
         try (Session session = Controller.sessionFactory.openSession()) {
 
@@ -52,7 +55,16 @@ public class WriteArticlePage extends Page {
             }
         }
 
-        System.out.println("Your news has been submitted.");
+        try {
+            EmailControl.getEmailControl().sendEmail("espngen@gmail.com", "ESPNGen Article Submission Ready For Approval",
+                            "A new article has been submitted by " + news.getAuthor() + "!\n" +
+                            "If you would like to approve this article, please update the news database.");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        System.out.println("Your news has been submitted for approval.");
         System.out.println("Sport: " + news.getSport() +
                 "\nHeadline: " + news.getHeadline() +
                 "\nAuthor: " + news.getAuthor() +
