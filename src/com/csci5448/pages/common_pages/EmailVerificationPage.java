@@ -34,7 +34,7 @@ public class EmailVerificationPage extends Page {
         super.addPageAction(generatedCode, this::codeEnteredCorrectlyAction);
 
         try {
-            EmailControl.getEmailControl().sendEmail(account.getUsername(), "ESPNGen Account Verificaton",
+            EmailControl.getEmailControl().sendEmail(account.getUsername(), "ESPNGen Account Verification",
                     "Verification code: " + generatedCode);
         } catch (MessagingException e) {
             e.printStackTrace();
@@ -43,7 +43,18 @@ public class EmailVerificationPage extends Page {
     }
 
     private void codeEnteredCorrectlyAction(Object o) {
-        System.out.println("Thank you for verifying your email.");
+        System.out.println("Thank you for verifying your email.\n" +
+                            "A system admin will verify your profession shortly. Once this happens," +
+                            " you will be able to write and submit news articles for approval.");
+        try {
+            EmailControl.getEmailControl().sendEmail("espngen@gmail.com", "ESPNGen Journalist Profession Verification",
+                    "A new Journalist Account has been created for " + account.getUsername() + "!\n" +
+                    "If you would like to approve this persons profession, please update the journalist database.");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            return;
+        }
+
 
         try (Session session = Controller.sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
