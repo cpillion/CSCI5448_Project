@@ -82,4 +82,8 @@ public class Controller {
         currentPage.performAction(command, arg);
     }
 
+    public static <T extends Account> T getCurrentAccount(Class<T> clazz) {
+        return clazz.cast(currentAccount);
+    }
+
 }

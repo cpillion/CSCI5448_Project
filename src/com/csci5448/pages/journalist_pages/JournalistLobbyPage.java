@@ -1,5 +1,6 @@
 package com.csci5448.pages.journalist_pages;
 
+import com.csci5448.accounts.JournalistAccount;
 import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
 
@@ -12,6 +13,12 @@ public class JournalistLobbyPage extends Page {
     }
 
     private void writeArticleAction(Object o) {
+        JournalistAccount currentAccount = Controller.getCurrentAccount(JournalistAccount.class);
+        if (!currentAccount.isProfessionVerified()) {
+            System.out.println("Your profession has not yet been verified. Please contact an administrator to " +
+                    "verify your account.");
+            return;
+        }
         Controller.setCurrentPage(new WriteArticlePage());
     }
 
