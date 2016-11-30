@@ -3,9 +3,7 @@ package com.csci5448.pages.user_pages;
 import com.csci5448.accounts.Account;
 import com.csci5448.content.Sport;
 import com.csci5448.content.SportFactory;
-import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
-import java.util.*;
 
 public class SportLobbyPage extends Page {
 
@@ -24,6 +22,15 @@ public class SportLobbyPage extends Page {
         super.addPageAction(VIEW_TEAMS_ID, this::viewTeamsAction);
         super.addPageAction(VIEW_FAVORITE_TEAMS_ID, this::viewFavoriteTeamsAction);
         super.addPageAction(VIEW_FAVORITE_PLAYERS_ID, this::viewFavoritePlayersAction);
+        for (Sport sport : Sport.values()) {
+            super.addPageAction(sport.toString(), selectedSportStr -> {
+                Sport selectedSport = SportFactory.chooseSport(selectedSportStr.toString());
+                if (selectedSport != null) {
+                    this.sport = selectedSport;
+                    System.out.println("Current Sport Selection: " + sport.toString());
+                }
+            });
+        }
     }
 
     private void viewNewsAction(Sport sport) {
@@ -52,10 +59,6 @@ public class SportLobbyPage extends Page {
             System.out.println("   " + sport);
         }
         System.out.print("   Selection: ");
-        Scanner scanner = new Scanner(System.in);
-        String currentSport = scanner.next();
-        sport = SportFactory.chooseSport(currentSport);
-        System.out.println("Current Sport Selection: " + sport.toString());
     }
 
     public void displayPage() {

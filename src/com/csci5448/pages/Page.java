@@ -1,8 +1,6 @@
 package com.csci5448.pages;
 
 import com.csci5448.control.Controller;
-import com.csci5448.pages.user_pages.SelectSportPage;
-import com.csci5448.pages.user_pages.SportLobbyPage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +32,7 @@ public abstract class Page {
             return;
         }
         if (identifier.equals(HOME_ID)) {
-            Controller.setCurrentPage(new SportLobbyPage());
+            Controller.goToLobbyPage();
             return;
         }
 

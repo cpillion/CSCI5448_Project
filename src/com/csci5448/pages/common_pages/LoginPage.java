@@ -35,10 +35,9 @@ public class LoginPage extends Page {
             return;
         }
 
-        System.out.println("Login successful.\nYou are now being taken to the ESP-NGen Lobby Page. "+
-                "You may logout at any time by typing \'logout\'.\n");
+        System.out.println("Login successful. You may logout at any time by typing \'" + Page.LOGOUT_ID + "\'.");
         Controller.setCurrentAccount(userAccount);
-        Controller.setCurrentPage(new SportLobbyPage());
+        checkEmailVerification(userAccount, new SportLobbyPage());
     }
 
     private void journalistLoginAction(String[] credentials) {
@@ -55,10 +54,9 @@ public class LoginPage extends Page {
             return;
         }
 
-        System.out.println("Login successful.\nYou are now being taken to the Journalist Lobby. "+
-                "You may logout at any time by typing \'logout\'.\n");
+        System.out.println("Login successful. You may logout at any time by typing \'logout\'.");
         Controller.setCurrentAccount(journalistAccount);
-        Controller.setCurrentPage(new JournalistLobbyPage());
+        checkEmailVerification(journalistAccount, new JournalistLobbyPage());
     }
 
     private <T extends Account> T login(T account, Class<T> clazz) {
@@ -78,6 +76,17 @@ public class LoginPage extends Page {
 
             return existingAccount;
         }
+    }
+
+    private void checkEmailVerification(Account account, Page lobbyPage) {
+        if (account.isActivated()) {
+            Controller.setCurrentPage(lobbyPage);
+            return;
+        }
+
+        System.out.println("You have not yet verified your email address.");
+        Controller.setCurrentPage(new EmailVerificationPage(account, lobbyPage));
+        Controller.sendCommandToPage(EmailVerificationPage.RESEND_EMAIL_ID, null);
     }
 
     public void displayPage() {

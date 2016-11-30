@@ -1,11 +1,15 @@
 package com.csci5448.control;
 
 import com.csci5448.accounts.Account;
+import com.csci5448.accounts.JournalistAccount;
+import com.csci5448.accounts.UserAccount;
 import com.csci5448.data.JournalistAccountDAO;
 import com.csci5448.data.SportDAO;
 import com.csci5448.data.UserAccountDAO;
 import com.csci5448.pages.Page;
 import com.csci5448.pages.common_pages.WelcomePage;
+import com.csci5448.pages.journalist_pages.JournalistLobbyPage;
+import com.csci5448.pages.user_pages.SportLobbyPage;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -61,6 +65,17 @@ public class Controller {
         currentPage = null;
         previousPages = new LinkedList<>();
         setCurrentPage(new WelcomePage());
+    }
+
+    public static void goToLobbyPage() {
+        if (currentAccount == null || !currentAccount.isActivated()) {
+            return;
+        }
+        if (currentAccount instanceof UserAccount) {
+            Controller.setCurrentPage(new SportLobbyPage());
+        } else if (currentAccount instanceof JournalistAccount) {
+            Controller.setCurrentPage(new JournalistLobbyPage());
+        }
     }
 
     public static void sendCommandToPage(String command, Object arg) {

@@ -4,6 +4,7 @@ import com.csci5448.accounts.Account;
 import com.csci5448.accounts.JournalistAccount;
 import com.csci5448.accounts.UserAccount;
 import com.csci5448.control.Controller;
+import com.csci5448.control.EmailControl;
 import com.csci5448.pages.Page;
 import com.csci5448.pages.journalist_pages.JournalistLobbyPage;
 import com.csci5448.pages.user_pages.SportLobbyPage;
@@ -31,10 +32,8 @@ public class CreateAccountPage extends Page {
             return;
         }
 
-        System.out.println("Signup successful! You are now being taken to the Sport Lobby Page. "+
-                "You may logout at any time by typing \'logout\'.");
-        Controller.setCurrentAccount(userAccount);
-        Controller.setCurrentPage(new SportLobbyPage());
+        Controller.setCurrentPage(new EmailVerificationPage(userAccount, new SportLobbyPage()));
+        Controller.sendCommandToPage(EmailVerificationPage.RESEND_EMAIL_ID, null);
     }
 
     private void createJournalistAccount(String[] credentials) {
@@ -47,14 +46,17 @@ public class CreateAccountPage extends Page {
             return;
         }
 
-        System.out.println("Signup successful! You are now being taken to the Journalist Lobby Page. "+
-                "You may logout at any time by typing \'logout\'.");
-        Controller.setCurrentAccount(journalistAccount);
-        Controller.setCurrentPage(new JournalistLobbyPage());
+        Controller.setCurrentPage(new EmailVerificationPage(journalistAccount, new JournalistLobbyPage()));
+        Controller.sendCommandToPage(EmailVerificationPage.RESEND_EMAIL_ID, null);
     }
 
     private <T extends Account> boolean saveAccount(T account, Class<T> clazz) {
         if (account.getUsername().length() == 0 || account.getPassword().length() == 0) {
+            return false;
+        }
+
+        if (!EmailControl.getEmailControl().isEmailValid(account.getUsername())) {
+            System.out.println(account.getUsername() + " is not a valid email address.");
             return false;
         }
 
@@ -85,5 +87,9 @@ public class CreateAccountPage extends Page {
         System.out.println("Please type \'" + CREATE_USER_ACCOUNT_ID + " <username> <password> to create a"
                 + " user account,\n or \'" + CREATE_JOURNALIST_ACCOUNT_ID + " <username> <password> to create a"
                 + " journalist account");
+        System.out.println("Also, please note that your username must be a valid email address.");
     }
+
+
+
 }

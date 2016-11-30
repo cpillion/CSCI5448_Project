@@ -19,7 +19,7 @@ public class Main {
 
     private static void processUserInput(String input) {
         if (!input.contains(" ")) {
-            Controller.sendCommandToPage(input, null);
+            Controller.sendCommandToPage(input, input);
             return;
         }
 
