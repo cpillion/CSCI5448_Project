@@ -9,7 +9,7 @@ public class UserLobbyPage extends Page {
 
     public UserLobbyPage() {
         for (Sport sport : Sport.values()) {
-            super.addPageAction(sport.toString().toLowerCase(), selectedSportStr -> {
+            super.addPageAction(sport.toString(), selectedSportStr -> {
                 Sport selectedSport = SportFactory.chooseSport(selectedSportStr.toString());
                 if (selectedSport != null) {
                     Controller.setCurrentPage(new SportOptionPage(selectedSport));

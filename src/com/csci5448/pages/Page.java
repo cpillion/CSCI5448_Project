@@ -19,7 +19,7 @@ public abstract class Page {
     }
 
     public <T> void addPageAction(String identifier, Consumer<T> pageAction) {
-        pageActions.put(identifier, pageAction);
+        pageActions.put(identifier.toLowerCase(), pageAction);
     }
 
     public void performAction(String identifier, Object arg) {

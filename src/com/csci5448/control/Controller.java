@@ -79,7 +79,7 @@ public class Controller {
     }
 
     public static void sendCommandToPage(String command, Object arg) {
-        currentPage.performAction(command, arg);
+        currentPage.performAction(command.toLowerCase(), arg);
     }
 
     public static <T extends Account> T getCurrentAccount(Class<T> clazz) {
