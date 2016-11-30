@@ -17,7 +17,7 @@ public class FavoritePlayersPage extends Page {
     }
 
     private void deleteFavoritePlayerAction(Player player) {
-        String s = player.getTeam();
+        String s = player.getTeam().getName();
         s.hashCode();
     }
 

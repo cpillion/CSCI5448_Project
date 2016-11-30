@@ -1,10 +1,21 @@
 package com.csci5448.content.stats;
 
+import javax.persistence.*;
+
+@MappedSuperclass
 public abstract class BasicStats {
 
-    private final int wins;
-    private final int losses;
-    private final int ties;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @Column
+    private int wins;
+    @Column
+    private int losses;
+    @Column
+    private int ties;
+
+    public BasicStats() {}
 
     public BasicStats(final int wins, final int losses, final int ties) {
         this.wins = wins;
@@ -16,12 +27,24 @@ public abstract class BasicStats {
         return wins;
     }
 
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
     public int getLosses() {
         return losses;
     }
 
+    public void setLosses(int losses) {
+        this.losses = losses;
+    }
+
     public int getTies() {
         return ties;
+    }
+
+    public void setTies(int ties) {
+        this.ties = ties;
     }
 
 }
