@@ -19,7 +19,7 @@ public class UserLobbyPage extends Page {
     }
 
     public void displayPage() {
-        System.out.println("Welcome to the ESP-NGen Lobby Page!\n" + "Please select a sport from the menu below:");
+        System.out.println("Welcome to the ESPNGen Lobby Page!\n" + "Please select a sport from the menu below:");
         for (Sport sport : Sport.values()) {
             System.out.println("\t" + sport.toString().toLowerCase());
         }
