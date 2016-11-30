@@ -2,6 +2,7 @@ package com.csci5448.pages.user_pages;
 
 import com.csci5448.accounts.Account;
 import com.csci5448.content.Sport;
+import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
 
 public class SportOptionPage extends Page {
@@ -16,23 +17,11 @@ public class SportOptionPage extends Page {
 
     public SportOptionPage(Sport sport) {
         this.sport = sport;
-        super.addPageAction(VIEW_NEWS_ID, this::viewNewsAction);
-        super.addPageAction(VIEW_LEAGUE_ID, this::viewLeagueAction);
-        super.addPageAction(VIEW_TEAMS_ID, this::viewTeamsAction);
+        super.addPageAction(VIEW_NEWS_ID, o -> Controller.setCurrentPage(new NewsPage(sport)));
+        super.addPageAction(VIEW_LEAGUE_ID, o -> Controller.setCurrentPage(new LeaguePage(sport)));
+        super.addPageAction(VIEW_TEAMS_ID, o -> Controller.setCurrentPage(new TeamPage(sport)));
         super.addPageAction(VIEW_FAVORITE_TEAMS_ID, this::viewFavoriteTeamsAction);
         super.addPageAction(VIEW_FAVORITE_PLAYERS_ID, this::viewFavoritePlayersAction);
-    }
-
-    private void viewNewsAction(Sport sport) {
-        //Controller.setCurrentPage(new NewsArticlePage());
-    }
-
-    private void viewLeagueAction(Object obj) {
-        System.out.println("Loading all relevant league info for " + sport);
-    }
-
-    private void viewTeamsAction(Sport sport) {
-
     }
 
     private void viewFavoriteTeamsAction(Account account) {
