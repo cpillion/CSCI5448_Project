@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e30b941-a8c3-4657-9857-0ecf30e63d05" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/EmailVerificationPage.java" afterPath="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/EmailVerificationPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/WelcomePage.java" afterPath="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/WelcomePage.java" />
     </list>
     <ignored path="ESPNGen.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,22 +34,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WelcomePage.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="WelcomePage.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/common_pages/WelcomePage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14">
-              <caret line="2" column="14" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EmailVerificationPage.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/common_pages/EmailVerificationPage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="209">
+              <caret line="20" column="89" selection-start-line="20" selection-start-column="89" selection-end-line="20" selection-end-column="89" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -90,16 +82,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JournalistAccount.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/csci5448/accounts/JournalistAccount.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -127,7 +109,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/csci5448/pages/Page.java" />
         <option value="$PROJECT_DIR$/src/com/csci5448/pages/LoginPage.java" />
-        <option value="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/WelcomePage.java" />
         <option value="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/LoginPage.java" />
         <option value="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/SupportRequestPage.java" />
         <option value="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/CreateAccountPage.java" />
@@ -136,6 +117,7 @@
         <option value="$PROJECT_DIR$/src/com/csci5448/content/Player.java" />
         <option value="$PROJECT_DIR$/src/com/csci5448/main/Main.java" />
         <option value="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/EmailVerificationPage.java" />
+        <option value="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/WelcomePage.java" />
       </list>
     </option>
   </component>
@@ -678,7 +660,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="23" width="1260" height="722" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1065,14 +1047,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/common_pages/WelcomePage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/csci5448/accounts/Account.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -1128,6 +1102,16 @@
         <state relative-caret-position="90">
           <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/common_pages/WelcomePage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="20" column="89" selection-start-line="20" selection-start-column="89" selection-end-line="20" selection-end-column="89" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
