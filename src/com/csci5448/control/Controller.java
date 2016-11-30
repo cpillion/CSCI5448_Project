@@ -13,8 +13,7 @@ import com.csci5448.pages.user_pages.UserLobbyPage;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Stack;
 
 public class Controller {
 
@@ -24,7 +23,7 @@ public class Controller {
 
     public static SessionFactory sessionFactory;
 
-    private static Queue<Page> previousPages = new LinkedList<>();
+    private static Stack<Page> previousPages = new Stack<>();
     private static Page currentPage;
     private static Account currentAccount;
 
@@ -38,7 +37,7 @@ public class Controller {
 
     public static void setCurrentPage(Page page) {
         if (currentPage != null) {
-            previousPages.add(currentPage);
+            previousPages.push(currentPage);
         }
         currentPage = page;
         currentPage.displayPage();
@@ -48,7 +47,7 @@ public class Controller {
         if (previousPages.size() == 0) {
             return;
         }
-        Page previousPage = previousPages.poll();
+        Page previousPage = previousPages.pop();
         if (previousPage != null) {
             currentPage = previousPage;
             currentPage.displayPage();
@@ -63,7 +62,7 @@ public class Controller {
         System.out.println("Logging out...");
         currentAccount = null;
         currentPage = null;
-        previousPages = new LinkedList<>();
+        previousPages = new Stack<>();
         setCurrentPage(new WelcomePage());
     }
 
