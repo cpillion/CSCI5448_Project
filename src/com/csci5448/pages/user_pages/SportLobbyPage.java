@@ -2,6 +2,7 @@ package com.csci5448.pages.user_pages;
 
 import com.csci5448.accounts.Account;
 import com.csci5448.content.Sport;
+import com.csci5448.content.SportFactory;
 import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
 import java.util.*;
@@ -42,11 +43,16 @@ public class SportLobbyPage extends Page {
 
     }
 
-    private void selectSport() {
+    private Sport selectSport() {
         Sport allSports[] = Sport.values();
         for (Sport sport : allSports) {
             System.out.println(sport);
         }
+        Scanner scanner = new Scanner(System.in);
+        String currentSport = scanner.next();
+        Sport sport = SportFactory.chooseSport(currentSport);
+        System.out.println("You have chosen " + sport.toString());
+        return sport;
     }
 
     public void displayPage() {
