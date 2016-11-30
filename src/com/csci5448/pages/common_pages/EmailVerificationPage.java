@@ -49,7 +49,7 @@ public class EmailVerificationPage extends Page {
         try {
             EmailControl.getEmailControl().sendEmail("espngen@gmail.com", "ESPNGen Journalist Profession Verification",
                     "A new Journalist Account has been created for " + account.getUsername() + "!\n" +
-                    "If you would like to approve this persons profession, please update the journalist database.");
+                    "If you would like to approve this person's profession, please update the journalist database.");
         } catch (MessagingException e) {
             e.printStackTrace();
             return;
