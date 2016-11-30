@@ -9,6 +9,8 @@ import java.util.*;
 
 public class SportLobbyPage extends Page {
 
+    private Sport sport;
+
     public static final String VIEW_NEWS_ID = "view_news";
     public static final String VIEW_LEAGUE_ID = "view_league";
     public static final String VIEW_TEAMS_ID = "view_teams";
@@ -16,6 +18,7 @@ public class SportLobbyPage extends Page {
     public static final String VIEW_FAVORITE_PLAYERS_ID = "view_favorite_players";
 
     public SportLobbyPage() {
+        sport = Sport.FOOTBALL;
         super.addPageAction(VIEW_NEWS_ID, this::viewNewsAction);
         super.addPageAction(VIEW_LEAGUE_ID, this::viewLeagueAction);
         super.addPageAction(VIEW_TEAMS_ID, this::viewTeamsAction);
@@ -27,8 +30,8 @@ public class SportLobbyPage extends Page {
         //Controller.setCurrentPage(new NewsArticlePage());
     }
 
-    private void viewLeagueAction(Sport sport) {
-        System.out.println("You made it here." + sport);
+    private void viewLeagueAction(Object obj) {
+        System.out.println("Loading all relevant leagues for " + sport);
     }
 
     private void viewTeamsAction(Sport sport) {
@@ -43,16 +46,16 @@ public class SportLobbyPage extends Page {
 
     }
 
-    private Sport selectSport() {
+    private void selectSport() {
         Sport allSports[] = Sport.values();
         for (Sport sport : allSports) {
-            System.out.println(sport);
+            System.out.println("   " + sport);
         }
+        System.out.print("   Selection: ");
         Scanner scanner = new Scanner(System.in);
         String currentSport = scanner.next();
-        Sport sport = SportFactory.chooseSport(currentSport);
-        System.out.println("You have chosen " + sport.toString());
-        return sport;
+        sport = SportFactory.chooseSport(currentSport);
+        System.out.println("Current Sport Selection: " + sport.toString());
     }
 
     public void displayPage() {
@@ -67,12 +70,11 @@ public class SportLobbyPage extends Page {
         System.out.println("Welcome to the ESP-NGen Lobby Page!\n" +
                             "What sport would you like to find more information about?");
         selectSport();
-        System.out.println("\nPlease select an option from the menu below followed by its related sport.\n" +
-                            "<view_choice> <sport>\n" +
-                            "Ex: view_teams BASKETBALL\n");
+        System.out.println("\nPlease select an option from the menu below:");
         for (int i = 0; i < navPages.length; i++) {
             System.out.println("   " + navPages[i]);
         }
+        System.out.print("   Selection: ");
     }
 
 }
