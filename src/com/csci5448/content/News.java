@@ -10,13 +10,15 @@ public class News {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column
-    private final Sport sport;
+    private Sport sport;
     @Column
-    private final String headline;
+    private String headline;
     @Column
-    private final String author;
+    private String author;
     @Column
-    private final String body;
+    private String body;
+
+    public News() {}
 
     public News(Sport sport, String headline, String author, String body) {
         this.sport = sport;
@@ -33,14 +35,36 @@ public class News {
         return id;
     }
 
-    public Sport getSport() { return sport; }
+    public Sport getSport() {
+        return sport;
+    }
+
+    public void setSport(Sport sport) {
+        this.sport = sport;
+    }
 
     public String getHeadline() {
         return headline;
     }
 
-    public String getAuthor() { return author; }
+    public void setHeadline(String headline) {
+        this.headline = headline;
+    }
 
-    public String getBody() { return body; }
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
 
 }
