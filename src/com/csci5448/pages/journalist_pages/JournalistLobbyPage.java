@@ -12,11 +12,12 @@ public class JournalistLobbyPage extends Page {
     }
 
     private void writeArticleAction(Object o) {
-
+        Controller.setCurrentPage(new WriteArticlePage());
     }
 
     public void displayPage() {
-        System.out.println("Welcome to the Journalist Lobby Page!");
+        System.out.println("Welcome to the Journalist Lobby Page!\n" +
+                            "Please type \"" + WRITE_ARTICLE_ID + "\" to write a news article.");
     }
 
 }

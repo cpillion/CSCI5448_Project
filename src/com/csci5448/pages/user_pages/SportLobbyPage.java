@@ -3,7 +3,6 @@ package com.csci5448.pages.user_pages;
 import com.csci5448.accounts.Account;
 import com.csci5448.content.Sport;
 import com.csci5448.content.SportFactory;
-import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
 import java.util.*;
 
@@ -31,7 +30,7 @@ public class SportLobbyPage extends Page {
     }
 
     private void viewLeagueAction(Object obj) {
-        System.out.println("Loading all relevant leagues for " + sport);
+        System.out.println("Loading all relevant League Info for " + sport);
     }
 
     private void viewTeamsAction(Sport sport) {
@@ -48,8 +47,8 @@ public class SportLobbyPage extends Page {
 
     private void selectSport() {
         Sport allSports[] = Sport.values();
-        for (Sport sport : allSports) {
-            System.out.println("   " + sport);
+        for (Sport sportI : allSports) {
+            System.out.println("   " + sportI);
         }
         System.out.print("   Selection: ");
         Scanner scanner = new Scanner(System.in);
