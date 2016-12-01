@@ -28,17 +28,19 @@ public class NewsPage extends Page {
                             "To view an article, please type \"read_article\" followed by the article headline.\n");
 
         try (Session session = Controller.sessionFactory.openSession()) {
-            Query availableArticles = session.createQuery("FROM News WHERE sport=" + sport.ordinal());
+            Query availableArticles = session.createQuery("FROM News WHERE sport=" + sport.ordinal() +
+                                                            "AND approved=true");
             List<News> results = availableArticles.list();
             if (results.isEmpty()) {
                 System.out.println("There are no available articles for " +
                         sport.toString().toLowerCase()+ " at this time. Please check back later.");
             }
-
-            // List Results for user to see
-            System.out.println("Available articles related to " + sport.toString().toLowerCase() + ":");
-            for (int i = 0; i<results.size(); i++) {
-                System.out.println("\t\"" + results.get(i).getHeadline() + "\" by " + results.get(i).getAuthor());
+            else {
+                // List Results for user to see
+                System.out.println("Available articles related to " + sport.toString().toLowerCase() + ":");
+                for (int i = 0; i < results.size(); i++) {
+                    System.out.println("\t\"" + results.get(i).getHeadline() + "\" by " + results.get(i).getAuthor());
+                }
             }
         }
     }
