@@ -27,7 +27,7 @@ public class TeamPage extends Page {
                 return;
             }
         }
-        System.out.println(team.getName() + " has been added to your list of favorite teams!");
+        System.out.println("The " + team.getName() + " have been added to your list of favorite teams!");
     }
 
     public void displayPage() {
