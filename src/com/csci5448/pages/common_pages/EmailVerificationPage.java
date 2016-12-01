@@ -27,7 +27,7 @@ public class EmailVerificationPage extends Page {
 
     private void sendVerificationEmailAction(Object o) {
         System.out.println("Please enter the code included in the email.\nIf you need a new code sent to you," +
-                " please type \'resend\'");
+                " please type \'" + RESEND_EMAIL_ID + "\'.");
         System.out.print("Code: ");
 
         final String generatedCode = new BigInteger(32, new Random()).toString(32);
@@ -43,6 +43,14 @@ public class EmailVerificationPage extends Page {
     }
 
     private void codeEnteredCorrectlyAction(Object o) {
+        try (Session session = Controller.sessionFactory.openSession()) {
+            account.setActivated(true);
+            if (!SessionManager.getSessionManager().performOp(session, session::update, account)) {
+                account.setActivated(false);
+                return;
+            }
+        }
+
         System.out.println("Thank you for verifying your email.");
         if (account instanceof JournalistAccount) {
             System.out.println("A system admin will verify your profession shortly. Once this happens," +
@@ -53,14 +61,6 @@ public class EmailVerificationPage extends Page {
                                 "If you would like to approve this person's profession, please update the journalist database.");
             } catch (MessagingException e) {
                 e.printStackTrace();
-                return;
-            }
-        }
-
-        try (Session session = Controller.sessionFactory.openSession()) {
-            account.setActivated(true);
-            if (!SessionManager.getSessionManager().performOp(session, session::update, account)) {
-                account.setActivated(false);
                 return;
             }
         }
