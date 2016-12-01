@@ -1,6 +1,7 @@
 package com.csci5448.data;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.function.Consumer;
@@ -16,7 +17,8 @@ public class SessionManager {
         return sessionManager;
     }
 
-    public <T> boolean performOp(Transaction transaction, Consumer<T> op, T arg) {
+    public <T> boolean performOp(Session session, Consumer<T> op, T arg) {
+        Transaction transaction = session.beginTransaction();
         try {
             op.accept(arg);
             transaction.commit();

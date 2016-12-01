@@ -20,12 +20,8 @@ public class SportOptionPage extends Page {
         super.addPageAction(VIEW_NEWS_ID, o -> Controller.setCurrentPage(new NewsPage(sport)));
         super.addPageAction(VIEW_LEAGUE_ID, o -> Controller.setCurrentPage(new LeaguePage(sport)));
         super.addPageAction(VIEW_TEAMS_ID, o -> Controller.setCurrentPage(new ViewTeamsPage(sport)));
-        super.addPageAction(VIEW_FAVORITE_TEAMS_ID, this::viewFavoriteTeamsAction);
+        super.addPageAction(VIEW_FAVORITE_TEAMS_ID, o -> Controller.setCurrentPage(new FavoriteTeamsPage(sport)));
         super.addPageAction(VIEW_FAVORITE_PLAYERS_ID, this::viewFavoritePlayersAction);
-    }
-
-    private void viewFavoriteTeamsAction(Account account) {
-
     }
 
     private void viewFavoritePlayersAction(Account account) {

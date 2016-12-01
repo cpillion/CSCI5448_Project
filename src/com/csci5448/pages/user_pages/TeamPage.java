@@ -6,7 +6,6 @@ import com.csci5448.control.Controller;
 import com.csci5448.data.SessionManager;
 import com.csci5448.pages.Page;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 public class TeamPage extends Page {
 
@@ -23,9 +22,8 @@ public class TeamPage extends Page {
     private void addFavoriteTeam(Object o) {
         UserAccount userAccount = Controller.getCurrentAccount(UserAccount.class);
         try (Session session = Controller.sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
             userAccount.addFavoriteTeam(team);
-            if (!SessionManager.getSessionManager().performOp(transaction, session::update, userAccount)) {
+            if (!SessionManager.getSessionManager().performOp(session, session::update, userAccount)) {
                 return;
             }
         }

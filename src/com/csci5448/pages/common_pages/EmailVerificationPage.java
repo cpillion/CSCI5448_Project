@@ -7,7 +7,6 @@ import com.csci5448.control.EmailControl;
 import com.csci5448.data.SessionManager;
 import com.csci5448.pages.Page;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import javax.mail.MessagingException;
 import java.math.BigInteger;
@@ -59,9 +58,8 @@ public class EmailVerificationPage extends Page {
         }
 
         try (Session session = Controller.sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
             account.setActivated(true);
-            if (!SessionManager.getSessionManager().performOp(transaction, session::update, account)) {
+            if (!SessionManager.getSessionManager().performOp(session, session::update, account)) {
                 account.setActivated(false);
                 return;
             }
