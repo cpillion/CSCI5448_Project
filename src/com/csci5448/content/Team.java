@@ -22,7 +22,7 @@ public class Team implements SportItem {
     private String name;
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "team", cascade = CascadeType.ALL)
     private TeamStats teamStats;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "team", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "team", cascade = CascadeType.MERGE)
     private Set<Player> players = new HashSet<>(0);
 
     public Team() {}

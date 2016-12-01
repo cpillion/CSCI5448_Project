@@ -26,11 +26,11 @@ public class SportOptionPage extends Page {
         UserAccount userAccount = Controller.getCurrentAccount(UserAccount.class);
 
         FavoritesPage<Team> favoriteTeamPage = new FavoritesPage<Team>(sport, userAccount,
-                o -> userAccount.getFavoriteTeams(), userAccount::addFavoriteTeam, userAccount::removeFavoriteTeam,
+                userAccount.getFavoriteTeams(), userAccount::addFavoriteTeam, userAccount::removeFavoriteTeam,
                 team -> new TeamPage(team));
 
         FavoritesPage<Player> favoritePlayerPage = new FavoritesPage<Player>(sport, userAccount,
-                o -> userAccount.getFavoritePlayers(), userAccount::addFavoritePlayer, userAccount::removeFavoritePlayer,
+                userAccount.getFavoritePlayers(), userAccount::addFavoritePlayer, userAccount::removeFavoritePlayer,
                 player -> new PlayerPage(player));
 
         super.addPageAction(VIEW_FAVORITE_TEAMS_ID, o -> Controller.setCurrentPage(favoriteTeamPage));

@@ -21,17 +21,18 @@ public class FavoritesPage<T extends SportItem> extends Page {
     public static final String VIEW_FAVORITE_ITEM = "view";
 
     private final Sport sport;
+    private final List<T> favorites;
     private final UserAccount userAccount;
-    private final Function<Object, Set<T>> getFavorites;
     private final Consumer<T> addFavorite;
     private final Consumer<T> deleteFavorite;
     private final Function<T, Page> getPage;
 
-    public FavoritesPage(Sport sport, UserAccount userAccount, Function<Object, Set<T>> getFavorites, Consumer<T> addFavorite,
+    public FavoritesPage(Sport sport, UserAccount userAccount, Set<T> favorites, Consumer<T> addFavorite,
                          Consumer<T> deleteFavorite, Function<T, Page> getPage) {
         this.sport = sport;
+        this.favorites = favorites.stream().filter(favorite ->
+                favorite.getSport() == sport).collect(Collectors.toList());
         this.userAccount = userAccount;
-        this.getFavorites = getFavorites;
         this.addFavorite = addFavorite;
         this.deleteFavorite = deleteFavorite;
         this.getPage = getPage;
@@ -55,6 +56,7 @@ public class FavoritesPage<T extends SportItem> extends Page {
         }
 
         System.out.println(favoriteItem.getName() + " has been removed from your favorites.\n\n");
+        favorites.remove(favoriteItem);
         displayPage();
     }
 
@@ -68,7 +70,7 @@ public class FavoritesPage<T extends SportItem> extends Page {
     }
 
     private T getFavoriteItem(String itemName) {
-        List<T> filteredList = getFavorites.apply(null).stream().filter(favorite ->
+        List<T> filteredList = favorites.stream().filter(favorite ->
                 favorite.getName().equalsIgnoreCase(itemName)).collect(Collectors.toList());
 
         if (filteredList.size() == 0) {
@@ -79,7 +81,7 @@ public class FavoritesPage<T extends SportItem> extends Page {
 
     public void displayPage() {
         System.out.println("Your favorites are:");
-        for (T favorite : getFavorites.apply(null)) {
+        for (T favorite : favorites) {
             System.out.println("\t" + favorite.getName());
         }
         System.out.println("\nType \'" + DELETE_FAVORITE_ITEM + " <name>\' to delete an entry from your favorites,\n" +
