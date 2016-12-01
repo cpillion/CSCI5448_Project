@@ -2,6 +2,7 @@ package com.csci5448.content;
 
 import com.csci5448.content.stats.PlayerStats;
 import com.csci5448.content.stats.TeamStats;
+import com.csci5448.pages.user_pages.SportOptionPage;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,7 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "teams")
-public class Team {
+public class Team implements SportItem {
 
     @Id
     @Column(name = "team_id")

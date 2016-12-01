@@ -1,12 +1,13 @@
 package com.csci5448.content;
 
 import com.csci5448.content.stats.PlayerStats;
+import com.csci5448.pages.user_pages.SportOptionPage;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "players")
-public class Player {
+public class Player implements SportItem {
 
     @Id
     @Column(name = "player_id")

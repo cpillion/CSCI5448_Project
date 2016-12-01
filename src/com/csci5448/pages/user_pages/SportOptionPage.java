@@ -1,7 +1,9 @@
 package com.csci5448.pages.user_pages;
 
-import com.csci5448.accounts.Account;
+import com.csci5448.accounts.UserAccount;
+import com.csci5448.content.Player;
 import com.csci5448.content.Sport;
+import com.csci5448.content.Team;
 import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
 
@@ -20,12 +22,18 @@ public class SportOptionPage extends Page {
         super.addPageAction(VIEW_NEWS_ID, o -> Controller.setCurrentPage(new NewsPage(sport)));
         super.addPageAction(VIEW_LEAGUE_ID, o -> Controller.setCurrentPage(new LeaguePage(sport)));
         super.addPageAction(VIEW_TEAMS_ID, o -> Controller.setCurrentPage(new ViewTeamsPage(sport)));
-        super.addPageAction(VIEW_FAVORITE_TEAMS_ID, o -> Controller.setCurrentPage(new FavoriteTeamsPage(sport)));
-        super.addPageAction(VIEW_FAVORITE_PLAYERS_ID, this::viewFavoritePlayersAction);
-    }
 
-    private void viewFavoritePlayersAction(Account account) {
+        UserAccount userAccount = Controller.getCurrentAccount(UserAccount.class);
 
+        FavoritesPage<Team> favoriteTeamPage = new FavoritesPage<>(sport, userAccount, userAccount.getFavoriteTeams(),
+                userAccount::addFavoriteTeam, userAccount::removeFavoriteTeam, team -> new TeamPage(team));
+
+        FavoritesPage<Player> favoritePlayerPage = new FavoritesPage<>(sport, userAccount,
+                userAccount.getFavoritePlayers(), userAccount::addFavoritePlayer, userAccount::removeFavoritePlayer,
+                player -> new PlayerPage(player));
+
+        super.addPageAction(VIEW_FAVORITE_TEAMS_ID, o -> Controller.setCurrentPage(favoriteTeamPage));
+        super.addPageAction(VIEW_FAVORITE_PLAYERS_ID, o -> Controller.setCurrentPage(favoritePlayerPage));
     }
 
     @Override
