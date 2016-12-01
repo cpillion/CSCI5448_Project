@@ -24,19 +24,16 @@ public class NewsPage extends Page {
     }
 
     public void displayPage() {
-        //System.out.flush();
         System.out.println("Welcome to ESPNGen News!\n" +
                             "To view an article, please type \"read_article\" followed by the article headline.");
 
         try (Session session = Controller.sessionFactory.openSession()) {
-            long id = 1;
-            News availableArticles = session.get(News.class, id);
-            Query availableArticles2 = session.createQuery("FROM News");
-            List<News> results = availableArticles2.list();
-            if (availableArticles == null) {
-                System.out.println("There are no available articles at this time.");
+            Query availableArticles = session.createQuery("FROM News WHERE sport=" + sport.ordinal());
+            List<News> results = availableArticles.list();
+            if (results.isEmpty()) {
+                System.out.println("There are no available articles for " +
+                        sport.toString().toLowerCase()+ " at this time. Please check back later.");
             }
-            //System.out.println(availableArticles.getHeadline());
             for (int i = 0; i<results.size(); i++){
                 System.out.println(results.get(i).getHeadline());
             }
