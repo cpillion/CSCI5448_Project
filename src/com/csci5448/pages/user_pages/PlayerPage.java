@@ -5,14 +5,14 @@ import com.csci5448.pages.Page;
 
 public class PlayerPage extends Page {
 
-    private Player player;
+    private final Player player;
 
     public PlayerPage(Player player) {
         this.player = player;
     }
 
     public void displayPage() {
-        //TODO
+        System.out.println("Welcome to the Player Page for " + player.getName() + "!");
     }
 
 }
