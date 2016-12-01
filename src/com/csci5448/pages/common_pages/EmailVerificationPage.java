@@ -4,8 +4,8 @@ import com.csci5448.accounts.Account;
 import com.csci5448.accounts.JournalistAccount;
 import com.csci5448.control.Controller;
 import com.csci5448.control.EmailControl;
+import com.csci5448.data.SessionManager;
 import com.csci5448.pages.Page;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -61,12 +61,8 @@ public class EmailVerificationPage extends Page {
         try (Session session = Controller.sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             account.setActivated(true);
-            try {
-                session.update(account);
-                transaction.commit();
-            } catch (HibernateException e) {
-                transaction.rollback();
-                e.printStackTrace();
+            if (!SessionManager.getSessionManager().performOp(transaction, session::update, account)) {
+                account.setActivated(false);
                 return;
             }
         }

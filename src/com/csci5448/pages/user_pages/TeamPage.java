@@ -1,31 +1,41 @@
 package com.csci5448.pages.user_pages;
 
-import com.csci5448.content.Player;
-import com.csci5448.content.Sport;
+import com.csci5448.accounts.UserAccount;
+import com.csci5448.content.Team;
+import com.csci5448.control.Controller;
+import com.csci5448.data.SessionManager;
 import com.csci5448.pages.Page;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 public class TeamPage extends Page {
 
-    private final Sport sport;
+    private final Team team;
     public static final String SELECT_PLAYER_ID = "select_player";
-    public static final String ADD_FAVORITE_PLAYER_ID = "add_favorite_player";
+    public static final String ADD_FAVORITE_TEAM_ID = "add_favorite_team";
+    public static final String VIEW_PLAYERS_ID = "view_players";
 
-    public TeamPage(Sport mySport) {
-        sport = mySport;
-        super.addPageAction(SELECT_PLAYER_ID, this::selectPlayerAction);
-        super.addPageAction(ADD_FAVORITE_PLAYER_ID, this::addFavoritePlayerAction);
+    public TeamPage(Team team) {
+        this.team = team;
+        super.addPageAction(ADD_FAVORITE_TEAM_ID, this::addFavoriteTeam);
     }
 
-    private void selectPlayerAction(Player player) {
-
-    }
-
-    private void addFavoritePlayerAction(Player player) {
-
+    private void addFavoriteTeam(Object o) {
+        UserAccount userAccount = Controller.getCurrentAccount(UserAccount.class);
+        try (Session session = Controller.sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            userAccount.addFavoriteTeam(team);
+            if (!SessionManager.getSessionManager().performOp(transaction, session::update, userAccount)) {
+                return;
+            }
+        }
+        System.out.println(team.getName() + " has been added to your list of favorite teams!");
     }
 
     public void displayPage() {
-        System.out.println("Displaying all ESPNGen Team information for " + sport.toString());
+        System.out.println("Welcome to the " + team.getName() + " page!");
+        System.out.println("To add this team to your list of favorites, type \'" + ADD_FAVORITE_TEAM_ID + "\'.");
+        System.out.println("To view a list of players on this team, type \'" + VIEW_PLAYERS_ID + "\'.");
     }
 
 }

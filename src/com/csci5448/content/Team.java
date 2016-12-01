@@ -76,4 +76,18 @@ public class Team {
         players.add(new Player(sport, this, name, status, stats));
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || !(o instanceof Team)) {
+            return false;
+        }
+        Team team = (Team) o;
+        return this.getId().equals(team.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getId().hashCode();
+    }
+
 }

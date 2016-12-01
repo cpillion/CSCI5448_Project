@@ -81,4 +81,18 @@ public class Player {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || !(o instanceof Player)) {
+            return false;
+        }
+        Player player = (Player) o;
+        return this.getId().equals(player.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getId().hashCode();
+    }
 }
