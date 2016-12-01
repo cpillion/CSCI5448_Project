@@ -52,4 +52,10 @@ public class PlayerStats extends BasicStats {
         this.player = player;
     }
 
+    @Override
+    public String toString() {
+        String basicStats = super.toString();
+        return basicStats + "\nGames Missed: " + gamesMissed;
+    }
+
 }

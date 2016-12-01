@@ -20,9 +20,9 @@ public class Team implements SportItem {
     private Sport sport;
     @Column
     private String name;
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "team", cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "team", cascade = CascadeType.ALL)
     private TeamStats teamStats;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "team", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "team", cascade = CascadeType.ALL)
     private Set<Player> players = new HashSet<>(0);
 
     public Team() {}
@@ -89,6 +89,15 @@ public class Team implements SportItem {
     @Override
     public int hashCode() {
         return this.getId().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Name: " + name + "\n");
+        sb.append("Sport: " + sport + "\n");
+        sb.append(teamStats.toString());
+        return sb.toString();
     }
 
 }

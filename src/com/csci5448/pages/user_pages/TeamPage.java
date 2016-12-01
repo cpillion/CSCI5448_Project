@@ -14,11 +14,12 @@ import java.util.stream.Collectors;
 
 public class TeamPage extends Page {
 
-    private final Team team;
-    private final List<Player> players;
     public static final String SELECT_PLAYER_ID = "select_player";
     public static final String ADD_FAVORITE_TEAM_ID = "add_favorite_team";
     public static final String VIEW_PLAYERS_ID = "view_players";
+
+    private final Team team;
+    private final List<Player> players;
 
     public TeamPage(Team team) {
         this.team = team;
@@ -37,6 +38,7 @@ public class TeamPage extends Page {
         try (Session session = Controller.sessionFactory.openSession()) {
             userAccount.addFavoriteTeam(team);
             if (!SessionManager.getSessionManager().performOp(session, session::update, userAccount)) {
+                userAccount.removeFavoriteTeam(team);
                 return;
             }
         }
@@ -62,7 +64,7 @@ public class TeamPage extends Page {
     }
 
     public void displayPage() {
-        System.out.println("Welcome to the " + team.getName() + " page!");
+        System.out.println(team + "\n");
         System.out.println("To add this team to your list of favorites, type \'" + ADD_FAVORITE_TEAM_ID + "\'.");
         System.out.println("To view a list of players on this team, type \'" + VIEW_PLAYERS_ID + "\'.");
     }

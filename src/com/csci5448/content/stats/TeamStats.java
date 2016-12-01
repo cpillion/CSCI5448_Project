@@ -54,4 +54,10 @@ public class TeamStats extends BasicStats implements Serializable {
         this.team = team;
     }
 
+    @Override
+    public String toString() {
+        String basicStats = super.toString();
+        return basicStats + "\nInjured Players Count: " + numInjuredPlayers;
+    }
+
 }

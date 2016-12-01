@@ -47,4 +47,13 @@ public abstract class BasicStats {
         this.ties = ties;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Wins: " + wins + "\n");
+        sb.append("Losses: " + losses + "\n");
+        sb.append("Ties: " + ties);
+        return sb.toString();
+    }
+
 }

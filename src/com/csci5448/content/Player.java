@@ -15,10 +15,10 @@ public class Player implements SportItem {
     private Long id;
     @Column
     private Sport sport;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "team_id")
     private Team team;
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "player", cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "player", cascade = CascadeType.ALL)
     private PlayerStats stats;
     @Column
     private String name;
@@ -95,5 +95,15 @@ public class Player implements SportItem {
     @Override
     public int hashCode() {
         return this.getId().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Name: " + name + " - " + team.getName() + "\n");
+        sb.append("Sport: " + sport + "\n");
+        sb.append("Status: " + status + "\n");
+        sb.append(stats.toString());
+        return sb.toString();
     }
 }
