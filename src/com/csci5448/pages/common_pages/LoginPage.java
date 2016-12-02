@@ -14,6 +14,8 @@ public class LoginPage extends Page {
     public static final String USER_LOGIN_ID = "user_login";
     public static final String JOURNALIST_LOGIN_ID = "journalist_login";
     public static final String SIGNUP_ID = "signup";
+    private static final String VERIFY_EMAIL_ID = "verify";
+    private static final String SUPPORT_REQUEST_ID = "request_support";
 
     public LoginPage() {
         super.addPageAction(USER_LOGIN_ID, this::userLoginAction);
@@ -85,8 +87,13 @@ public class LoginPage extends Page {
         }
 
         System.out.println("You have not yet verified your email address.");
-        Controller.setCurrentPage(new EmailVerificationPage(account, lobbyPage));
-        Controller.sendCommandToPage(EmailVerificationPage.RESEND_EMAIL_ID, null);
+        System.out.println("Type \'" + VERIFY_EMAIL_ID + "\' to verify your email address.");
+        System.out.println("If you need assistance from an administrator, please type \'" + SUPPORT_REQUEST_ID + "\'.");
+        super.addPageAction(SUPPORT_REQUEST_ID, o -> Controller.setCurrentPage(new SupportRequestPage()));
+        super.addPageAction(VERIFY_EMAIL_ID, o -> {
+            Controller.setCurrentPage(new EmailVerificationPage(Controller.getCurrentAccount(), lobbyPage));
+            Controller.sendCommandToPage(EmailVerificationPage.RESEND_EMAIL_ID, null);
+        });
     }
 
     public void displayPage() {

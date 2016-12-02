@@ -4,14 +4,12 @@ import com.csci5448.accounts.UserAccount;
 import com.csci5448.content.Sport;
 import com.csci5448.content.SportFactory;
 import com.csci5448.control.Controller;
-import com.csci5448.pages.Page;
-import com.csci5448.pages.common_pages.DeleteAccountPage;
+import com.csci5448.pages.common_pages.LobbyPage;
 
-public class UserLobbyPage extends Page {
-
-    private static final String DELETE_ACCOUNT_ID = "delete_account";
+public class UserLobbyPage extends LobbyPage {
 
     public UserLobbyPage() {
+        super(UserAccount.class);
         for (Sport sport : Sport.values()) {
             super.addPageAction(sport.toString(), selectedSportStr -> {
                 Sport selectedSport = SportFactory.chooseSport(selectedSportStr.toString());
@@ -20,8 +18,6 @@ public class UserLobbyPage extends Page {
                 }
             });
         }
-        super.addPageAction(DELETE_ACCOUNT_ID, o -> Controller.setCurrentPage(
-                new DeleteAccountPage<>(Controller.getCurrentAccount(UserAccount.class))));
     }
 
     public void displayPage() {
@@ -29,7 +25,7 @@ public class UserLobbyPage extends Page {
         for (Sport sport : Sport.values()) {
             System.out.println("\t" + sport.toString().toLowerCase());
         }
-        System.out.println("If you wish to delete your account, please type \'" + DELETE_ACCOUNT_ID + "\'.");
+        super.displayPage();
         System.out.print("Selection: ");
     }
 

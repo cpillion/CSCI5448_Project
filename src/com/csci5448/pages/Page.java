@@ -39,7 +39,7 @@ public abstract class Page {
     }
 
     private void performLogoutAction(Object o) {
-        if (!Controller.isAccountLoggedIn()) {
+        if (Controller.getCurrentAccount() == null) {
             return;
         }
         Controller.setCurrentPage(new LogoutPage());

@@ -89,8 +89,8 @@ public class Controller {
         return clazz.cast(currentAccount);
     }
 
-    public static boolean isAccountLoggedIn() {
-        return currentAccount != null;
+    public static Account getCurrentAccount() {
+        return currentAccount;
     }
 
 }

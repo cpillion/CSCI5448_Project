@@ -26,12 +26,10 @@ public class EmailVerificationPage extends Page {
     }
 
     private void sendVerificationEmailAction(Object o) {
-        System.out.println("Please enter the code included in the email.\nIf you need a new code sent to you," +
-                " please type \'" + RESEND_EMAIL_ID + "\'.");
-        System.out.print("Code: ");
-
         final String generatedCode = new BigInteger(32, new Random()).toString(32);
         super.addPageAction(generatedCode, this::codeEnteredCorrectlyAction);
+
+        System.out.println("Sending verification email...");
 
         try {
             EmailControl.getEmailControl().sendEmail(account.getUsername(), "ESPNGen Account Verification",
@@ -40,6 +38,10 @@ public class EmailVerificationPage extends Page {
             e.printStackTrace();
             return;
         }
+
+        System.out.println("Please enter the code included in the email.\nIf you need a new code sent to you," +
+                " please type \'" + RESEND_EMAIL_ID + "\'.");
+        System.out.print("Code: ");
     }
 
     private void codeEnteredCorrectlyAction(Object o) {
