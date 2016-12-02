@@ -20,12 +20,10 @@ public class WelcomePage extends Page {
                            "  | |_ \\_|| (___ \\_|  | |__) | |   \\ | | / .'   \\_|  .---.  _ .--.   \n" +
                            "  |  _| _  _.____`.   |  ___/  | |\\ \\| | | |   ____ / /__\\\\[ `.-. |\n" +
                            " _| |__/ || \\____) | _| |_    _| |_\\   |_\\ `.___]  || \\__., | | | |\n" +
-                           "|________| \\______.'|_____|  |_____|\\____|`._____.'  '.__.'[___||__] ");
+                           "|________| \\______.'|_____|  |_____|\\____|`._____.'  '.__.'[___||__] \n");
 
 
         System.out.println("Welcome to ESPNGen!\nPlease type \'" + LOGIN_ID + "\' to proceed to the login page, or "+
                 "\'" + SIGNUP_ID + "\' to proceed to the signup page.");
-        System.out.println("At any time while browsing through the pages, you may type \'" + Page.PREVIOUS_PAGE_ID +
-                "\' to return to the previously visited page.");
     }
 }

@@ -4,6 +4,7 @@ import com.csci5448.accounts.UserAccount;
 import com.csci5448.content.Sport;
 import com.csci5448.content.SportFactory;
 import com.csci5448.control.Controller;
+import com.csci5448.pages.Page;
 import com.csci5448.pages.common_pages.LobbyPage;
 
 public class UserLobbyPage extends LobbyPage {
@@ -22,6 +23,8 @@ public class UserLobbyPage extends LobbyPage {
 
     public void displayPage() {
         makeNewPage("ESPNGen Lobby");
+        System.out.println("At any time while browsing through the pages, you may type \'" + Page.PREVIOUS_PAGE_ID +
+                "\' to return to the previously visited page.");
         System.out.println("  Please select a sport from the menu below:");
         for (Sport sport : Sport.values()) {
             System.out.println("\t  " + sport.toString().toLowerCase());
