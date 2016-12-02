@@ -33,7 +33,11 @@ public class Main {
 
     private static void processUserInput(String input) {
         if (!input.contains(" ")) {
-            Controller.sendCommandToPage(input, input);
+            try {
+                Controller.sendCommandToPage(input, input);
+            } catch (ClassCastException e) {
+                Controller.sendCommandToPage(input, new String[] {input});
+            }
             return;
         }
 

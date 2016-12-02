@@ -42,6 +42,24 @@ public class DeleteAccountPage<T extends Account> extends Page {
         Controller.logout();
     }
 
+    @Override
+    public boolean freezeInput(String identifier, Object arg) {
+        if (super.containsPageAction(CONFIRM_DELETE_ID) && !identifier.equalsIgnoreCase(CONFIRM_DELETE_ID)) {
+            super.removePageAction(CONFIRM_DELETE_ID);
+            System.out.println("Account will not be deleted.");
+            Controller.returnToPreviousPage();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void performDefaultAction(String identifier, Object arg) {
+        System.out.println("Account will not be deleted.");
+        Controller.returnToPreviousPage();
+    }
+
+    @Override
     public void displayPage() {
         System.out.println("To delete your account please type \'" + DELETE_ACCOUNT_ID + " <username> <password>\'.");
     }

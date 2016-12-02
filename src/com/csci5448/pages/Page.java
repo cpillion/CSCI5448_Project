@@ -1,6 +1,7 @@
 package com.csci5448.pages;
 
 import com.csci5448.control.Controller;
+import com.csci5448.pages.common_pages.LogoutPage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,26 +17,38 @@ public abstract class Page {
 
     public Page() {
         pageActions = new HashMap<>();
+        pageActions.put(PREVIOUS_PAGE_ID.toLowerCase(), o -> Controller.returnToPreviousPage());
+        pageActions.put(HOME_ID.toLowerCase(), o -> Controller.goToLobbyPage());
+        pageActions.put(LOGOUT_ID.toLowerCase(), this::performLogoutAction);
     }
 
     public <T> void addPageAction(String identifier, Consumer<T> pageAction) {
         pageActions.put(identifier.toLowerCase(), pageAction);
     }
 
-    public void performAction(String identifier, Object arg) {
-        if (identifier.equals(PREVIOUS_PAGE_ID)) {
-            Controller.returnToPreviousPage();
-            return;
+    public boolean removePageAction(String identifier) {
+        if (pageActions.get(identifier) != null) {
+            pageActions.remove(identifier);
+            return true;
         }
-        if (identifier.equals(LOGOUT_ID)) {
-            Controller.logout();
-            return;
-        }
-        if (identifier.equals(HOME_ID)) {
-            Controller.goToLobbyPage();
-            return;
-        }
+        return false;
+    }
 
+    public boolean containsPageAction(String identifier) {
+        return pageActions.get(identifier) != null;
+    }
+
+    private void performLogoutAction(Object o) {
+        if (!Controller.isAccountLoggedIn()) {
+            return;
+        }
+        Controller.setCurrentPage(new LogoutPage());
+    }
+
+    public void performAction(String identifier, Object arg) {
+        if (freezeInput(identifier, arg)) {
+            return;
+        }
         Consumer pageAction = pageActions.get(identifier);
         if (pageAction != null) {
             try {
@@ -43,8 +56,16 @@ public abstract class Page {
             } catch (ClassCastException e) { //this can happen if the wrong number/type of arguments are passed
                 throw e;
             }
+        } else {
+            performDefaultAction(identifier, arg);
         }
     }
+
+    public boolean freezeInput(String identifier, Object arg) {
+        return false;
+    }
+
+    public void performDefaultAction(String identifier, Object arg) {}
 
     public abstract void displayPage();
 
