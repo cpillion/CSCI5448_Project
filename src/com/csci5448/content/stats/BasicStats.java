@@ -3,7 +3,7 @@ package com.csci5448.content.stats;
 import javax.persistence.*;
 
 @MappedSuperclass
-public abstract class BasicStats {
+abstract class BasicStats {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public abstract class BasicStats {
 
     public BasicStats() {}
 
-    public BasicStats(final int wins, final int losses, final int ties) {
+    BasicStats(final int wins, final int losses, final int ties) {
         this.wins = wins;
         this.losses = losses;
         this.ties = ties;
@@ -49,11 +49,9 @@ public abstract class BasicStats {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Wins: " + wins + "\t");
-        sb.append("Losses: " + losses + "\n");
-        sb.append("Ties: " + ties);
-        return sb.toString();
+        return "Wins: " + wins + "\t\t" +
+                "Losses: " + losses + "\n" +
+                "Ties: " + ties;
     }
 
 }

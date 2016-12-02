@@ -14,9 +14,9 @@ import java.util.stream.Collectors;
 
 public class TeamPage extends Page {
 
-    public static final String SELECT_PLAYER_ID = "select_player";
-    public static final String ADD_FAVORITE_TEAM_ID = "add_favorite_team";
-    public static final String VIEW_PLAYERS_ID = "view_players";
+    private static final String SELECT_PLAYER_ID = "select_player";
+    private static final String ADD_FAVORITE_TEAM_ID = "add_favorite_team";
+    private static final String VIEW_PLAYERS_ID = "view_players";
 
     private final Team team;
     private final List<Player> players;

@@ -26,17 +26,16 @@ public class SupportRequestPage extends Page {
         }
 
         final String supportRequest = String.join(" ", input);
-        final StringBuilder messageBodyBuilder = new StringBuilder();
-        messageBodyBuilder.append("User: " + currentAccount.getUsername() + "\n\n");
-        messageBodyBuilder.append(supportRequest + "\n\n");
-        messageBodyBuilder.append("Instructions: Forward this email to " + currentAccount.getUsername() + " together " +
-                "with your reply.");
+        final String messageBody = "User: " + currentAccount.getUsername() + "\n\n" +
+                supportRequest + "\n\n" +
+                "Instructions: Forward this email to " + currentAccount.getUsername() + " together " +
+                "with your reply.";
 
         System.out.println("Sending support request...");
 
         try {
             EmailControl.getEmailControl().sendEmail("espngen@gmail.com",
-                    "Support Request From " + currentAccount.getUsername(), messageBodyBuilder.toString());
+                    "Support Request From " + currentAccount.getUsername(), messageBody);
         } catch (MessagingException e) {
             e.printStackTrace();
             return;

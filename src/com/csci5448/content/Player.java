@@ -110,12 +110,10 @@ public class Player implements SportItem {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Name: " + name + "\t\t");
-        sb.append("Team: " + team.getName() + "\n");
-        sb.append("Sport: " + sport + "\t\t");
-        sb.append("Status: " + status + "\n");
-        sb.append(stats.toString());
-        return sb.toString();
+        return "Name: " + name + "\t\t" +
+                "Team: " + team.getName() + "\n" +
+                "Sport: " + sport + "\t\t" +
+                "Status: " + stats + "\n" +
+                stats.toString();
     }
 }

@@ -9,11 +9,11 @@ import com.csci5448.pages.Page;
 
 public class SportOptionPage extends Page {
 
-    public static final String VIEW_NEWS_ID = "view_news";
-    public static final String VIEW_LEAGUE_ID = "view_leagues";
-    public static final String VIEW_TEAMS_ID = "view_teams";
-    public static final String VIEW_FAVORITE_TEAMS_ID = "view_favorite_teams";
-    public static final String VIEW_FAVORITE_PLAYERS_ID = "view_favorite_players";
+    private static final String VIEW_NEWS_ID = "view_news";
+    private static final String VIEW_LEAGUE_ID = "view_leagues";
+    private static final String VIEW_TEAMS_ID = "view_teams";
+    private static final String VIEW_FAVORITE_TEAMS_ID = "view_favorite_teams";
+    private static final String VIEW_FAVORITE_PLAYERS_ID = "view_favorite_players";
 
     private final Sport sport;
 

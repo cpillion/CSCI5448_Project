@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class EmailVerificationPage extends Page {
 
-    public static final String RESEND_EMAIL_ID = "resend";
+    static final String RESEND_EMAIL_ID = "resend";
 
     private final Account account;
     private final Page lobbyPage;

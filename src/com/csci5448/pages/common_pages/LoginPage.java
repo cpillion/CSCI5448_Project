@@ -11,9 +11,9 @@ import org.hibernate.Session;
 
 public class LoginPage extends Page {
 
-    public static final String USER_LOGIN_ID = "user_login";
-    public static final String JOURNALIST_LOGIN_ID = "journalist_login";
-    public static final String SIGNUP_ID = "signup";
+    private static final String USER_LOGIN_ID = "user_login";
+    private static final String JOURNALIST_LOGIN_ID = "journalist_login";
+    private static final String SIGNUP_ID = "signup";
     private static final String VERIFY_EMAIL_ID = "verify";
     private static final String SUPPORT_REQUEST_ID = "request_support";
 
@@ -97,12 +97,12 @@ public class LoginPage extends Page {
     }
 
     public void displayPage() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Welcome to the login page!\n");
-        sb.append("Please type \'" + USER_LOGIN_ID + " <username> <password>\' if you are a user, or\n");
-        sb.append("\'" + JOURNALIST_LOGIN_ID + " <username> <password>\' if you are a journalist.\n");
-        sb.append("If you do not yet have an account, please type \'" + SIGNUP_ID + "\'.");
-        System.out.println(sb.toString());
+        System.out.println(
+                "Welcome to the login page!\n" +
+                "Please type \'" + USER_LOGIN_ID + " <username> <password>\' if you are a user, or\n" +
+                "\'" + JOURNALIST_LOGIN_ID + " <username> <password>\' if you are a journalist.\n" +
+                "If you do not yet have an account, please type \'" + SIGNUP_ID + "\'."
+        );
     }
 
 }

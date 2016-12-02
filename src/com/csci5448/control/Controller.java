@@ -70,12 +70,8 @@ public class Controller {
         }
     }
 
-    public static void sendCommandToPage(String command, Object arg) {
-        try {
-            currentPage.performAction(command.toLowerCase(), arg);
-        } catch (ClassCastException e) {
-            throw e;
-        }
+    public static void sendCommandToPage(String command, Object arg) throws ClassCastException {
+        currentPage.performAction(command.toLowerCase(), arg);
     }
 
     public static <T extends Account> T getCurrentAccount(Class<T> clazz) {

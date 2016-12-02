@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class ViewTeamsPage extends Page {
 
-    public static final String SELECT_TEAM_ID = "select_team";
+    private static final String SELECT_TEAM_ID = "select_team";
 
     private final Sport sport;
     private final List<Team> teams;

@@ -14,11 +14,11 @@ import javax.mail.MessagingException;
 
 public class WriteArticlePage extends Page {
 
-    public static final String SUBMIT_ARTICLE_ID = "submit_article";
-    public static final String SPORT_ID =  "sport";
-    public static final String HEADLINE_ID = "headline";
-    public static final String AUTHOR_ID = "author";
-    public static final String BODY_ID = "body";
+    private static final String SUBMIT_ARTICLE_ID = "submit_article";
+    private static final String SPORT_ID =  "sport";
+    private static final String HEADLINE_ID = "headline";
+    private static final String AUTHOR_ID = "author";
+    private static final String BODY_ID = "body";
 
     private Sport sport;
     private String headline;

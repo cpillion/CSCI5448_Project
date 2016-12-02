@@ -9,9 +9,9 @@ import java.util.function.Consumer;
 
 public abstract class Page {
 
-    public static final String PREVIOUS_PAGE_ID = "previous_page";
-    public static final String LOGOUT_ID = "logout";
-    public static final String HOME_ID = "home";
+    protected static final String PREVIOUS_PAGE_ID = "previous_page";
+    protected static final String LOGOUT_ID = "logout";
+    protected static final String HOME_ID = "home";
 
     private Map<String, Consumer> pageActions;
 
@@ -26,7 +26,7 @@ public abstract class Page {
         pageActions.put(identifier.toLowerCase(), pageAction);
     }
 
-    public boolean removePageAction(String identifier) {
+    protected boolean removePageAction(String identifier) {
         if (pageActions.get(identifier) != null) {
             pageActions.remove(identifier);
             return true;
@@ -34,7 +34,7 @@ public abstract class Page {
         return false;
     }
 
-    public boolean containsPageAction(String identifier) {
+    protected boolean containsPageAction(String identifier) {
         return pageActions.get(identifier) != null;
     }
 
@@ -45,17 +45,13 @@ public abstract class Page {
         Controller.setCurrentPage(new LogoutPage());
     }
 
-    public void performAction(String identifier, Object arg) {
+    public void performAction(String identifier, Object arg) throws ClassCastException {
         if (freezeInput(identifier, arg)) {
             return;
         }
         Consumer pageAction = pageActions.get(identifier);
         if (pageAction != null) {
-            try {
-                pageAction.accept(arg);
-            } catch (ClassCastException e) { //this can happen if the wrong number/type of arguments are passed
-                throw e;
-            }
+            pageAction.accept(arg);
         } else {
             performDefaultAction(identifier, arg);
         }

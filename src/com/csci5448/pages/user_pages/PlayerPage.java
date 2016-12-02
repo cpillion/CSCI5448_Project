@@ -9,7 +9,7 @@ import org.hibernate.Session;
 
 public class PlayerPage extends Page {
 
-    public static final String ADD_FAVORITE_PLAYER_ID = "add_favorite_player";
+    private static final String ADD_FAVORITE_PLAYER_ID = "add_favorite_player";
 
     private final Player player;
 

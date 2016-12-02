@@ -40,7 +40,7 @@ public class EmailControl {
         return emailControl;
     }
 
-    public EmailControl() throws IOException {
+    private EmailControl() throws IOException {
         try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(CREDENTIALS_PATH)))) {
             emailAddress = in.readLine();
             password = in.readLine();

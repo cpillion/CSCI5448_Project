@@ -17,10 +17,9 @@ import java.util.stream.Collectors;
 
 public class FavoritesPage<T extends SportItem> extends Page {
 
-    public static final String DELETE_FAVORITE_ITEM = "delete";
-    public static final String VIEW_FAVORITE_ITEM = "view";
+    private static final String DELETE_FAVORITE_ITEM = "delete";
+    private static final String VIEW_FAVORITE_ITEM = "view";
 
-    private final Sport sport;
     private final List<T> favorites;
     private final UserAccount userAccount;
     private final Consumer<T> addFavorite;
@@ -29,7 +28,6 @@ public class FavoritesPage<T extends SportItem> extends Page {
 
     public FavoritesPage(Sport sport, UserAccount userAccount, Set<T> favorites, Consumer<T> addFavorite,
                          Consumer<T> deleteFavorite, Function<T, Page> getPage) {
-        this.sport = sport;
         this.favorites = favorites.stream().filter(favorite ->
                 favorite.getSport() == sport).collect(Collectors.toList());
         this.userAccount = userAccount;
