@@ -65,7 +65,7 @@ public abstract class ViewCollectionsPage<T> extends Page {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (T item : collection) {
-            sb.append("\t" + itemNameFunc.apply(item) + "\n");
+            sb.append("\t").append(itemNameFunc.apply(item)).append("\n");
         }
         return sb.toString();
     }
