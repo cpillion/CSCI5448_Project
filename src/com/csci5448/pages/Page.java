@@ -71,7 +71,7 @@ public abstract class Page {
     public abstract void displayPage();
 
     public void makeNewPage(String pageName) {
-        int buffLen = (90 - pageName.length())/2;
+        int buffLen = (100 - pageName.length())/2;
         String buffer = new String(new char[buffLen]).replace("\0", "-");
         System.out.println("\n|" + buffer + " Welcome to the " + pageName + " Page! " + buffer + "|");
     }

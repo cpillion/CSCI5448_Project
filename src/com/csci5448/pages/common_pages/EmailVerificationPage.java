@@ -53,7 +53,7 @@ public class EmailVerificationPage extends Page {
             }
         }
 
-        System.out.println("\tThank you for verifying your email.");
+        System.out.println("\n\tThank you for verifying your email.");
         if (account instanceof JournalistAccount) {
             System.out.println("\tA system admin will verify your profession shortly. Once this happens," +
                     " you will be able to write and submit news articles for approval.");
@@ -67,9 +67,10 @@ public class EmailVerificationPage extends Page {
             }
         }
 
-        System.out.println("\tYou are now being taken to the lobby page. You may logout at any time by typing " +
-                "\'" + Page.LOGOUT_ID + "\'. You may also return to this lobby at any time by typing " +
-                "\'" + Page.HOME_ID + "\'.");
+        System.out.println("\tYou are now being taken to the lobby page. \n\tGlobal Navigation Commands: \n" +
+                "\t\tReturn to Lobby: \'" + Page.HOME_ID + "\'\n" +
+                "\t\tReturn to Previous Page: \'" + Page.PREVIOUS_PAGE_ID + "\'\n" +
+                "\t\tLogout: \'" + Page.LOGOUT_ID + "\'");
 
         Controller.setCurrentAccount(account);
         Controller.setCurrentPage(lobbyPage);

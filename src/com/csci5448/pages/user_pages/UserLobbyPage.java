@@ -23,8 +23,6 @@ public class UserLobbyPage extends LobbyPage {
 
     public void displayPage() {
         makeNewPage("ESPNGen Lobby");
-        System.out.println("At any time while browsing through the pages, you may type \'" + Page.PREVIOUS_PAGE_ID +
-                "\' to return to the previously visited page.");
         System.out.println("  Please select a sport from the menu below:");
         for (Sport sport : Sport.values()) {
             System.out.println("\t  " + sport.toString().toLowerCase());

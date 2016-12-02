@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e30b941-a8c3-4657-9857-0ecf30e63d05" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/csci5448/pages/Page.java" afterPath="$PROJECT_DIR$/src/com/csci5448/pages/Page.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/CreateAccountPage.java" afterPath="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/CreateAccountPage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/EmailVerificationPage.java" afterPath="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/EmailVerificationPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/WelcomePage.java" afterPath="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/WelcomePage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/UserLobbyPage.java" afterPath="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/UserLobbyPage.java" />
     </list>
     <ignored path="ESPNGen.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,42 +27,22 @@
       <file leaf-file-name="Page.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/Page.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="79" column="42" selection-start-line="79" selection-start-column="42" selection-end-line="79" selection-end-column="42" />
+            <state relative-caret-position="200">
+              <caret line="73" column="25" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2580#2581#0" expanded="true" />
-                <element signature="e#2629#2630#0" expanded="true" />
+                <element signature="e#2581#2582#0" expanded="true" />
+                <element signature="e#2630#2631#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserLobbyPage.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserLobbyPage.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/user_pages/UserLobbyPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="32" column="39" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateAccountPage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/common_pages/CreateAccountPage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="58" column="22" selection-start-line="58" selection-start-column="22" selection-end-line="58" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EmailVerificationPage.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/common_pages/EmailVerificationPage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+            <state relative-caret-position="200">
+              <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -173,9 +151,9 @@
         <option value="$PROJECT_DIR$/src/com/csci5448/main/Main.java" />
         <option value="$PROJECT_DIR$/src/com/csci5448/pages/journalist_pages/JournalistLobbyPage.java" />
         <option value="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/WelcomePage.java" />
+        <option value="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/CreateAccountPage.java" />
         <option value="$PROJECT_DIR$/src/com/csci5448/pages/Page.java" />
         <option value="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/UserLobbyPage.java" />
-        <option value="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/CreateAccountPage.java" />
         <option value="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/EmailVerificationPage.java" />
       </list>
     </option>
@@ -748,7 +726,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="23" width="1260" height="722" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -757,7 +735,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31852987" sideWeight="0.5095238" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31852987" sideWeight="0.4904762" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31852987" sideWeight="0.4904762" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -838,8 +816,8 @@
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2580#2581#0" expanded="true" />
-            <element signature="e#2629#2630#0" expanded="true" />
+            <element signature="e#2581#2582#0" expanded="true" />
+            <element signature="e#2630#2631#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1078,34 +1056,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/journalist_pages/JournalistLobbyPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="34" column="1" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/Page.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="79" column="42" selection-start-line="79" selection-start-column="42" selection-end-line="79" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2580#2581#0" expanded="true" />
-            <element signature="e#2629#2630#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/user_pages/UserLobbyPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="32" column="39" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/common_pages/WelcomePage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-45">
@@ -1122,10 +1072,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/journalist_pages/JournalistLobbyPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="34" column="1" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/Page.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="73" column="25" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2581#2582#0" expanded="true" />
+            <element signature="e#2630#2631#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/common_pages/EmailVerificationPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+        <state relative-caret-position="315">
+          <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/user_pages/UserLobbyPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
           <folding />
         </state>
       </provider>
