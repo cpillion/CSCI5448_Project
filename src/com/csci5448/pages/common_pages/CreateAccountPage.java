@@ -5,12 +5,11 @@ import com.csci5448.accounts.JournalistAccount;
 import com.csci5448.accounts.UserAccount;
 import com.csci5448.control.Controller;
 import com.csci5448.control.EmailControl;
+import com.csci5448.data.SessionManager;
 import com.csci5448.pages.Page;
 import com.csci5448.pages.journalist_pages.JournalistLobbyPage;
 import com.csci5448.pages.user_pages.UserLobbyPage;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 public class CreateAccountPage extends Page {
 
@@ -67,18 +66,8 @@ public class CreateAccountPage extends Page {
                 return false;
             }
 
-            Transaction transaction = session.beginTransaction();
-            try {
-                session.save(account);
-                transaction.commit();
-            } catch (HibernateException e) {
-                transaction.rollback();
-                e.printStackTrace();
-                return false;
-            }
+            return SessionManager.getSessionManager().performOp(session, session::save, account);
         }
-
-        return true;
     }
 
     @Override
