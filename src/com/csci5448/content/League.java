@@ -58,7 +58,12 @@ public class League {
             return false;
         }
         League league = (League) o;
-        return this.getLeague().equals(league.getLeague());
+
+        if ((this.getLeague() != null && league.getLeague() == null) ||
+                (this.getLeague() == null && league.getLeague() != null)) {
+            return false;
+        }
+        return (this.getLeague() == null && league.getLeague() == null) || this.getLeague().equals(league.getLeague());
     }
 
     @Override
