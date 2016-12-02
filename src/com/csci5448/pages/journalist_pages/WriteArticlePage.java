@@ -26,10 +26,10 @@ public class WriteArticlePage extends Page {
 
     public WriteArticlePage() {
         super.addPageAction(SUBMIT_ARTICLE_ID, this::submitArticleAction);
-        super.addPageAction(SPORT_ID, this::selectSportAction);
-        super.addPageAction(HEADLINE_ID, this::headlineAction);
-        super.addPageAction(AUTHOR_ID, this::authorAction);
-        super.addPageAction(BODY_ID, this::bodyAction);
+        super.addPageActionString(SPORT_ID, this::selectSportAction);
+        super.addPageActionString(HEADLINE_ID, this::headlineAction);
+        super.addPageActionString(AUTHOR_ID, this::authorAction);
+        super.addPageActionString(BODY_ID, this::bodyAction);
     }
 
     private void submitArticleAction(Object o) {
@@ -72,19 +72,19 @@ public class WriteArticlePage extends Page {
         }
     }
 
-    private void headlineAction(String[] headline) {
+    private void headlineAction(String headline) {
         System.out.println("Headline successfully set.");
-        this.headline = String.join(" ", headline);
+        this.headline = headline;
     }
 
-    private void authorAction(String[] author) {
+    private void authorAction(String author) {
         System.out.println("Author successfully set.");
-        this.author = String.join(" ", author);
+        this.author = author;
     }
 
-    private void bodyAction(String[] body) {
+    private void bodyAction(String body) {
         System.out.println("Body successfully set.");
-        this.body = String.join(" ", body);
+        this.body = body;
     }
 
     public void displayPage() {

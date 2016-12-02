@@ -27,17 +27,13 @@ public class Main {
         Controller.setCurrentPage(new WelcomePage());
         Scanner userInput = new Scanner(System.in);
         while (true) {
-            processUserInput(userInput.nextLine());
+            processUserInput(userInput.nextLine().toLowerCase());
         }
     }
 
     private static void processUserInput(String input) {
         if (!input.contains(" ")) {
-            try {
-                Controller.sendCommandToPage(input, input);
-            } catch (ClassCastException e) {
-                Controller.sendCommandToPage(input, new String[] {input});
-            }
+            Controller.sendCommandToPage(input, new String[] {input});
             return;
         }
 
@@ -45,15 +41,7 @@ public class Main {
         String command = input.substring(0, endOfCommandIndex);
         String[] args = input.substring(endOfCommandIndex+1).split(" ");
 
-        if (args.length == 1) {
-            try {
-                Controller.sendCommandToPage(command, args[0]);
-            } catch (ClassCastException e) {
-                Controller.sendCommandToPage(command, args);
-            }
-        } else {
-            Controller.sendCommandToPage(command, args);
-        }
+        Controller.sendCommandToPage(command, args);
     }
 
     private static void populateSports() {

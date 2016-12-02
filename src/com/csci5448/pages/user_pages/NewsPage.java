@@ -19,7 +19,7 @@ public class NewsPage extends Page {
 
     public NewsPage(Sport mySport) {
         sport = mySport;
-        super.addPageAction(READ_ARTICLE_ID, this::readArticleAction);
+        super.addPageActionString(READ_ARTICLE_ID, this::readArticleAction);
         try (Session session = Controller.sessionFactory.openSession()) {
             Query<News> availableArticles = session.createQuery("FROM News WHERE sport=" + sport.ordinal() +
                     "AND approved=true", News.class);

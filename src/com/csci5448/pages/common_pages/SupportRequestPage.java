@@ -12,11 +12,11 @@ public class SupportRequestPage extends Page {
     private static final String SUBMIT_REQUEST_ID = "submit_request";
 
     public SupportRequestPage() {
-        super.addPageAction(SUBMIT_REQUEST_ID, this::requestSupportAction);
+        super.addPageActionString(SUBMIT_REQUEST_ID, this::requestSupportAction);
     }
 
-    private void requestSupportAction(String[] input) {
-        if (input == null || input.length == 0) {
+    private void requestSupportAction(String supportRequest) {
+        if (supportRequest == null || supportRequest.length() == 0) {
             return;
         }
 
@@ -25,7 +25,6 @@ public class SupportRequestPage extends Page {
             return;
         }
 
-        final String supportRequest = String.join(" ", input);
         final String messageBody = "User: " + currentAccount.getUsername() + "\n\n" +
                 supportRequest + "\n\n" +
                 "Instructions: Forward this email to " + currentAccount.getUsername() + " together " +

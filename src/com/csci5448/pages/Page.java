@@ -13,17 +13,21 @@ public abstract class Page {
     protected static final String LOGOUT_ID = "logout";
     protected static final String HOME_ID = "home";
 
-    private Map<String, Consumer> pageActions;
+    private Map<String, PageAction<?>> pageActions;
 
     public Page() {
         pageActions = new HashMap<>();
-        pageActions.put(PREVIOUS_PAGE_ID.toLowerCase(), o -> Controller.returnToPreviousPage());
-        pageActions.put(HOME_ID.toLowerCase(), o -> Controller.goToLobbyPage());
-        pageActions.put(LOGOUT_ID.toLowerCase(), this::performLogoutAction);
+        addPageAction(PREVIOUS_PAGE_ID, o -> Controller.returnToPreviousPage());
+        addPageAction(HOME_ID, o -> Controller.goToLobbyPage());
+        addPageAction(LOGOUT_ID, this::performLogoutAction);
     }
 
-    public <T> void addPageAction(String identifier, Consumer<T> pageAction) {
-        pageActions.put(identifier.toLowerCase(), pageAction);
+    public void addPageAction(String identifier, Consumer<String[]> pageAction) {
+        pageActions.put(identifier.toLowerCase(), new PageAction<>(pageAction, arr -> arr));
+    }
+
+    public void addPageActionString(String identifier, Consumer<String> pageAction) {
+        pageActions.put(identifier.toLowerCase(), new PageAction<>(pageAction, arr -> String.join(" ", arr).trim()));
     }
 
     protected boolean removePageAction(String identifier) {
@@ -45,23 +49,23 @@ public abstract class Page {
         Controller.setCurrentPage(new LogoutPage());
     }
 
-    public void performAction(String identifier, Object arg) throws ClassCastException {
-        if (freezeInput(identifier, arg)) {
+    public void performAction(String identifier, String[] args) {
+        if (freezeInput(identifier, args)) {
             return;
         }
-        Consumer pageAction = pageActions.get(identifier);
+        PageAction<?> pageAction = pageActions.get(identifier);
         if (pageAction != null) {
-            pageAction.accept(arg);
+            pageAction.accept(args);
         } else {
-            performDefaultAction(identifier, arg);
+            performDefaultAction(identifier, args);
         }
     }
 
-    public boolean freezeInput(String identifier, Object arg) {
+    public boolean freezeInput(String identifier, String[] args) {
         return false;
     }
 
-    public void performDefaultAction(String identifier, Object arg) {}
+    public void performDefaultAction(String identifier, String[] args) {}
 
     public abstract void displayPage();
 
