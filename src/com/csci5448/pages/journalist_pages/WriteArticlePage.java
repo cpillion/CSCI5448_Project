@@ -5,10 +5,9 @@ import com.csci5448.content.Sport;
 import com.csci5448.content.SportFactory;
 import com.csci5448.control.Controller;
 import com.csci5448.control.EmailControl;
+import com.csci5448.data.SessionManager;
 import com.csci5448.pages.Page;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import javax.mail.MessagingException;
 
@@ -43,14 +42,7 @@ public class WriteArticlePage extends Page {
         News news = new News(sport, headline, author, body, false);
 
         try (Session session = Controller.sessionFactory.openSession()) {
-
-            Transaction transaction = session.beginTransaction();
-            try {
-                session.save(news);
-                transaction.commit();
-            } catch (HibernateException e) {
-                transaction.rollback();
-                e.printStackTrace();
+            if (!SessionManager.getSessionManager().performOp(session, session::save, news)) {
                 return;
             }
         }
