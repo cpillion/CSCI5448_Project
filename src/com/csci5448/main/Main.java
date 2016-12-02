@@ -33,15 +33,15 @@ public class Main {
 
     private static void processUserInput(String input) {
         if (!input.contains(" ")) {
-            Controller.sendCommandToPage(input, new String[] {input});
+            Controller.sendCommandToPage(input, input);
             return;
         }
 
         int endOfCommandIndex = input.indexOf(" ");
         String command = input.substring(0, endOfCommandIndex);
-        String[] args = input.substring(endOfCommandIndex+1).split(" ");
+        String arg = input.substring(endOfCommandIndex+1);
 
-        Controller.sendCommandToPage(command, args);
+        Controller.sendCommandToPage(command, arg);
     }
 
     private static void populateSports() {

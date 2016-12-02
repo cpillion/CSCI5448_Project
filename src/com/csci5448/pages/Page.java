@@ -23,11 +23,11 @@ public abstract class Page {
     }
 
     public void addPageAction(String identifier, Consumer<String[]> pageAction) {
-        pageActions.put(identifier.toLowerCase(), new PageAction<>(pageAction, arr -> arr));
+        pageActions.put(identifier.toLowerCase(), new PageAction<>(pageAction, str -> str.split(" ")));
     }
 
     public void addPageActionString(String identifier, Consumer<String> pageAction) {
-        pageActions.put(identifier.toLowerCase(), new PageAction<>(pageAction, arr -> String.join(" ", arr).trim()));
+        pageActions.put(identifier.toLowerCase(), new PageAction<>(pageAction, str -> str));
     }
 
     protected boolean removePageAction(String identifier) {
@@ -49,7 +49,7 @@ public abstract class Page {
         Controller.setCurrentPage(new LogoutPage());
     }
 
-    public void performAction(String identifier, String[] args) {
+    public void performAction(String identifier, String args) {
         if (freezeInput(identifier, args)) {
             return;
         }
@@ -61,11 +61,11 @@ public abstract class Page {
         }
     }
 
-    public boolean freezeInput(String identifier, String[] args) {
+    public boolean freezeInput(String identifier, String args) {
         return false;
     }
 
-    public void performDefaultAction(String identifier, String[] args) {}
+    public void performDefaultAction(String identifier, String args) {}
 
     public abstract void displayPage();
 

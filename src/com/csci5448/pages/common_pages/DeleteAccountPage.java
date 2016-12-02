@@ -43,7 +43,7 @@ public class DeleteAccountPage<T extends Account> extends Page {
     }
 
     @Override
-    public boolean freezeInput(String identifier, String[] args) {
+    public boolean freezeInput(String identifier, String args) {
         if (super.containsPageAction(CONFIRM_DELETE_ID) && !identifier.equalsIgnoreCase(CONFIRM_DELETE_ID)) {
             super.removePageAction(CONFIRM_DELETE_ID);
             System.out.println("Account will not be deleted.");
@@ -54,7 +54,7 @@ public class DeleteAccountPage<T extends Account> extends Page {
     }
 
     @Override
-    public void performDefaultAction(String identifier, String[] args) {
+    public void performDefaultAction(String identifier, String args) {
         System.out.println("Account will not be deleted.");
         Controller.returnToPreviousPage();
     }

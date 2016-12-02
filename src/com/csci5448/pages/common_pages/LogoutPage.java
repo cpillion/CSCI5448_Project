@@ -12,7 +12,7 @@ public class LogoutPage extends Page {
     }
 
     @Override
-    public boolean freezeInput(String identifier, String[] args) {
+    public boolean freezeInput(String identifier, String args) {
         if (!identifier.equalsIgnoreCase(CONFIRM_LOGOUT_ID)) {
             System.out.println("Account will not be logged out.");
             Controller.returnToPreviousPage();
