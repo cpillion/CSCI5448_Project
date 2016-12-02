@@ -83,6 +83,10 @@ public class EmailControl {
         }
     }
 
+    public void sendSelfEmail(String subject, String body) throws MessagingException {
+        sendEmail(emailAddress, subject, body);
+    }
+
     public boolean isEmailValid(String emailAddress) {
         try {
             InternetAddress address = new InternetAddress(emailAddress);

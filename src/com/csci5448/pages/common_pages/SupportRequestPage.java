@@ -34,8 +34,8 @@ public class SupportRequestPage extends Page {
         System.out.println("Sending support request...");
 
         try {
-            EmailControl.getEmailControl().sendEmail("espngen@gmail.com",
-                    "Support Request From " + currentAccount.getUsername(), messageBody);
+            EmailControl.getEmailControl().sendSelfEmail("Support Request From " + currentAccount.getUsername(),
+                    messageBody);
         } catch (MessagingException e) {
             e.printStackTrace();
             return;

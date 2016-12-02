@@ -58,7 +58,7 @@ public class EmailVerificationPage extends Page {
             System.out.println("A system admin will verify your profession shortly. Once this happens," +
                     " you will be able to write and submit news articles for approval.");
             try {
-                EmailControl.getEmailControl().sendEmail("espngen@gmail.com", "ESPNGen Journalist Profession Verification",
+                EmailControl.getEmailControl().sendSelfEmail("ESPNGen Journalist Profession Verification",
                         "A new Journalist Account has been created for " + account.getUsername() + "!\n" +
                                 "If you would like to approve this person's profession, please update the journalist database.");
             } catch (MessagingException e) {

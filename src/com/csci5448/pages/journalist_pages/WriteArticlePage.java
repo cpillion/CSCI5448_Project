@@ -48,7 +48,7 @@ public class WriteArticlePage extends Page {
         }
 
         try {
-            EmailControl.getEmailControl().sendEmail("espngen@gmail.com", "ESPNGen Article Submission Ready For Approval",
+            EmailControl.getEmailControl().sendSelfEmail("ESPNGen Article Submission Ready For Approval",
                             "A new article has been submitted by " + news.getAuthor() + "!\n" +
                             "If you would like to approve this article, please update the news database.");
         } catch (MessagingException e) {
