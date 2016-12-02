@@ -64,6 +64,11 @@ public class Main {
         footballTeamB.addPlayer("FBPlayer1", "Injured", new PlayerStats(200, 5, 3, 4));
         footballTeamB.addPlayer("FBPlayer2", "Healthy", new PlayerStats(10, 2, 4, 3));
 
+        League football2 = new League("Football2", Sport.FOOTBALL);
+        Team football2Team = new Team(Sport.FOOTBALL, "Football2Team", new TeamStats(98, 55, 21, 67));
+        football2.addTeam(football2Team);
+        football2Team.addPlayer("Football2TeamPlayer", "Bored", new PlayerStats(61, 20, 65, 39));
+
         League nba = new League("nba", Sport.BASKETBALL);
 
         Team basketballTeamA = new Team(Sport.BASKETBALL, "Lakers", new TeamStats(0, 5, 5, 8));
@@ -91,6 +96,7 @@ public class Main {
         try (Session session = Controller.sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             session.save(nfl);
+            session.save(football2);
             session.save(nba);
             session.save(mlb);
             transaction.commit();
