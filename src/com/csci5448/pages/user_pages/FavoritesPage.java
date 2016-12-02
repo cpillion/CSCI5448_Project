@@ -21,7 +21,6 @@ public class FavoritesPage<T extends SportItem> extends ViewCollectionsPage<T> {
     private final UserAccount userAccount;
     private final Consumer<T> addFavorite;
     private final Consumer<T> deleteFavorite;
-    private final Function<T, Page> getPage;
 
     public FavoritesPage(Sport sport, UserAccount userAccount, Set<T> favorites, Consumer<T> addFavorite,
                          Consumer<T> deleteFavorite, Function<T, Page> getPage) {
@@ -31,7 +30,6 @@ public class FavoritesPage<T extends SportItem> extends ViewCollectionsPage<T> {
         this.userAccount = userAccount;
         this.addFavorite = addFavorite;
         this.deleteFavorite = deleteFavorite;
-        this.getPage = getPage;
 
         super.addPageAction(DELETE_FAVORITE_ITEM, this::deleteFavoriteItemAction);
     }
