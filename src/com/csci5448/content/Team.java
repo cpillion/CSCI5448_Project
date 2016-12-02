@@ -116,8 +116,10 @@ public class Team implements SportItem {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Name: " + name + "\n");
-        sb.append("Sport: " + sport + "\n");
+        sb.append("Name: " + name + "\t\t");
+        sb.append("League: " + league + "\n");
+        sb.append("Sport: " + sport + "\t\t");
+        sb.append("Number of players: " + players.size() + "\n");
         sb.append(teamStats.toString());
         return sb.toString();
     }

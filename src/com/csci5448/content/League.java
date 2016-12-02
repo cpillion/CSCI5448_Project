@@ -73,4 +73,9 @@ public class League {
         }
         return this.getLeague().hashCode();
     }
+
+    @Override
+    public String toString() {
+        return league;
+    }
 }
