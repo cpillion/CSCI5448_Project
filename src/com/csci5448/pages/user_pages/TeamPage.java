@@ -28,7 +28,7 @@ public class TeamPage extends Page {
         super.addPageAction(SELECT_PLAYER_ID, this::selectPlayerAction);
 
         try (Session session = Controller.sessionFactory.openSession()) {
-            Query<Player> players = session.createQuery("FROM Player WHERE team_id=" + team.getId(), Player.class);
+            Query<Player> players = session.createQuery("FROM Player WHERE team=" + team.getId(), Player.class);
             this.players = players.list();
         }
     }
@@ -38,6 +38,7 @@ public class TeamPage extends Page {
 
         Team updateTeam = team;
 
+        //This is necessary, as we must use the exact same reference when updating or hibernate throws an error.
         for (Player player : userAccount.getFavoritePlayers()) {
             if (player.getTeam().equals(team)) {
                 updateTeam = player.getTeam();

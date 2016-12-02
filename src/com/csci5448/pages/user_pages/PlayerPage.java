@@ -26,6 +26,7 @@ public class PlayerPage extends Page {
 
         Player updatePlayer = player;
 
+        //This is necessary, as we must use the exact same reference when updating or hibernate throws an error.
         for (Team team : userAccount.getFavoriteTeams()) {
             if (player.getTeam().equals(team)) {
                 updatePlayer = team.getPlayers().stream().filter(player ->
