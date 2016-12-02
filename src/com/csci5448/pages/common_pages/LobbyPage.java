@@ -16,8 +16,8 @@ public abstract class LobbyPage extends Page {
     }
 
     public void displayPage() {
-        System.out.println("If you wish to delete your account, please type \'" + DELETE_ACCOUNT_ID + "\'.");
-        System.out.println("If you require assistance from an administrator, please visit the support request page " +
+        System.out.println("\tIf you wish to delete your account, please type \'" + DELETE_ACCOUNT_ID + "\'.");
+        System.out.println("\tIf you require assistance from an administrator, please visit the support request page " +
                 "by typing \'" + SUPPORT_REQUEST_ID + "\'.");
     }
 

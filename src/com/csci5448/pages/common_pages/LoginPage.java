@@ -27,17 +27,17 @@ public class LoginPage extends Page {
         if (credentials == null || credentials.length != 2) {
             return;
         }
-        System.out.println("  Attempting to log in as " + credentials[0] + "...");
+        System.out.println("\tAttempting to log in as " + credentials[0] + "...");
 
         UserAccount userAccount = login(new UserAccount(credentials[0], credentials[1], false),
                 UserAccount.class);
 
         if (userAccount == null) {
-            System.out.println("  Username or password incorrect.");
+            System.out.println("\tUsername or password incorrect.");
             return;
         }
 
-        System.out.println("  Login successful. You may logout at any time by typing \'" + Page.LOGOUT_ID + "\'.");
+        System.out.println("\tLogin successful. You may logout at any time by typing \'" + Page.LOGOUT_ID + "\'.");
         Controller.setCurrentAccount(userAccount);
         checkEmailVerification(userAccount, new UserLobbyPage());
     }
@@ -46,17 +46,17 @@ public class LoginPage extends Page {
         if (credentials == null || credentials.length != 2) {
             return;
         }
-        System.out.println("  Attempting to log in as a journalist...");
+        System.out.println("\tAttempting to log in as a journalist...");
 
         JournalistAccount journalistAccount = login(new JournalistAccount(credentials[0], credentials[1], false, false),
                 JournalistAccount.class);
 
         if (journalistAccount == null) {
-            System.out.println("  Username or password incorrect.");
+            System.out.println("\tUsername or password incorrect.");
             return;
         }
 
-        System.out.println("  Login successful. You may logout at any time by typing \'logout\'.");
+        System.out.println("\tLogin successful. You may logout at any time by typing \'logout\'.");
         Controller.setCurrentAccount(journalistAccount);
         checkEmailVerification(journalistAccount, new JournalistLobbyPage());
     }
@@ -86,9 +86,9 @@ public class LoginPage extends Page {
             return;
         }
 
-        System.out.println("You have not yet verified your email address.");
-        System.out.println("Type \'" + VERIFY_EMAIL_ID + "\' to verify your email address.");
-        System.out.println("If you need assistance from an administrator, please type \'" + SUPPORT_REQUEST_ID + "\'.");
+        System.out.println("\tYou have not yet verified your email address.");
+        System.out.println("\tType \'" + VERIFY_EMAIL_ID + "\' to verify your email address.");
+        System.out.println("\tIf you need assistance from an administrator, please type \'" + SUPPORT_REQUEST_ID + "\'.");
         super.addPageAction(SUPPORT_REQUEST_ID, arg -> Controller.setCurrentPage(new SupportRequestPage()));
         super.addPageAction(VERIFY_EMAIL_ID, arg -> {
             Controller.setCurrentPage(new EmailVerificationPage(Controller.getCurrentAccount(), lobbyPage));
@@ -97,12 +97,12 @@ public class LoginPage extends Page {
     }
 
     public void displayPage() {
-        System.out.println(
-                "Welcome to the login page!\n" +
-                "Please type \'" + USER_LOGIN_ID + " <username> <password>\' if you are a user, or\n" +
-                "\'" + JOURNALIST_LOGIN_ID + " <username> <password>\' if you are a journalist.\n" +
-                "If you do not yet have an account, please type \'" + SIGNUP_ID + "\'."
+        makeNewPage("Login");
+        System.out.println("\tPlease type \'" + USER_LOGIN_ID + " <username> <password>\' if you are a user, or\n" +
+                "\t\t\'" + JOURNALIST_LOGIN_ID + " <username> <password>\' if you are a journalist.\n" +
+                "\tIf you do not yet have an account, please type \'" + SIGNUP_ID + "\'."
         );
+        inputPrompt();
     }
 
 }

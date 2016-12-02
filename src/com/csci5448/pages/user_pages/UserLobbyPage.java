@@ -23,12 +23,13 @@ public class UserLobbyPage extends LobbyPage {
 
     public void displayPage() {
         makeNewPage("ESPNGen Lobby");
-        System.out.println("  Please select a sport from the menu below:");
+        System.out.println("\tPlease select a sport from the menu below:");
         for (Sport sport : Sport.values()) {
-            System.out.println("\t  " + sport.toString().toLowerCase());
+            String sportStr = sport.toString();
+            System.out.println("\t\t" + sportStr.substring(0, 1) + sportStr.substring(1).toLowerCase());
         }
         super.displayPage();
-        System.out.print("Selection: ");
+        inputPrompt();
     }
 
 }
