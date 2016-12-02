@@ -49,15 +49,15 @@ public abstract class Page {
         Controller.setCurrentPage(new LogoutPage());
     }
 
-    public void performAction(String identifier, String args) {
-        if (freezeInput(identifier, args)) {
+    public void performAction(String identifier, String arg) {
+        if (freezeInput(identifier, arg)) {
             return;
         }
         PageAction<?> pageAction = pageActions.get(identifier);
         if (pageAction != null) {
-            pageAction.accept(args);
+            pageAction.accept(arg);
         } else {
-            performDefaultAction(identifier, args);
+            performDefaultAction(identifier, arg);
         }
     }
 
