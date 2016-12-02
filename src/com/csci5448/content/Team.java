@@ -20,9 +20,12 @@ public class Team implements SportItem {
     private Sport sport;
     @Column
     private String name;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "league")
+    private League league;
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "team", cascade = CascadeType.ALL)
     private TeamStats teamStats;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "team", cascade = CascadeType.MERGE)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "team", cascade = CascadeType.ALL)
     private Set<Player> players = new HashSet<>(0);
 
     public Team() {}
@@ -77,17 +80,35 @@ public class Team implements SportItem {
         players.add(new Player(sport, this, name, status, stats));
     }
 
+    public League getLeague() {
+        return league;
+    }
+
+    public void setLeague(League league) {
+        this.league = league;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || !(o instanceof Team)) {
             return false;
         }
         Team team = (Team) o;
+        if ((this.getId() == null && team.getId() != null) || (team.getId() == null && this.getId() != null)) {
+            return false;
+        }
+        if (this.getId() == null && team.getId() == null) {
+            return this.getSport() == team.getSport() && this.getName().equals(team.getName()) &&
+                    this.getLeague().equals(team.getLeague());
+        }
         return this.getId().equals(team.getId());
     }
 
     @Override
     public int hashCode() {
+        if (this.getId() == null) {
+            return -1;
+        }
         return this.getId().hashCode();
     }
 

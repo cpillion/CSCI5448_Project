@@ -35,10 +35,20 @@ public class TeamPage extends Page {
 
     private void addFavoriteTeam(Object o) {
         UserAccount userAccount = Controller.getCurrentAccount(UserAccount.class);
+
+        Team updateTeam = team;
+
+        for (Player player : userAccount.getFavoritePlayers()) {
+            if (player.getTeam().equals(team)) {
+                updateTeam = player.getTeam();
+                break;
+            }
+        }
+
         try (Session session = Controller.sessionFactory.openSession()) {
-            userAccount.addFavoriteTeam(team);
+            userAccount.addFavoriteTeam(updateTeam);
             if (!SessionManager.getSessionManager().performOp(session, session::update, userAccount)) {
-                userAccount.removeFavoriteTeam(team);
+                userAccount.removeFavoriteTeam(updateTeam);
                 return;
             }
         }

@@ -2,10 +2,13 @@ package com.csci5448.pages.user_pages;
 
 import com.csci5448.accounts.UserAccount;
 import com.csci5448.content.Player;
+import com.csci5448.content.Team;
 import com.csci5448.control.Controller;
 import com.csci5448.data.SessionManager;
 import com.csci5448.pages.Page;
 import org.hibernate.Session;
+
+import java.util.stream.Collectors;
 
 public class PlayerPage extends Page {
 
@@ -21,10 +24,20 @@ public class PlayerPage extends Page {
     private void addFavoritePlayerAction(Object o) {
         UserAccount userAccount = Controller.getCurrentAccount(UserAccount.class);
 
+        Player updatePlayer = player;
+
+        for (Team team : userAccount.getFavoriteTeams()) {
+            if (player.getTeam().equals(team)) {
+                updatePlayer = team.getPlayers().stream().filter(player ->
+                        player.equals(this.player)).collect(Collectors.toList()).get(0);
+                break;
+            }
+        }
+
         try (Session session = Controller.sessionFactory.openSession()) {
-            userAccount.addFavoritePlayer(player);
+            userAccount.addFavoritePlayer(updatePlayer);
             if (!SessionManager.getSessionManager().performOp(session, session::update, userAccount)) {
-                userAccount.removeFavoritePlayer(player);
+                userAccount.removeFavoritePlayer(updatePlayer);
                 return;
             }
         }

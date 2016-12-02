@@ -89,11 +89,21 @@ public class Player implements SportItem {
             return false;
         }
         Player player = (Player) o;
+        if ((this.getId() == null && player.getId() != null) || (player.getId() == null && this.getId() != null)) {
+            return false;
+        }
+        if (this.getId() == null && player.getId() == null) {
+            return this.getSport() == player.getSport() && this.getTeam().equals(player.getTeam()) &&
+                    this.getName().equals(player.getName());
+        }
         return this.getId().equals(player.getId());
     }
 
     @Override
     public int hashCode() {
+        if (this.getId() == null) {
+            return -1;
+        }
         return this.getId().hashCode();
     }
 

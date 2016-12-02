@@ -1,30 +1,63 @@
 package com.csci5448.content;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
+@Table(name = "leagues")
 public class League {
 
-    private final List<Team> standings;
-    private final Schedule schedule;
-    private final List<Player> players;
+    @Id
+    @Column(name = "league")
+    private String league;
+    @Column
+    private Sport sport;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "league", cascade = CascadeType.ALL)
+    private Set<Team> teams = new HashSet<>();
 
-    public League(List<Team> standings, Schedule schedule, List<Player> players) {
-        this.standings = standings;
-        this.schedule = schedule;
-        this.players = players;
+    public League() {}
+
+    public League(String league, Sport sport) {
+        this.league = league;
+        this.sport = sport;
     }
 
-    public List<Team> getStandings() {
-        return standings;
+    public void addTeam(Team team) {
+        team.setLeague(this);
+        teams.add(team);
     }
 
-    public List<Player> getPlayersOnTeam(String team) {
-        return players.stream().filter(player -> player.getTeam().equals(team)).collect(Collectors.toList());
+    public String getLeague() {
+        return league;
     }
 
-    public Schedule getSchedule() {
-        return schedule;
+    public void setLeague(String league) {
+        this.league = league;
     }
 
+    public Sport getSport() {
+        return sport;
+    }
+
+    public void setSport(Sport sport) {
+        this.sport = sport;
+    }
+
+    public Set<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(Set<Team> teams) {
+        this.teams = teams;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || !(o instanceof League)) {
+            return false;
+        }
+        League league = (League) o;
+        return this.getLeague().equals(league.getLeague());
+    }
 }
