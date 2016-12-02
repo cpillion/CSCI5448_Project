@@ -11,12 +11,12 @@ import java.util.Set;
 @Table(name = "users")
 public class UserAccount extends Account {
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "teams_users", joinColumns = @JoinColumn(name = "username"),
             inverseJoinColumns = @JoinColumn(name = "team_id"))
     private Set<Team> favoriteTeams = new HashSet<>(0);
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "players_users", joinColumns = @JoinColumn(name = "username"),
             inverseJoinColumns = @JoinColumn(name = "player_id"))
     private Set<Player> favoritePlayers = new HashSet<>(0);

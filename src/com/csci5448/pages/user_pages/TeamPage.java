@@ -36,20 +36,10 @@ public class TeamPage extends Page {
     private void addFavoriteTeam(Object o) {
         UserAccount userAccount = Controller.getCurrentAccount(UserAccount.class);
 
-        Team updateTeam = team;
-
-        //This is necessary, as we must use the exact same reference when updating or hibernate throws an error.
-        for (Player player : userAccount.getFavoritePlayers()) {
-            if (player.getTeam().equals(team)) {
-                updateTeam = player.getTeam();
-                break;
-            }
-        }
-
         try (Session session = Controller.sessionFactory.openSession()) {
-            userAccount.addFavoriteTeam(updateTeam);
+            userAccount.addFavoriteTeam(team);
             if (!SessionManager.getSessionManager().performOp(session, session::update, userAccount)) {
-                userAccount.removeFavoriteTeam(updateTeam);
+                userAccount.removeFavoriteTeam(team);
                 return;
             }
         }
