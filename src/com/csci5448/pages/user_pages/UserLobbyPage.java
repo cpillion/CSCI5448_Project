@@ -19,11 +19,12 @@ public class UserLobbyPage extends Page {
     }
 
     public void displayPage() {
-        System.out.println("Welcome to the ESPNGen Lobby Page!\n" + "Please select a sport from the menu below:");
+        makeNewPage("ESPNGen Lobby");
+        System.out.println("  Please select a sport from the menu below:");
         for (Sport sport : Sport.values()) {
-            System.out.println("\t" + sport.toString().toLowerCase());
+            System.out.println("\t  " + sport.toString().toLowerCase());
         }
-        System.out.print("Selection: ");
+        System.out.print("  Selection: ");
     }
 
 }

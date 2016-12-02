@@ -48,4 +48,7 @@ public abstract class Page {
 
     public abstract void displayPage();
 
+    public void makeNewPage(String pageName) {
+        System.out.println("\n|------------------------ Welcome to the " + pageName + " Page! ------------------------|");}
+
 }
