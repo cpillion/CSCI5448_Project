@@ -6,6 +6,7 @@ import com.csci5448.pages.user_pages.SportOptionPage;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -107,7 +108,7 @@ public class Team implements SportItem {
     @Override
     public int hashCode() {
         if (this.getId() == null) {
-            return -1;
+            return Objects.hash(this.getSport(), this.getName(), this.getLeague());
         }
         return this.getId().hashCode();
     }

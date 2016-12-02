@@ -60,4 +60,12 @@ public class League {
         League league = (League) o;
         return this.getLeague().equals(league.getLeague());
     }
+
+    @Override
+    public int hashCode() {
+        if (this.getLeague() == null) {
+            return -1;
+        }
+        return this.getLeague().hashCode();
+    }
 }

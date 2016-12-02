@@ -4,6 +4,7 @@ import com.csci5448.content.stats.PlayerStats;
 import com.csci5448.pages.user_pages.SportOptionPage;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "players")
@@ -102,7 +103,7 @@ public class Player implements SportItem {
     @Override
     public int hashCode() {
         if (this.getId() == null) {
-            return -1;
+            return Objects.hash(this.getSport(), this.getTeam(), this.getName());
         }
         return this.getId().hashCode();
     }
