@@ -17,16 +17,16 @@ public abstract class Page {
 
     public Page() {
         pageActions = new HashMap<>();
-        addPageAction(PREVIOUS_PAGE_ID, o -> Controller.returnToPreviousPage());
-        addPageAction(HOME_ID, o -> Controller.goToLobbyPage());
+        addPageAction(PREVIOUS_PAGE_ID, arg -> Controller.returnToPreviousPage());
+        addPageAction(HOME_ID, arg -> Controller.goToLobbyPage());
         addPageAction(LOGOUT_ID, this::performLogoutAction);
     }
 
-    public void addPageAction(String identifier, Consumer<String[]> pageAction) {
+    public void addPageActionStringArr(String identifier, Consumer<String[]> pageAction) {
         pageActions.put(identifier.toLowerCase(), new PageAction<>(pageAction, str -> str.split(" ")));
     }
 
-    public void addPageActionString(String identifier, Consumer<String> pageAction) {
+    public void addPageAction(String identifier, Consumer<String> pageAction) {
         pageActions.put(identifier.toLowerCase(), new PageAction<>(pageAction, str -> str));
     }
 
@@ -42,7 +42,7 @@ public abstract class Page {
         return pageActions.get(identifier) != null;
     }
 
-    private void performLogoutAction(Object o) {
+    private void performLogoutAction(String arg) {
         if (Controller.getCurrentAccount() == null) {
             return;
         }
@@ -61,11 +61,11 @@ public abstract class Page {
         }
     }
 
-    public boolean freezeInput(String identifier, String args) {
+    public boolean freezeInput(String identifier, String arg) {
         return false;
     }
 
-    public void performDefaultAction(String identifier, String args) {}
+    public void performDefaultAction(String identifier, String arg) {}
 
     public abstract void displayPage();
 

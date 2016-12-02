@@ -12,7 +12,7 @@ public class SupportRequestPage extends Page {
     private static final String SUBMIT_REQUEST_ID = "submit_request";
 
     public SupportRequestPage() {
-        super.addPageActionString(SUBMIT_REQUEST_ID, this::requestSupportAction);
+        super.addPageAction(SUBMIT_REQUEST_ID, this::requestSupportAction);
     }
 
     private void requestSupportAction(String supportRequest) {

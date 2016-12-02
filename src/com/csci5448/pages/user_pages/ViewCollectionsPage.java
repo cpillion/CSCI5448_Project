@@ -24,7 +24,7 @@ public abstract class ViewCollectionsPage<T> extends Page {
             collection = colQuery.list();
         }
         for (T item : collection) {
-            super.addPageActionString(itemNameFunc.apply(item), this::viewItemAction);
+            super.addPageAction(itemNameFunc.apply(item), this::viewItemAction);
         }
     }
 
@@ -33,7 +33,7 @@ public abstract class ViewCollectionsPage<T> extends Page {
         this.itemNameFunc = itemNameFunc;
         this.pageFunc = pageFunc;
         for (T item : collection) {
-            super.addPageActionString(itemNameFunc.apply(item), this::viewItemAction);
+            super.addPageAction(itemNameFunc.apply(item), this::viewItemAction);
         }
     }
 

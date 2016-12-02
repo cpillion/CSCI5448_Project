@@ -17,8 +17,8 @@ public class CreateAccountPage extends Page {
     private static final String CREATE_JOURNALIST_ACCOUNT_ID = "create_journalist_account";
 
     public CreateAccountPage() {
-        super.addPageAction(CREATE_USER_ACCOUNT_ID, this::createUserAccount);
-        super.addPageAction(CREATE_JOURNALIST_ACCOUNT_ID, this::createJournalistAccount);
+        super.addPageActionStringArr(CREATE_USER_ACCOUNT_ID, this::createUserAccount);
+        super.addPageActionStringArr(CREATE_JOURNALIST_ACCOUNT_ID, this::createJournalistAccount);
     }
 
     private void createUserAccount(String[] credentials) {

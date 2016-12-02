@@ -11,7 +11,7 @@ public class UserLobbyPage extends LobbyPage {
     public UserLobbyPage() {
         super(UserAccount.class);
         for (Sport sport : Sport.values()) {
-            super.addPageActionString(sport.toString(), selectedSportStr -> {
+            super.addPageAction(sport.toString(), selectedSportStr -> {
                 Sport selectedSport = SportFactory.chooseSport(selectedSportStr);
                 if (selectedSport != null) {
                     Controller.setCurrentPage(new SportOptionPage(selectedSport));

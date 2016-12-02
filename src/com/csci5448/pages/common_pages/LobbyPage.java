@@ -10,9 +10,9 @@ public abstract class LobbyPage extends Page {
     private static final String SUPPORT_REQUEST_ID = "request_support";
 
     public <T extends Account> LobbyPage(Class<T> accountClass) {
-        super.addPageAction(DELETE_ACCOUNT_ID, o -> Controller.setCurrentPage(
+        super.addPageAction(DELETE_ACCOUNT_ID, arg -> Controller.setCurrentPage(
                 new DeleteAccountPage<>(Controller.getCurrentAccount(accountClass))));
-        super.addPageAction(SUPPORT_REQUEST_ID, o -> Controller.setCurrentPage(new SupportRequestPage()));
+        super.addPageAction(SUPPORT_REQUEST_ID, arg -> Controller.setCurrentPage(new SupportRequestPage()));
     }
 
     public void displayPage() {

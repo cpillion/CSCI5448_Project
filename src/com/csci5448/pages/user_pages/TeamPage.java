@@ -23,7 +23,7 @@ public class TeamPage extends ViewCollectionsPage<Player> {
         super.addPageAction(VIEW_PLAYERS_ID, this::viewPlayersAction);
     }
 
-    private void addFavoriteTeam(Object o) {
+    private void addFavoriteTeam(String arg) {
         UserAccount userAccount = Controller.getCurrentAccount(UserAccount.class);
 
         try (Session session = Controller.sessionFactory.openSession()) {
@@ -36,7 +36,7 @@ public class TeamPage extends ViewCollectionsPage<Player> {
         System.out.println("The " + team.getName() + " have been added to your list of favorite teams!");
     }
 
-    private void viewPlayersAction(Object o) {
+    private void viewPlayersAction(String arg) {
         System.out.println("The current players on the " + team.getName() + " are:");
         System.out.println(super.toString());
         System.out.println("\nIf you wish to view more information about a specific player, " +

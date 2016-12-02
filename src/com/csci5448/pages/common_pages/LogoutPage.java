@@ -8,7 +8,7 @@ public class LogoutPage extends Page {
     private static final String CONFIRM_LOGOUT_ID = "confirm";
 
     public LogoutPage() {
-        super.addPageAction(CONFIRM_LOGOUT_ID, o -> Controller.logout());
+        super.addPageAction(CONFIRM_LOGOUT_ID, arg -> Controller.logout());
     }
 
     @Override

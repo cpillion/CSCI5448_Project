@@ -15,7 +15,7 @@ public class DeleteAccountPage<T extends Account> extends Page {
 
     public DeleteAccountPage(T account) {
         this.account = account;
-        super.addPageAction(DELETE_ACCOUNT_ID, this::deleteAccountAction);
+        super.addPageActionStringArr(DELETE_ACCOUNT_ID, this::deleteAccountAction);
     }
 
     private void deleteAccountAction(String[] credentials) {
@@ -32,7 +32,7 @@ public class DeleteAccountPage<T extends Account> extends Page {
                 "\' to confirm the deletion.");
     }
 
-    private void confirmAccountDeletionAction(Object o) {
+    private void confirmAccountDeletionAction(String arg) {
         try (Session session = Controller.sessionFactory.openSession()) {
             if (!SessionManager.getSessionManager().performOp(session, session::delete, account)) {
                 return;
@@ -43,7 +43,7 @@ public class DeleteAccountPage<T extends Account> extends Page {
     }
 
     @Override
-    public boolean freezeInput(String identifier, String args) {
+    public boolean freezeInput(String identifier, String arg) {
         if (super.containsPageAction(CONFIRM_DELETE_ID) && !identifier.equalsIgnoreCase(CONFIRM_DELETE_ID)) {
             super.removePageAction(CONFIRM_DELETE_ID);
             System.out.println("Account will not be deleted.");
@@ -54,7 +54,7 @@ public class DeleteAccountPage<T extends Account> extends Page {
     }
 
     @Override
-    public void performDefaultAction(String identifier, String args) {
+    public void performDefaultAction(String identifier, String arg) {
         System.out.println("Account will not be deleted.");
         Controller.returnToPreviousPage();
     }

@@ -26,13 +26,13 @@ public class WriteArticlePage extends Page {
 
     public WriteArticlePage() {
         super.addPageAction(SUBMIT_ARTICLE_ID, this::submitArticleAction);
-        super.addPageActionString(SPORT_ID, this::selectSportAction);
-        super.addPageActionString(HEADLINE_ID, this::headlineAction);
-        super.addPageActionString(AUTHOR_ID, this::authorAction);
-        super.addPageActionString(BODY_ID, this::bodyAction);
+        super.addPageAction(SPORT_ID, this::selectSportAction);
+        super.addPageAction(HEADLINE_ID, this::headlineAction);
+        super.addPageAction(AUTHOR_ID, this::authorAction);
+        super.addPageAction(BODY_ID, this::bodyAction);
     }
 
-    private void submitArticleAction(Object o) {
+    private void submitArticleAction(String arg) {
         if (sport == null || headline == null || author == null || body == null) {
             System.out.println("Please ensure that you have set the sport, headline, author," +
                     " and body before submitting.");

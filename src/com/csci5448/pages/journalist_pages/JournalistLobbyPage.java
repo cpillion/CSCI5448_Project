@@ -13,7 +13,7 @@ public class JournalistLobbyPage extends LobbyPage {
         super.addPageAction(WRITE_ARTICLE_ID, this::writeArticleAction);
     }
 
-    private void writeArticleAction(Object o) {
+    private void writeArticleAction(String arg) {
         JournalistAccount currentAccount = Controller.getCurrentAccount(JournalistAccount.class);
         if (!currentAccount.isProfessionVerified()) {
             System.out.println("Your profession has not yet been verified. Please contact an administrator to " +

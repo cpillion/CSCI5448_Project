@@ -17,16 +17,16 @@ public class SportOptionPage extends Page {
 
     public SportOptionPage(Sport sport) {
         this.sport = sport;
-        super.addPageAction(VIEW_NEWS_ID, o -> Controller.setCurrentPage(new NewsPage(sport)));
-        super.addPageAction(VIEW_LEAGUE_ID, o -> Controller.setCurrentPage(new ViewLeaguesPage(sport)));
-        super.addPageAction(VIEW_TEAMS_ID, o -> Controller.setCurrentPage(new ViewTeamsPage(sport)));
+        super.addPageAction(VIEW_NEWS_ID, arg -> Controller.setCurrentPage(new NewsPage(sport)));
+        super.addPageAction(VIEW_LEAGUE_ID, arg -> Controller.setCurrentPage(new ViewLeaguesPage(sport)));
+        super.addPageAction(VIEW_TEAMS_ID, arg -> Controller.setCurrentPage(new ViewTeamsPage(sport)));
 
         UserAccount userAccount = Controller.getCurrentAccount(UserAccount.class);
 
-        super.addPageAction(VIEW_FAVORITE_TEAMS_ID, o -> Controller.setCurrentPage(new FavoritesPage<>(sport,
+        super.addPageAction(VIEW_FAVORITE_TEAMS_ID, arg -> Controller.setCurrentPage(new FavoritesPage<>(sport,
                 userAccount, userAccount.getFavoriteTeams(), userAccount::addFavoriteTeam,
                 userAccount::removeFavoriteTeam, TeamPage::new)));
-        super.addPageAction(VIEW_FAVORITE_PLAYERS_ID, o -> Controller.setCurrentPage(new FavoritesPage<>(sport,
+        super.addPageAction(VIEW_FAVORITE_PLAYERS_ID, arg -> Controller.setCurrentPage(new FavoritesPage<>(sport,
                 userAccount, userAccount.getFavoritePlayers(), userAccount::addFavoritePlayer,
                 userAccount::removeFavoritePlayer, PlayerPage::new)));
     }

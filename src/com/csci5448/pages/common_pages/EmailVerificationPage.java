@@ -25,7 +25,7 @@ public class EmailVerificationPage extends Page {
         super.addPageAction(RESEND_EMAIL_ID, this::sendVerificationEmailAction);
     }
 
-    private void sendVerificationEmailAction(Object o) {
+    private void sendVerificationEmailAction(String arg) {
         final String generatedCode = new BigInteger(32, new Random()).toString(32);
         super.addPageAction(generatedCode, this::codeEnteredCorrectlyAction);
 
@@ -44,7 +44,7 @@ public class EmailVerificationPage extends Page {
         System.out.print("Code: ");
     }
 
-    private void codeEnteredCorrectlyAction(Object o) {
+    private void codeEnteredCorrectlyAction(String arg) {
         try (Session session = Controller.sessionFactory.openSession()) {
             account.setActivated(true);
             if (!SessionManager.getSessionManager().performOp(session, session::update, account)) {

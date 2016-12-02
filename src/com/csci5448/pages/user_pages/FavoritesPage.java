@@ -31,7 +31,7 @@ public class FavoritesPage<T extends SportItem> extends ViewCollectionsPage<T> {
         this.addFavorite = addFavorite;
         this.deleteFavorite = deleteFavorite;
 
-        super.addPageActionString(DELETE_FAVORITE_ITEM, this::deleteFavoriteItemAction);
+        super.addPageAction(DELETE_FAVORITE_ITEM, this::deleteFavoriteItemAction);
     }
 
     private void deleteFavoriteItemAction(String itemName) {
