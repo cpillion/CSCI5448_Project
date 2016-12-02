@@ -55,14 +55,18 @@ public class CreateAccountPage extends Page {
         }
 
         if (!EmailControl.getEmailControl().isEmailValid(account.getUsername())) {
-            System.out.println(account.getUsername() + " is not a valid email address.");
+            System.out.println("\t" + account.getUsername() + " is not a valid email address." +
+                    " Please try again.");
+            inputPrompt();
             return false;
         }
 
         try (Session session = Controller.sessionFactory.openSession()) {
             T existingAccount = session.get(clazz, account.getUsername());
             if (existingAccount != null) {
-                System.out.println("The username \'" + account.getUsername() + "\' is already in use.");
+                System.out.println("\tThe username \'" + account.getUsername() + "\' is already in use." +
+                                    " Please try again.");
+                inputPrompt();
                 return false;
             }
 
@@ -72,11 +76,12 @@ public class CreateAccountPage extends Page {
 
     @Override
     public void displayPage() {
-        System.out.println("Welcome to the account creation page!");
-        System.out.println("Please type \'" + CREATE_USER_ACCOUNT_ID + " <username> <password> to create a"
-                + " user account,\n or \'" + CREATE_JOURNALIST_ACCOUNT_ID + " <username> <password> to create a"
+        makeNewPage("Account Creation");
+        System.out.println("\tPlease type \'" + CREATE_USER_ACCOUNT_ID + " <username> <password>\' to create a"
+                + " user account,\n\t\tor \'" + CREATE_JOURNALIST_ACCOUNT_ID + " <username> <password>\' to create a"
                 + " journalist account");
-        System.out.println("Also, please note that your username must be a valid email address.");
+        System.out.println("\tPlease note that your username must be a valid email address.");
+        inputPrompt();
     }
 
 

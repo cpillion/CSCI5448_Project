@@ -25,5 +25,6 @@ public class WelcomePage extends Page {
 
         System.out.println("Welcome to ESPNGen!\nPlease type \'" + LOGIN_ID + "\' to proceed to the login page, or "+
                 "\'" + SIGNUP_ID + "\' to proceed to the signup page.");
+        System.out.print("Selection: ");
     }
 }

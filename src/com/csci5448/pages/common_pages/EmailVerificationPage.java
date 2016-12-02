@@ -29,7 +29,7 @@ public class EmailVerificationPage extends Page {
         final String generatedCode = new BigInteger(32, new Random()).toString(32);
         super.addPageAction(generatedCode, this::codeEnteredCorrectlyAction);
 
-        System.out.println("Sending verification email...");
+        System.out.println("\tSending verification email...");
 
         try {
             EmailControl.getEmailControl().sendEmail(account.getUsername(), "ESPNGen Account Verification",
@@ -39,9 +39,9 @@ public class EmailVerificationPage extends Page {
             return;
         }
 
-        System.out.println("Please enter the code included in the email.\nIf you need a new code sent to you," +
+        System.out.println("\tPlease enter the code included in the email.\n\tIf you need a new code sent to you," +
                 " please type \'" + RESEND_EMAIL_ID + "\'.");
-        System.out.print("Code: ");
+        System.out.print("\tCode: ");
     }
 
     private void codeEnteredCorrectlyAction(String arg) {
@@ -53,9 +53,9 @@ public class EmailVerificationPage extends Page {
             }
         }
 
-        System.out.println("Thank you for verifying your email.");
+        System.out.println("\tThank you for verifying your email.");
         if (account instanceof JournalistAccount) {
-            System.out.println("A system admin will verify your profession shortly. Once this happens," +
+            System.out.println("\tA system admin will verify your profession shortly. Once this happens," +
                     " you will be able to write and submit news articles for approval.");
             try {
                 EmailControl.getEmailControl().sendSelfEmail("ESPNGen Journalist Profession Verification",
@@ -67,7 +67,7 @@ public class EmailVerificationPage extends Page {
             }
         }
 
-        System.out.println("You are now being taken to the lobby page. You may logout at any time by typing " +
+        System.out.println("\tYou are now being taken to the lobby page. You may logout at any time by typing " +
                 "\'" + Page.LOGOUT_ID + "\'. You may also return to this lobby at any time by typing " +
                 "\'" + Page.HOME_ID + "\'.");
 
@@ -77,7 +77,7 @@ public class EmailVerificationPage extends Page {
 
     @Override
     public void displayPage() {
-        System.out.println("An email will be sent to " + account.getUsername());
+        System.out.println("\tAn email will be sent to " + account.getUsername());
     }
 
 }

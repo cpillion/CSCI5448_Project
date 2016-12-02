@@ -2,6 +2,7 @@ package com.csci5448.pages;
 
 import com.csci5448.control.Controller;
 import com.csci5448.pages.common_pages.LogoutPage;
+import com.sun.tools.javac.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,6 +71,13 @@ public abstract class Page {
     public abstract void displayPage();
 
     public void makeNewPage(String pageName) {
-        System.out.println("\n|------------------------ Welcome to the " + pageName + " Page! ------------------------|");}
+        int buffLen = (90 - pageName.length())/2;
+        String buffer = new String(new char[buffLen]).replace("\0", "-");
+        System.out.println("\n|" + buffer + " Welcome to the " + pageName + " Page! " + buffer + "|");
+    }
+
+    public void inputPrompt() {
+        System.out.print("\tSelection: ");
+    }
 
 }
