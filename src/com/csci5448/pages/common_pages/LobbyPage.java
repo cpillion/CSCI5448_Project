@@ -4,7 +4,7 @@ import com.csci5448.accounts.Account;
 import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
 
-public class LobbyPage extends Page {
+public abstract class LobbyPage extends Page {
 
     private static final String DELETE_ACCOUNT_ID = "delete_account";
     private static final String SUPPORT_REQUEST_ID = "request_support";
