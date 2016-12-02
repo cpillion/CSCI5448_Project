@@ -57,7 +57,7 @@ public class TeamStats extends BasicStats implements Serializable {
     @Override
     public String toString() {
         String basicStats = super.toString();
-        return basicStats + "\nInjured Players Count: " + numInjuredPlayers;
+        return basicStats + "\t\tInjured Players Count: " + numInjuredPlayers;
     }
 
 }

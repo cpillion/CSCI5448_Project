@@ -1,18 +1,22 @@
 package com.csci5448.pages.user_pages;
 
-import com.csci5448.content.Sport;
-import com.csci5448.pages.Page;
+import com.csci5448.content.League;
+import com.csci5448.content.Team;
 
-public class LeaguePage extends Page {
+import java.util.stream.Collectors;
 
-    private final Sport sport;
+public class LeaguePage extends ViewCollectionsPage<Team> {
 
-    public LeaguePage(Sport mySport) {
-        sport = mySport;
+    private final League league;
+
+    public LeaguePage(League league) {
+        super(league.getTeams().stream().collect(Collectors.toList()), Team::getName, TeamPage::new);
+        this.league = league;
     }
 
     public void displayPage() {
-        //TODO
+        System.out.println("The teams in the " + league.getLeague() + " are:");
+        System.out.println(super.toString());
+        System.out.println("Please type the name of a team for more information about it.");
     }
-
 }

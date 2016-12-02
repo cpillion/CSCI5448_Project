@@ -1,15 +1,52 @@
 package com.csci5448.pages.common_pages;
 
+import com.csci5448.accounts.Account;
+import com.csci5448.control.Controller;
+import com.csci5448.control.EmailControl;
 import com.csci5448.pages.Page;
+
+import javax.mail.MessagingException;
 
 public class SupportRequestPage extends Page {
 
-    public SupportRequestPage() {
+    private static final String SUBMIT_REQUEST_ID = "submit_request";
 
+    public SupportRequestPage() {
+        super.addPageAction(SUBMIT_REQUEST_ID, this::requestSupportAction);
+    }
+
+    private void requestSupportAction(String supportRequest) {
+        if (supportRequest == null || supportRequest.length() == 0) {
+            return;
+        }
+
+        Account currentAccount = Controller.getCurrentAccount();
+        if (currentAccount == null) {
+            return;
+        }
+
+        final String messageBody = "User: " + currentAccount.getUsername() + "\n\n" +
+                supportRequest + "\n\n" +
+                "Instructions: Forward this email to " + currentAccount.getUsername() + " together " +
+                "with your reply.";
+
+        System.out.println("Sending support request...");
+
+        try {
+            EmailControl.getEmailControl().sendSelfEmail("Support Request From " + currentAccount.getUsername(),
+                    messageBody);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        System.out.println("You support request has been sent to an administrator and will be reviewed shortly.\n" +
+                "Please periodically check your inbox at " + currentAccount.getUsername() + " for a reply.");
     }
 
     @Override
     public void displayPage() {
-        // TODO
+        System.out.println("Welcome to the support request page!\nPlease type \'" + SUBMIT_REQUEST_ID + "\' followed" +
+                " by a description of the problem you are experiencing.");
     }
 }

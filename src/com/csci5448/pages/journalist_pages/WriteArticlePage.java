@@ -5,20 +5,19 @@ import com.csci5448.content.Sport;
 import com.csci5448.content.SportFactory;
 import com.csci5448.control.Controller;
 import com.csci5448.control.EmailControl;
+import com.csci5448.data.SessionManager;
 import com.csci5448.pages.Page;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import javax.mail.MessagingException;
 
 public class WriteArticlePage extends Page {
 
-    public static final String SUBMIT_ARTICLE_ID = "submit_article";
-    public static final String SPORT_ID =  "sport";
-    public static final String HEADLINE_ID = "headline";
-    public static final String AUTHOR_ID = "author";
-    public static final String BODY_ID = "body";
+    private static final String SUBMIT_ARTICLE_ID = "submit_article";
+    private static final String SPORT_ID =  "sport";
+    private static final String HEADLINE_ID = "headline";
+    private static final String AUTHOR_ID = "author";
+    private static final String BODY_ID = "body";
 
     private Sport sport;
     private String headline;
@@ -33,7 +32,7 @@ public class WriteArticlePage extends Page {
         super.addPageAction(BODY_ID, this::bodyAction);
     }
 
-    private void submitArticleAction(Object o) {
+    private void submitArticleAction(String arg) {
         if (sport == null || headline == null || author == null || body == null) {
             System.out.println("Please ensure that you have set the sport, headline, author," +
                     " and body before submitting.");
@@ -43,20 +42,13 @@ public class WriteArticlePage extends Page {
         News news = new News(sport, headline, author, body, false);
 
         try (Session session = Controller.sessionFactory.openSession()) {
-
-            Transaction transaction = session.beginTransaction();
-            try {
-                session.save(news);
-                transaction.commit();
-            } catch (HibernateException e) {
-                transaction.rollback();
-                e.printStackTrace();
+            if (!SessionManager.getSessionManager().performOp(session, session::save, news)) {
                 return;
             }
         }
 
         try {
-            EmailControl.getEmailControl().sendEmail("espngen@gmail.com", "ESPNGen Article Submission Ready For Approval",
+            EmailControl.getEmailControl().sendSelfEmail("ESPNGen Article Submission Ready For Approval",
                             "A new article has been submitted by " + news.getAuthor() + "!\n" +
                             "If you would like to approve this article, please update the news database.");
         } catch (MessagingException e) {
@@ -80,19 +72,19 @@ public class WriteArticlePage extends Page {
         }
     }
 
-    private void headlineAction(String[] headline) {
+    private void headlineAction(String headline) {
         System.out.println("Headline successfully set.");
-        this.headline = String.join(" ", headline);
+        this.headline = headline;
     }
 
-    private void authorAction(String[] author) {
+    private void authorAction(String author) {
         System.out.println("Author successfully set.");
-        this.author = String.join(" ", author);
+        this.author = author;
     }
 
-    private void bodyAction(String[] body) {
+    private void bodyAction(String body) {
         System.out.println("Body successfully set.");
-        this.body = String.join(" ", body);
+        this.body = body;
     }
 
     public void displayPage() {

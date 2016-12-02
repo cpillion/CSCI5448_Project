@@ -1,40 +1,34 @@
 package com.csci5448.pages.user_pages;
 
 import com.csci5448.accounts.UserAccount;
-import com.csci5448.content.Player;
 import com.csci5448.content.Sport;
-import com.csci5448.content.Team;
 import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
 
 public class SportOptionPage extends Page {
 
-    public static final String VIEW_NEWS_ID = "view_news";
-    public static final String VIEW_LEAGUE_ID = "view_league";
-    public static final String VIEW_TEAMS_ID = "view_teams";
-    public static final String VIEW_FAVORITE_TEAMS_ID = "view_favorite_teams";
-    public static final String VIEW_FAVORITE_PLAYERS_ID = "view_favorite_players";
+    private static final String VIEW_NEWS_ID = "view_news";
+    private static final String VIEW_LEAGUE_ID = "view_leagues";
+    private static final String VIEW_TEAMS_ID = "view_teams";
+    private static final String VIEW_FAVORITE_TEAMS_ID = "view_favorite_teams";
+    private static final String VIEW_FAVORITE_PLAYERS_ID = "view_favorite_players";
 
     private final Sport sport;
 
     public SportOptionPage(Sport sport) {
         this.sport = sport;
-        super.addPageAction(VIEW_NEWS_ID, o -> Controller.setCurrentPage(new NewsPage(sport)));
-        super.addPageAction(VIEW_LEAGUE_ID, o -> Controller.setCurrentPage(new LeaguePage(sport)));
-        super.addPageAction(VIEW_TEAMS_ID, o -> Controller.setCurrentPage(new ViewTeamsPage(sport)));
+        super.addPageAction(VIEW_NEWS_ID, arg -> Controller.setCurrentPage(new NewsPage(sport)));
+        super.addPageAction(VIEW_LEAGUE_ID, arg -> Controller.setCurrentPage(new ViewLeaguesPage(sport)));
+        super.addPageAction(VIEW_TEAMS_ID, arg -> Controller.setCurrentPage(new ViewTeamsPage(sport)));
 
         UserAccount userAccount = Controller.getCurrentAccount(UserAccount.class);
 
-        FavoritesPage<Team> favoriteTeamPage = new FavoritesPage<Team>(sport, userAccount,
-                userAccount.getFavoriteTeams(), userAccount::addFavoriteTeam, userAccount::removeFavoriteTeam,
-                TeamPage::new);
-
-        FavoritesPage<Player> favoritePlayerPage = new FavoritesPage<Player>(sport, userAccount,
-                userAccount.getFavoritePlayers(), userAccount::addFavoritePlayer, userAccount::removeFavoritePlayer,
-                PlayerPage::new);
-
-        super.addPageAction(VIEW_FAVORITE_TEAMS_ID, o -> Controller.setCurrentPage(favoriteTeamPage));
-        super.addPageAction(VIEW_FAVORITE_PLAYERS_ID, o -> Controller.setCurrentPage(favoritePlayerPage));
+        super.addPageAction(VIEW_FAVORITE_TEAMS_ID, arg -> Controller.setCurrentPage(new FavoritesPage<>(sport,
+                userAccount, userAccount.getFavoriteTeams(), userAccount::addFavoriteTeam,
+                userAccount::removeFavoriteTeam, TeamPage::new)));
+        super.addPageAction(VIEW_FAVORITE_PLAYERS_ID, arg -> Controller.setCurrentPage(new FavoritesPage<>(sport,
+                userAccount, userAccount.getFavoritePlayers(), userAccount::addFavoritePlayer,
+                userAccount::removeFavoritePlayer, PlayerPage::new)));
     }
 
     @Override

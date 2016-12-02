@@ -11,7 +11,7 @@ import java.util.List;
 
 public class NewsPage extends Page {
 
-    public static String READ_ARTICLE_ID = "read_article";
+    private static String READ_ARTICLE_ID = "read_article";
 
     private final Sport sport;
 

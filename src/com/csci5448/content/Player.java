@@ -4,6 +4,7 @@ import com.csci5448.content.stats.PlayerStats;
 import com.csci5448.pages.user_pages.SportOptionPage;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "players")
@@ -89,21 +90,30 @@ public class Player implements SportItem {
             return false;
         }
         Player player = (Player) o;
+        if ((this.getId() == null && player.getId() != null) || (player.getId() == null && this.getId() != null)) {
+            return false;
+        }
+        if (this.getId() == null && player.getId() == null) {
+            return this.getSport() == player.getSport() && this.getTeam().equals(player.getTeam()) &&
+                    this.getName().equals(player.getName());
+        }
         return this.getId().equals(player.getId());
     }
 
     @Override
     public int hashCode() {
+        if (this.getId() == null) {
+            return Objects.hash(this.getSport(), this.getTeam(), this.getName());
+        }
         return this.getId().hashCode();
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Name: " + name + " - " + team.getName() + "\n");
-        sb.append("Sport: " + sport + "\n");
-        sb.append("Status: " + status + "\n");
-        sb.append(stats.toString());
-        return sb.toString();
+        return "Name: " + name + "\t\t" +
+                "Team: " + team.getName() + "\n" +
+                "Sport: " + sport + "\t\t" +
+                "Status: " + status + "\n" +
+                stats.toString();
     }
 }

@@ -11,14 +11,16 @@ import org.hibernate.Session;
 
 public class LoginPage extends Page {
 
-    public static final String USER_LOGIN_ID = "user_login";
-    public static final String JOURNALIST_LOGIN_ID = "journalist_login";
-    public static final String SIGNUP_ID = "signup";
+    private static final String USER_LOGIN_ID = "user_login";
+    private static final String JOURNALIST_LOGIN_ID = "journalist_login";
+    private static final String SIGNUP_ID = "signup";
+    private static final String VERIFY_EMAIL_ID = "verify";
+    private static final String SUPPORT_REQUEST_ID = "request_support";
 
     public LoginPage() {
-        super.addPageAction(USER_LOGIN_ID, this::userLoginAction);
-        super.addPageAction(JOURNALIST_LOGIN_ID, this::journalistLoginAction);
-        super.addPageAction(SIGNUP_ID, o -> Controller.setCurrentPage(new CreateAccountPage()));
+        super.addPageActionStringArr(USER_LOGIN_ID, this::userLoginAction);
+        super.addPageActionStringArr(JOURNALIST_LOGIN_ID, this::journalistLoginAction);
+        super.addPageAction(SIGNUP_ID, arg -> Controller.setCurrentPage(new CreateAccountPage()));
     }
 
     private void userLoginAction(String[] credentials) {
@@ -84,18 +86,23 @@ public class LoginPage extends Page {
             return;
         }
 
-        System.out.println("  You have not yet verified your email address.");
-        Controller.setCurrentPage(new EmailVerificationPage(account, lobbyPage));
-        Controller.sendCommandToPage(EmailVerificationPage.RESEND_EMAIL_ID, null);
+        System.out.println("You have not yet verified your email address.");
+        System.out.println("Type \'" + VERIFY_EMAIL_ID + "\' to verify your email address.");
+        System.out.println("If you need assistance from an administrator, please type \'" + SUPPORT_REQUEST_ID + "\'.");
+        super.addPageAction(SUPPORT_REQUEST_ID, arg -> Controller.setCurrentPage(new SupportRequestPage()));
+        super.addPageAction(VERIFY_EMAIL_ID, arg -> {
+            Controller.setCurrentPage(new EmailVerificationPage(Controller.getCurrentAccount(), lobbyPage));
+            Controller.sendCommandToPage(EmailVerificationPage.RESEND_EMAIL_ID, null);
+        });
     }
 
     public void displayPage() {
-        makeNewPage("Login");
-        StringBuilder sb = new StringBuilder();
-        sb.append("  Please type \'" + USER_LOGIN_ID + " <username> <password>\' if you are a user, or\n");
-        sb.append("  \'" + JOURNALIST_LOGIN_ID + " <username> <password>\' if you are a journalist.\n");
-        sb.append("  If you do not yet have an account, please type \'" + SIGNUP_ID + "\'.");
-        System.out.println(sb.toString());
+        System.out.println(
+                "Welcome to the login page!\n" +
+                "Please type \'" + USER_LOGIN_ID + " <username> <password>\' if you are a user, or\n" +
+                "\'" + JOURNALIST_LOGIN_ID + " <username> <password>\' if you are a journalist.\n" +
+                "If you do not yet have an account, please type \'" + SIGNUP_ID + "\'."
+        );
     }
 
 }

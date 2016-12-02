@@ -9,7 +9,7 @@ import org.hibernate.Session;
 
 public class PlayerPage extends Page {
 
-    public static final String ADD_FAVORITE_PLAYER_ID = "add_favorite_player";
+    private static final String ADD_FAVORITE_PLAYER_ID = "add_favorite_player";
 
     private final Player player;
 
@@ -18,7 +18,7 @@ public class PlayerPage extends Page {
         super.addPageAction(ADD_FAVORITE_PLAYER_ID, this::addFavoritePlayerAction);
     }
 
-    private void addFavoritePlayerAction(Object o) {
+    private void addFavoritePlayerAction(String arg) {
         UserAccount userAccount = Controller.getCurrentAccount(UserAccount.class);
 
         try (Session session = Controller.sessionFactory.openSession()) {

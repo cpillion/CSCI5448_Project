@@ -9,8 +9,8 @@ public class WelcomePage extends Page {
     private static final String SIGNUP_ID = "signup";
 
     public WelcomePage() {
-        super.addPageAction(LOGIN_ID, o -> Controller.setCurrentPage(new LoginPage()));
-        super.addPageAction(SIGNUP_ID, o -> Controller.setCurrentPage(new CreateAccountPage()));
+        super.addPageAction(LOGIN_ID, arg -> Controller.setCurrentPage(new LoginPage()));
+        super.addPageAction(SIGNUP_ID, arg -> Controller.setCurrentPage(new CreateAccountPage()));
     }
 
     @Override
@@ -25,5 +25,7 @@ public class WelcomePage extends Page {
 
         System.out.println("Welcome to ESPNGen!\nPlease type \'" + LOGIN_ID + "\' to proceed to the login page, or "+
                 "\'" + SIGNUP_ID + "\' to proceed to the signup page.");
+        System.out.println("At any time while browsing through the pages, you may type \'" + Page.PREVIOUS_PAGE_ID +
+                "\' to return to the previously visited page.");
     }
 }

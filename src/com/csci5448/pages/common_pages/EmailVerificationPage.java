@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class EmailVerificationPage extends Page {
 
-    public static final String RESEND_EMAIL_ID = "resend";
+    static final String RESEND_EMAIL_ID = "resend";
 
     private final Account account;
     private final Page lobbyPage;
@@ -25,13 +25,11 @@ public class EmailVerificationPage extends Page {
         super.addPageAction(RESEND_EMAIL_ID, this::sendVerificationEmailAction);
     }
 
-    private void sendVerificationEmailAction(Object o) {
-        System.out.println("Please enter the code included in the email.\nIf you need a new code sent to you," +
-                " please type \'" + RESEND_EMAIL_ID + "\'.");
-        System.out.print("Code: ");
-
+    private void sendVerificationEmailAction(String arg) {
         final String generatedCode = new BigInteger(32, new Random()).toString(32);
         super.addPageAction(generatedCode, this::codeEnteredCorrectlyAction);
+
+        System.out.println("Sending verification email...");
 
         try {
             EmailControl.getEmailControl().sendEmail(account.getUsername(), "ESPNGen Account Verification",
@@ -40,9 +38,13 @@ public class EmailVerificationPage extends Page {
             e.printStackTrace();
             return;
         }
+
+        System.out.println("Please enter the code included in the email.\nIf you need a new code sent to you," +
+                " please type \'" + RESEND_EMAIL_ID + "\'.");
+        System.out.print("Code: ");
     }
 
-    private void codeEnteredCorrectlyAction(Object o) {
+    private void codeEnteredCorrectlyAction(String arg) {
         try (Session session = Controller.sessionFactory.openSession()) {
             account.setActivated(true);
             if (!SessionManager.getSessionManager().performOp(session, session::update, account)) {
@@ -56,7 +58,7 @@ public class EmailVerificationPage extends Page {
             System.out.println("A system admin will verify your profession shortly. Once this happens," +
                     " you will be able to write and submit news articles for approval.");
             try {
-                EmailControl.getEmailControl().sendEmail("espngen@gmail.com", "ESPNGen Journalist Profession Verification",
+                EmailControl.getEmailControl().sendSelfEmail("ESPNGen Journalist Profession Verification",
                         "A new Journalist Account has been created for " + account.getUsername() + "!\n" +
                                 "If you would like to approve this person's profession, please update the journalist database.");
             } catch (MessagingException e) {

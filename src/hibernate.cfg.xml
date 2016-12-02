@@ -26,5 +26,6 @@
         <mapping class="com.csci5448.content.Team"/>
         <mapping class="com.csci5448.content.stats.PlayerStats"/>
         <mapping class="com.csci5448.content.Player"/>
+        <mapping class="com.csci5448.content.League"/>
     </session-factory>
 </hibernate-configuration>
