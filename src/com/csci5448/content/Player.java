@@ -113,7 +113,7 @@ public class Player implements SportItem {
         return "Name: " + name + "\t\t" +
                 "Team: " + team.getName() + "\n" +
                 "Sport: " + sport + "\t\t" +
-                "Status: " + stats + "\n" +
+                "Status: " + status + "\n" +
                 stats.toString();
     }
 }

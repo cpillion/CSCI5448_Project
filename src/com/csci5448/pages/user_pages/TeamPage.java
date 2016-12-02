@@ -5,32 +5,22 @@ import com.csci5448.content.Player;
 import com.csci5448.content.Team;
 import com.csci5448.control.Controller;
 import com.csci5448.data.SessionManager;
-import com.csci5448.pages.Page;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 
-import java.util.List;
-import java.util.stream.Collectors;
+public class TeamPage extends ViewCollectionsPage<Player> {
 
-public class TeamPage extends Page {
-
-    private static final String SELECT_PLAYER_ID = "select_player";
     private static final String ADD_FAVORITE_TEAM_ID = "add_favorite_team";
     private static final String VIEW_PLAYERS_ID = "view_players";
 
     private final Team team;
-    private final List<Player> players;
 
     public TeamPage(Team team) {
+        super(session -> session.createQuery("FROM Player WHERE team=" + team.getId(), Player.class),
+                Player::getName, PlayerPage::new);
+
         this.team = team;
         super.addPageAction(ADD_FAVORITE_TEAM_ID, this::addFavoriteTeam);
         super.addPageAction(VIEW_PLAYERS_ID, this::viewPlayersAction);
-        super.addPageAction(SELECT_PLAYER_ID, this::selectPlayerAction);
-
-        try (Session session = Controller.sessionFactory.openSession()) {
-            Query<Player> players = session.createQuery("FROM Player WHERE team=" + team.getId(), Player.class);
-            this.players = players.list();
-        }
     }
 
     private void addFavoriteTeam(Object o) {
@@ -48,20 +38,9 @@ public class TeamPage extends Page {
 
     private void viewPlayersAction(Object o) {
         System.out.println("The current players on the " + team.getName() + " are:");
-        for (Player player : players) {
-            System.out.println("\t" + player.getName());
-        }
-        System.out.println("\nPlease type \'" + SELECT_PLAYER_ID + " <player>\' to view information about a specific player.");
-    }
-
-    private void selectPlayerAction(String playerName) {
-        List<Player> filteredList = players.stream().filter(player ->
-                player.getName().equalsIgnoreCase(playerName)).collect(Collectors.toList());
-        if (filteredList.size() == 0) {
-            return;
-        }
-
-        Controller.setCurrentPage(new PlayerPage(filteredList.get(0)));
+        System.out.println(super.toString());
+        System.out.println("\nIf you wish to view more information about a specific player, " +
+                "please enter that player's name.");
     }
 
     public void displayPage() {
