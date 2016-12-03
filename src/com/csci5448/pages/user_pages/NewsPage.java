@@ -39,24 +39,28 @@ public class NewsPage extends Page {
             return;
         }
         News news = articles.get(i);
-        System.out.println(news.getHeadline() + "\nWritten by " + news.getAuthor() + "\n\n" + news.getBody());
+        System.out.println("\t" + news.getHeadline() +
+                            "\n\tWritten by " + news.getAuthor() +
+                            "\n\n\t" + news.getBody());
+        inputPrompt();
     }
 
     public void displayPage() {
-        System.out.println("Welcome to ESPNGen News!\n" +
-                            "To view an article, please type \"read_article\" followed by the article number.\n");
+        makeNewPage("ESPNGen " + capitalize(sport.toString()) + " News");
+        System.out.println("\tTo view an article, please type \"read_article\" followed by the article number.\n");
 
         if (articles.isEmpty()) {
-            System.out.println("There are no available articles for " +
+            System.out.println("\nThere are no available articles for " +
                     sport.toString().toLowerCase()+ " at this time. Please check back later.");
         }
         else {
             // List Results for user to see
-            System.out.println("Available articles related to " + sport.toString().toLowerCase() + ":");
+            System.out.println("\tAvailable articles related to " + capitalize(sport.toString()) + ":");
             for (int i = 0; i < articles.size(); i++) {
-                System.out.println("\t" + (i+1) + ": \"" +
+                System.out.println("\t\t" + (i+1) + ": \"" +
                         articles.get(i).getHeadline() + "\" by " + articles.get(i).getAuthor());
             }
         }
+        inputPrompt();
     }
 }

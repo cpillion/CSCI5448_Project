@@ -33,15 +33,15 @@ public class SportOptionPage extends Page {
 
     @Override
     public void displayPage() {
-        System.out.println("Welcome to the " + sport + " page.");
-        System.out.println("Please select an option from the menu below:");
+        makeNewPage(capitalize(sport.toString()));
+        System.out.println("\tPlease select an option from the menu below:");
 
         String[] pageActions = {VIEW_NEWS_ID, VIEW_LEAGUE_ID, VIEW_TEAMS_ID, VIEW_FAVORITE_TEAMS_ID,
                 VIEW_FAVORITE_PLAYERS_ID};
         for (String pageAction : pageActions) {
-            System.out.println("\t" + pageAction);
+            System.out.println("\t\t" + pageAction);
         }
-        System.out.print("Selection: ");
+        inputPrompt();
     }
 
 }

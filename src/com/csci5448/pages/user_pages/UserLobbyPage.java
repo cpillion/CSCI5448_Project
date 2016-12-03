@@ -25,8 +25,7 @@ public class UserLobbyPage extends LobbyPage {
         makeNewPage("ESPNGen Lobby");
         System.out.println("\tPlease select a sport from the menu below:");
         for (Sport sport : Sport.values()) {
-            String sportStr = sport.toString();
-            System.out.println("\t\t" + sportStr.substring(0, 1) + sportStr.substring(1).toLowerCase());
+            System.out.println("\t\t" + capitalize(sport.toString()));
         }
         super.displayPage();
         inputPrompt();

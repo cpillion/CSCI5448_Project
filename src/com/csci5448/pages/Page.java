@@ -80,4 +80,8 @@ public abstract class Page {
         System.out.print("\tSelection: ");
     }
 
+    public String capitalize(String myStr) {
+        return myStr.substring(0,1).toUpperCase() + myStr.substring(1).toLowerCase();
+    }
+
 }
