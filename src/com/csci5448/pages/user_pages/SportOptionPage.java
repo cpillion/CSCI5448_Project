@@ -4,6 +4,7 @@ import com.csci5448.accounts.UserAccount;
 import com.csci5448.content.Sport;
 import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
+import com.csci5448.pages.PageDisplay;
 
 public class SportOptionPage extends Page {
 
@@ -33,8 +34,8 @@ public class SportOptionPage extends Page {
 
     @Override
     public void displayPage() {
-        makeNewPage(capitalize(sport.toString()));
-        showNavCommands();
+        PageDisplay.getPageDisplay().showPageWelcomeText(sport.toString());
+        PageDisplay.getPageDisplay().showNavCommands();
         System.out.println("\tPlease select an option from the menu below:");
 
         String[] pageActions = {VIEW_NEWS_ID, VIEW_LEAGUE_ID, VIEW_TEAMS_ID, VIEW_FAVORITE_TEAMS_ID,
@@ -42,7 +43,7 @@ public class SportOptionPage extends Page {
         for (String pageAction : pageActions) {
             System.out.println("\t\t" + pageAction);
         }
-        inputPrompt();
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 
 }

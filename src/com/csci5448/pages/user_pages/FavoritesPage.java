@@ -7,6 +7,7 @@ import com.csci5448.content.SportItem;
 import com.csci5448.control.Controller;
 import com.csci5448.data.SessionManager;
 import com.csci5448.pages.Page;
+import com.csci5448.pages.PageDisplay;
 import org.hibernate.Session;
 
 import java.util.Set;
@@ -58,7 +59,7 @@ public class FavoritesPage<T extends SportItem> extends ViewCollectionsPage<T> {
         System.out.println(super.toString());
         System.out.println("\tType \'" + DELETE_FAVORITE_ITEM + " <name>\' to delete an entry from your favorites,\n" +
                 "\t\tor type the name of one of your favorite items to view more information about it.");
-        inputPrompt();
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 
 }

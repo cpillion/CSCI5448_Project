@@ -5,6 +5,7 @@ import com.csci5448.accounts.JournalistAccount;
 import com.csci5448.accounts.UserAccount;
 import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
+import com.csci5448.pages.PageDisplay;
 import com.csci5448.pages.journalist_pages.JournalistLobbyPage;
 import com.csci5448.pages.user_pages.UserLobbyPage;
 import org.hibernate.Session;
@@ -97,12 +98,12 @@ public class LoginPage extends Page {
     }
 
     public void displayPage() {
-        makeNewPage("Login");
+        PageDisplay.getPageDisplay().showPageWelcomeText("Login");
         System.out.println("\tPlease type \'" + USER_LOGIN_ID + " <username> <password>\' if you are a user, or\n" +
                 "\t\t\'" + JOURNALIST_LOGIN_ID + " <username> <password>\' if you are a journalist.\n" +
                 "\tIf you do not yet have an account, please type \'" + SIGNUP_ID + "\'."
         );
-        inputPrompt();
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 
 }

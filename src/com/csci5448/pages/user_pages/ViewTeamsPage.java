@@ -2,6 +2,7 @@ package com.csci5448.pages.user_pages;
 
 import com.csci5448.content.Sport;
 import com.csci5448.content.Team;
+import com.csci5448.pages.PageDisplay;
 
 public class ViewTeamsPage extends ViewCollectionsPage<Team> {
 
@@ -14,12 +15,12 @@ public class ViewTeamsPage extends ViewCollectionsPage<Team> {
     }
 
     public void displayPage() {
-        makeNewPage(capitalize(sport.toString()) + " Teams");
-        showNavCommands();
+        PageDisplay.getPageDisplay().showPageWelcomeText(sport + " Teams");
+        PageDisplay.getPageDisplay().showNavCommands();
         System.out.println("\tThe current teams available are: ");
         System.out.println(super.toString());
         System.out.println("\tPlease type the name of a team for more information about it.");
-        inputPrompt();
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 
 }

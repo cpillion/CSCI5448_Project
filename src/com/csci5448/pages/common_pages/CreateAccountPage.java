@@ -7,6 +7,7 @@ import com.csci5448.control.Controller;
 import com.csci5448.control.EmailControl;
 import com.csci5448.data.SessionManager;
 import com.csci5448.pages.Page;
+import com.csci5448.pages.PageDisplay;
 import com.csci5448.pages.journalist_pages.JournalistLobbyPage;
 import com.csci5448.pages.user_pages.UserLobbyPage;
 import org.hibernate.Session;
@@ -57,7 +58,7 @@ public class CreateAccountPage extends Page {
         if (!EmailControl.getEmailControl().isEmailValid(account.getUsername())) {
             System.out.println("\t" + account.getUsername() + " is not a valid email address." +
                     " Please try again.");
-            inputPrompt();
+            PageDisplay.getPageDisplay().showInputPrompt();
             return false;
         }
 
@@ -66,7 +67,7 @@ public class CreateAccountPage extends Page {
             if (existingAccount != null) {
                 System.out.println("\tThe username \'" + account.getUsername() + "\' is already in use." +
                                     " Please try again.");
-                inputPrompt();
+                PageDisplay.getPageDisplay().showInputPrompt();
                 return false;
             }
 
@@ -76,12 +77,12 @@ public class CreateAccountPage extends Page {
 
     @Override
     public void displayPage() {
-        makeNewPage("Account Creation");
+        PageDisplay.getPageDisplay().showPageWelcomeText("Account Creation");
         System.out.println("\tPlease type \'" + CREATE_USER_ACCOUNT_ID + " <username> <password>\' to create a"
                 + " user account,\n\t\tor \'" + CREATE_JOURNALIST_ACCOUNT_ID + " <username> <password>\' to create a"
                 + " journalist account");
         System.out.println("\tPlease note that your username must be a valid email address.");
-        inputPrompt();
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 
 

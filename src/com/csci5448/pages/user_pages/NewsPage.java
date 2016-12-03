@@ -4,6 +4,7 @@ import com.csci5448.content.News;
 import com.csci5448.content.Sport;
 import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
+import com.csci5448.pages.PageDisplay;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -45,12 +46,12 @@ public class NewsPage extends Page {
                             "\n\t\tWritten by " + news.getAuthor() +
                             "\n\n\t\t\t" + news.getBody() + "\n");
         System.out.println("\n\t\t" + buffer);
-        inputPrompt();
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 
     public void displayPage() {
-        makeNewPage("ESPNGen " + capitalize(sport.toString()) + " News");
-        showNavCommands();
+        PageDisplay.getPageDisplay().showPageWelcomeText("ESPNGen " + sport + " News");
+        PageDisplay.getPageDisplay().showNavCommands();
         System.out.println("\tTo view an article, please type \"read_article\" followed by the article number.\n");
 
         if (articles.isEmpty()) {
@@ -59,12 +60,12 @@ public class NewsPage extends Page {
         }
         else {
             // List Results for user to see
-            System.out.println("\tAvailable articles related to " + capitalize(sport.toString()) + ":");
+            System.out.println("\tAvailable articles related to " + sport + ":");
             for (int i = 0; i < articles.size(); i++) {
                 System.out.println("\t\t" + (i+1) + ": \"" +
                         articles.get(i).getHeadline() + "\" by " + articles.get(i).getAuthor());
             }
         }
-        inputPrompt();
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 }

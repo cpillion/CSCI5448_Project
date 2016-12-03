@@ -5,6 +5,7 @@ import com.csci5448.content.Player;
 import com.csci5448.content.Team;
 import com.csci5448.control.Controller;
 import com.csci5448.data.SessionManager;
+import com.csci5448.pages.PageDisplay;
 import org.hibernate.Session;
 
 public class TeamPage extends ViewCollectionsPage<Player> {
@@ -41,14 +42,14 @@ public class TeamPage extends ViewCollectionsPage<Player> {
         System.out.println(super.toString());
         System.out.println("\tIf you wish to view more information about a specific player, " +
                 "please enter that player's name.");
-        inputPrompt();
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 
     public void displayPage() {
         System.out.println("\t" + team + "\n");
         System.out.println("\tTo add this team to your list of favorites, type \'" + ADD_FAVORITE_TEAM_ID + "\'.");
         System.out.println("\tTo view a list of players on this team, type \'" + VIEW_PLAYERS_ID + "\'.");
-        inputPrompt();
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 
 }

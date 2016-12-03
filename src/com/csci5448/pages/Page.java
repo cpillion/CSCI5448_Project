@@ -2,7 +2,6 @@ package com.csci5448.pages;
 
 import com.csci5448.control.Controller;
 import com.csci5448.pages.common_pages.LogoutPage;
-import com.sun.tools.javac.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,25 +69,6 @@ public abstract class Page {
 
     public abstract void displayPage();
 
-    public void makeNewPage(String pageName) {
-        int buffLen = (100 - pageName.length())/2;
-        String buffer = new String(new char[buffLen]).replace("\0", "-");
-        System.out.println("\n|" + buffer + " Welcome to the " + pageName + " Page! " + buffer + "|");
-    }
 
-    public void showNavCommands() {
-        System.out.println("\tPage Navigation Commands: \n" +
-                "\t\tReturn to Lobby: \'" + Page.HOME_ID + "\'\n" +
-                "\t\tReturn to Previous Page: \'" + Page.PREVIOUS_PAGE_ID + "\'\n" +
-                "\t\tLogout: \'" + Page.LOGOUT_ID + "\'\n");
-    }
-
-    public void inputPrompt() {
-        System.out.print("\tSelection: ");
-    }
-
-    public String capitalize(String myStr) {
-        return myStr.substring(0,1).toUpperCase() + myStr.substring(1).toLowerCase();
-    }
 
 }

@@ -5,6 +5,7 @@ import com.csci5448.content.Player;
 import com.csci5448.control.Controller;
 import com.csci5448.data.SessionManager;
 import com.csci5448.pages.Page;
+import com.csci5448.pages.PageDisplay;
 import org.hibernate.Session;
 
 public class PlayerPage extends Page {
@@ -36,7 +37,7 @@ public class PlayerPage extends Page {
         System.out.println(player + "\n");
         System.out.println("\tTo add this player to your list of favorite players, please type \'" +
                 ADD_FAVORITE_PLAYER_ID + "\'.");
-        inputPrompt();
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 
 }
