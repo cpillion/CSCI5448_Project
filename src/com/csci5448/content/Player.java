@@ -110,10 +110,12 @@ public class Player implements SportItem {
 
     @Override
     public String toString() {
-        return "Name: " + name + "\t\t" +
-                "Team: " + team.getName() + "\n" +
-                "Sport: " + sport + "\t\t" +
+        return "\t****************************************************\n\t" +
+                "Name: " + name + "\t\t" +
+                "Team: " + team.getName() + "\n\t" +
+                "Sport: " + sport + "\t\t\t" +
                 "Status: " + status + "\n" +
-                stats.toString();
+                stats.toString() +
+                "\n\t****************************************************";
     }
 }

@@ -37,10 +37,11 @@ public class TeamPage extends ViewCollectionsPage<Player> {
     }
 
     private void viewPlayersAction(String arg) {
-        System.out.println("\tThe current players on the " + team.getName() + " are:");
+        System.out.println("\n\tThe current players on the " + team.getName() + " are:");
         System.out.println(super.toString());
         System.out.println("\tIf you wish to view more information about a specific player, " +
                 "please enter that player's name.");
+        inputPrompt();
     }
 
     public void displayPage() {

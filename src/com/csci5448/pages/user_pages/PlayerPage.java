@@ -28,14 +28,15 @@ public class PlayerPage extends Page {
                 return;
             }
         }
-        System.out.println(player.getName() + " has been added to your favorite players list.");
+        System.out.println("\t" + player.getName() + " has been added to your favorite players list.");
     }
 
     @Override
     public void displayPage() {
         System.out.println(player + "\n");
-        System.out.println("To add this player to your list of favorite players, please type \'" +
+        System.out.println("\tTo add this player to your list of favorite players, please type \'" +
                 ADD_FAVORITE_PLAYER_ID + "\'.");
+        inputPrompt();
     }
 
 }
