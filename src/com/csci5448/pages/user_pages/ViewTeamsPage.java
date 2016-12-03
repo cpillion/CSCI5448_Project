@@ -14,10 +14,12 @@ public class ViewTeamsPage extends ViewCollectionsPage<Team> {
     }
 
     public void displayPage() {
-        System.out.println("Welcome to the " + sport + " teams page!");
-        System.out.println("The current teams available are: ");
+        makeNewPage(capitalize(sport.toString()) + " Teams");
+        showNavCommands();
+        System.out.println("\tThe current teams available are: ");
         System.out.println(super.toString());
-        System.out.println("Please type the name of a team for more information about it.");
+        System.out.println("\tPlease type the name of a team for more information about it.");
+        inputPrompt();
     }
 
 }
