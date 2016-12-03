@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e30b941-a8c3-4657-9857-0ecf30e63d05" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/NewsPage.java" afterPath="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/NewsPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/csci5448/content/League.java" afterPath="$PROJECT_DIR$/src/com/csci5448/content/League.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/LeaguePage.java" afterPath="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/LeaguePage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/ViewCollectionsPage.java" afterPath="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/ViewCollectionsPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/ViewLeaguesPage.java" afterPath="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/ViewLeaguesPage.java" />
     </list>
     <ignored path="ESPNGen.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,7 +49,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NewsPage.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NewsPage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/user_pages/NewsPage.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="305">
@@ -61,6 +64,26 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
               <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LeaguePage.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/user_pages/LeaguePage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewCollectionsPage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/user_pages/ViewCollectionsPage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="855">
+              <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -97,7 +120,6 @@
         <option value="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/SupportLobbyPage.java" />
         <option value="$PROJECT_DIR$/src/com/csci5448/pages/common_pages/ErrorPage.java" />
         <option value="$PROJECT_DIR$/src/com/csci5448/content/Player.java" />
-        <option value="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/LeaguePage.java" />
         <option value="$PROJECT_DIR$/src/com/csci5448/content/News.java" />
         <option value="$PROJECT_DIR$/src/com/csci5448/pages/journalist_pages/WriteArticlePage.java" />
         <option value="$PROJECT_DIR$/src/hibernate.cfg.xml" />
@@ -117,6 +139,10 @@
         <option value="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/UserLobbyPage.java" />
         <option value="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/SportOptionPage.java" />
         <option value="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/NewsPage.java" />
+        <option value="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/ViewCollectionsPage.java" />
+        <option value="$PROJECT_DIR$/src/com/csci5448/content/League.java" />
+        <option value="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/ViewLeaguesPage.java" />
+        <option value="$PROJECT_DIR$/src/com/csci5448/pages/user_pages/LeaguePage.java" />
       </list>
     </option>
   </component>
@@ -736,15 +762,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/PageAction.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/csci5448/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/csci5448/accounts/Credentials.java" />
     <entry file="file://$PROJECT_DIR$/src/com/csci5448/control/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -900,16 +917,6 @@
     <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/user_pages/NewsArticlePage.java" />
     <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/user_pages/FavoritePlayersPage.java" />
     <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/user_pages/FavoriteTeamsPage.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/user_pages/LeaguePage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/user_pages/ViewTeamsPage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -927,14 +934,6 @@
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/csci5448/content/League.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1070,6 +1069,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
           <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/csci5448/content/League.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+          <folding>
+            <element signature="e#667#668#0" expanded="true" />
+            <element signature="e#710#711#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/user_pages/ViewLeaguesPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="16" column="55" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/user_pages/ViewCollectionsPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/csci5448/pages/user_pages/LeaguePage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
           <folding />
         </state>
       </provider>

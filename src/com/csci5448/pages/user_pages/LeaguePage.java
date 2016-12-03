@@ -15,8 +15,11 @@ public class LeaguePage extends ViewCollectionsPage<Team> {
     }
 
     public void displayPage() {
-        System.out.println("The teams in the " + league.getLeague() + " are:");
+        makeNewPage(league.getLeague());
+        showNavCommands();
+        System.out.println("\tThe teams in the " + league.getLeague() + " are:");
         System.out.println(super.toString());
-        System.out.println("Please type the name of a team for more information about it.");
+        System.out.println("\tPlease type the name of a team for more information about it.");
+        inputPrompt();
     }
 }

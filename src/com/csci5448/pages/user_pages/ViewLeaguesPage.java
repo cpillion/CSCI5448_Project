@@ -11,9 +11,12 @@ public class ViewLeaguesPage extends ViewCollectionsPage<League> {
     }
 
     public void displayPage() {
-        System.out.println("Leagues: ");
-        System.out.println(super.toString());
-        System.out.println("Please type the name of a league for more information about it.");
+        makeNewPage("Leagues");
+        showNavCommands();
+        System.out.println("\tLeagues: ");
+        System.out.println(super.toString().toUpperCase());
+        System.out.println("\tPlease type the name of a league for more information about it.");
+        inputPrompt();
     }
 
 }
