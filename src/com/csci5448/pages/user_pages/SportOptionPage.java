@@ -34,6 +34,7 @@ public class SportOptionPage extends Page {
     @Override
     public void displayPage() {
         makeNewPage(capitalize(sport.toString()));
+        showNavCommands();
         System.out.println("\tPlease select an option from the menu below:");
 
         String[] pageActions = {VIEW_NEWS_ID, VIEW_LEAGUE_ID, VIEW_TEAMS_ID, VIEW_FAVORITE_TEAMS_ID,

@@ -47,10 +47,11 @@ public class NewsPage extends Page {
 
     public void displayPage() {
         makeNewPage("ESPNGen " + capitalize(sport.toString()) + " News");
+        showNavCommands();
         System.out.println("\tTo view an article, please type \"read_article\" followed by the article number.\n");
 
         if (articles.isEmpty()) {
-            System.out.println("\nThere are no available articles for " +
+            System.out.println("\tThere are no available articles for " +
                     sport.toString().toLowerCase()+ " at this time. Please check back later.");
         }
         else {

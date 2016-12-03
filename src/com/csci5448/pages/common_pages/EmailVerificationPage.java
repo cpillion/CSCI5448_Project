@@ -67,10 +67,7 @@ public class EmailVerificationPage extends Page {
             }
         }
 
-        System.out.println("\tYou are now being taken to the lobby page. \n\tGlobal Navigation Commands: \n" +
-                "\t\tReturn to Lobby: \'" + Page.HOME_ID + "\'\n" +
-                "\t\tReturn to Previous Page: \'" + Page.PREVIOUS_PAGE_ID + "\'\n" +
-                "\t\tLogout: \'" + Page.LOGOUT_ID + "\'");
+        System.out.println("\tYou are now being taken to the lobby page.");
 
         Controller.setCurrentAccount(account);
         Controller.setCurrentPage(lobbyPage);

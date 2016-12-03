@@ -23,6 +23,7 @@ public class UserLobbyPage extends LobbyPage {
 
     public void displayPage() {
         makeNewPage("ESPNGen Lobby");
+        showNavCommands();
         System.out.println("\tPlease select a sport from the menu below:");
         for (Sport sport : Sport.values()) {
             System.out.println("\t\t" + capitalize(sport.toString()));

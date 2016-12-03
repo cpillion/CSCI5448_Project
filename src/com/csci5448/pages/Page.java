@@ -76,6 +76,13 @@ public abstract class Page {
         System.out.println("\n|" + buffer + " Welcome to the " + pageName + " Page! " + buffer + "|");
     }
 
+    public void showNavCommands() {
+        System.out.println("\tPage Navigation Commands: \n" +
+                "\t\tReturn to Lobby: \'" + Page.HOME_ID + "\'\n" +
+                "\t\tReturn to Previous Page: \'" + Page.PREVIOUS_PAGE_ID + "\'\n" +
+                "\t\tLogout: \'" + Page.LOGOUT_ID + "\'\n");
+    }
+
     public void inputPrompt() {
         System.out.print("\tSelection: ");
     }
