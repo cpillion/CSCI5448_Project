@@ -30,6 +30,7 @@ public class PlayerPage extends Page {
             }
         }
         System.out.println("\t" + player.getName() + " has been added to your favorite players list.");
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 
     @Override

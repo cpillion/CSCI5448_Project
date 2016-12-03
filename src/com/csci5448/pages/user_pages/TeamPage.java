@@ -35,6 +35,7 @@ public class TeamPage extends ViewCollectionsPage<Player> {
             }
         }
         System.out.println("\tThe " + team.getName() + " have been added to your list of favorite teams!");
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 
     private void viewPlayersAction(String arg) {
