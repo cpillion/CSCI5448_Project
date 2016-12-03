@@ -33,20 +33,21 @@ public class TeamPage extends ViewCollectionsPage<Player> {
                 return;
             }
         }
-        System.out.println("The " + team.getName() + " have been added to your list of favorite teams!");
+        System.out.println("\tThe " + team.getName() + " have been added to your list of favorite teams!");
     }
 
     private void viewPlayersAction(String arg) {
-        System.out.println("The current players on the " + team.getName() + " are:");
+        System.out.println("\tThe current players on the " + team.getName() + " are:");
         System.out.println(super.toString());
-        System.out.println("\nIf you wish to view more information about a specific player, " +
+        System.out.println("\tIf you wish to view more information about a specific player, " +
                 "please enter that player's name.");
     }
 
     public void displayPage() {
-        System.out.println(team + "\n");
-        System.out.println("To add this team to your list of favorites, type \'" + ADD_FAVORITE_TEAM_ID + "\'.");
-        System.out.println("To view a list of players on this team, type \'" + VIEW_PLAYERS_ID + "\'.");
+        System.out.println("\t" + team + "\n");
+        System.out.println("\tTo add this team to your list of favorites, type \'" + ADD_FAVORITE_TEAM_ID + "\'.");
+        System.out.println("\tTo view a list of players on this team, type \'" + VIEW_PLAYERS_ID + "\'.");
+        inputPrompt();
     }
 
 }

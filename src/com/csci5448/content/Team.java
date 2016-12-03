@@ -115,11 +115,13 @@ public class Team implements SportItem {
 
     @Override
     public String toString() {
-        return "Name: " + name + "\t\t" +
-                "League: " + league + "\n" +
-                "Sport: " + sport + "\t\t" +
-                "Number of player: " + players.size() + "\n" +
-                teamStats.toString();
+        return  "****************************************************\n" +
+                "\tName: " + name + "\t\t" +
+                "League: " + league.toString().toUpperCase() + "\n" +
+                "\tSport: " + sport + "\t\t" +
+                "Number of players: " + players.size() + "\n" +
+                teamStats.toString() +
+                "\n\t****************************************************";
     }
 
 }
