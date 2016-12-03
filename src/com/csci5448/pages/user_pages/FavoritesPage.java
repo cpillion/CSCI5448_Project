@@ -48,16 +48,17 @@ public class FavoritesPage<T extends SportItem> extends ViewCollectionsPage<T> {
             }
         }
 
-        System.out.println(favoriteItem.getName() + " has been removed from your favorites.\n\n");
+        System.out.println("\t" + favoriteItem.getName() + " has been removed from your favorites.\n\n");
         super.removeItem(favoriteItem);
         displayPage();
     }
 
     public void displayPage() {
-        System.out.println("Your favorites are:");
+        System.out.println("\n\tYour favorites are:");
         System.out.println(super.toString());
-        System.out.println("\nType \'" + DELETE_FAVORITE_ITEM + " <name>\' to delete an entry from your favorites,\n" +
-                "or type the name of one of your favorite items to view more information about it.");
+        System.out.println("\tType \'" + DELETE_FAVORITE_ITEM + " <name>\' to delete an entry from your favorites,\n" +
+                "\t\tor type the name of one of your favorite items to view more information about it.");
+        inputPrompt();
     }
 
 }

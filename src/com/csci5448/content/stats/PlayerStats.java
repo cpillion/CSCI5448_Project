@@ -55,7 +55,7 @@ public class PlayerStats extends BasicStats {
     @Override
     public String toString() {
         String basicStats = super.toString();
-        return basicStats + "\t\tGames Missed: " + gamesMissed;
+        return basicStats + "\t\t\t\tGames Missed: " + gamesMissed;
     }
 
 }

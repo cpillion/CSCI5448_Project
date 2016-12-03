@@ -29,7 +29,7 @@ public class League {
     }
 
     public String getLeague() {
-        return league;
+        return league.toUpperCase();
     }
 
     public void setLeague(String league) {

@@ -49,9 +49,9 @@ abstract class BasicStats {
 
     @Override
     public String toString() {
-        return "Wins: " + wins + "\t\t" +
+        return "\tWins: " + wins + "\t\t\t\t" +
                 "Losses: " + losses + "\n" +
-                "Ties: " + ties;
+                "\tTies: " + ties;
     }
 
 }

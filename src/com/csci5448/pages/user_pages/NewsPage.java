@@ -39,9 +39,12 @@ public class NewsPage extends Page {
             return;
         }
         News news = articles.get(i);
-        System.out.println("\t" + news.getHeadline() +
-                            "\n\tWritten by " + news.getAuthor() +
-                            "\n\n\t" + news.getBody());
+        String buffer = new String(new char[80]).replace("\0", "*");
+        System.out.println("\n\t\t" + buffer);
+        System.out.println("\t\t" + news.getHeadline() +
+                            "\n\t\tWritten by " + news.getAuthor() +
+                            "\n\n\t\t\t" + news.getBody() + "\n");
+        System.out.println("\n\t\t" + buffer);
         inputPrompt();
     }
 
