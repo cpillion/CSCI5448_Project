@@ -22,12 +22,12 @@ public abstract class Page {
         addPageAction(LOGOUT_ID, this::performLogoutAction);
     }
 
-    public void addPageActionStringArr(String identifier, Consumer<String[]> pageAction) {
-        pageActions.put(identifier.toLowerCase(), new PageAction<>(pageAction, (id, arg) -> arg.split(" ")));
-    }
-
     public void addPageAction(String identifier, Consumer<String> pageAction) {
         pageActions.put(identifier.toLowerCase(), new PageAction<>(pageAction, (id, arg) -> arg));
+    }
+
+    public void addPageActionStringArr(String identifier, Consumer<String[]> pageAction) {
+        pageActions.put(identifier.toLowerCase(), new PageAction<>(pageAction, (id, arg) -> arg.split(" ")));
     }
 
     public void addPageActionCommandConsumer(String identifier, Consumer<String> pageAction) {
@@ -57,7 +57,7 @@ public abstract class Page {
         if (freezeInput(identifier, arg)) {
             return;
         }
-        PageAction<?> pageAction = pageActions.get(identifier);
+        PageAction<?> pageAction = pageActions.get(identifier.toLowerCase());
         if (pageAction != null) {
             pageAction.accept(identifier, arg);
         } else {

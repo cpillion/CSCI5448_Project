@@ -41,7 +41,7 @@ public class Main {
         String command = input.substring(0, endOfCommandIndex);
         String arg = input.substring(endOfCommandIndex+1);
 
-        Controller.sendCommandToPage(command.toLowerCase(), arg);
+        Controller.sendCommandToPage(command, arg);
     }
 
     private static void populateSports() {

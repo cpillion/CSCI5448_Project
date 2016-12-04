@@ -7,30 +7,43 @@ import com.csci5448.control.Controller;
 import com.csci5448.control.EmailControl;
 import com.csci5448.data.SessionManager;
 import com.csci5448.pages.Page;
-import com.csci5448.pages.PageDisplay;
 import org.hibernate.Session;
 
 import javax.mail.MessagingException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Consumer;
 
 public class WriteArticlePage extends Page {
 
+    private enum Stage {
+        SPORT, HEADLINE, AUTHOR, BODY, SUBMIT;
+
+        @Override
+        public String toString() {
+            String stage = super.toString();
+            return stage.substring(0,1).toUpperCase() + stage.substring(1).toLowerCase();
+        }
+    };
+
     private static final String SUBMIT_ARTICLE_ID = "submit_article";
-    private static final String SPORT_ID =  "sport";
-    private static final String HEADLINE_ID = "headline";
-    private static final String AUTHOR_ID = "author";
-    private static final String BODY_ID = "body";
 
     private Sport sport;
     private String headline;
     private String author;
     private String body;
+    private Stage currentStage;
+
+    private final Map<Stage, ArticleStage> stageMap;
 
     public WriteArticlePage() {
-        super.addPageAction(SUBMIT_ARTICLE_ID, this::submitArticleAction);
-        super.addPageAction(SPORT_ID, this::selectSportAction);
-        super.addPageAction(HEADLINE_ID, this::headlineAction);
-        super.addPageAction(AUTHOR_ID, this::authorAction);
-        super.addPageAction(BODY_ID, this::bodyAction);
+        this.currentStage = Stage.SPORT;
+        stageMap = new HashMap<>();
+        stageMap.put(Stage.SPORT, new ArticleStage(this::sportStage, null));
+        stageMap.put(Stage.HEADLINE, new ArticleStage(this::headlineStage,  "\tPlease write the headline of the article."));
+        stageMap.put(Stage.AUTHOR, new ArticleStage(this::authorStage, "\tPlease enter the author's name."));
+        stageMap.put(Stage.BODY, new ArticleStage(this::bodyStage, "\tPlease write the body of the article."));
+        stageMap.put(Stage.SUBMIT, new ArticleStage(null, "\tPlease type \'" + SUBMIT_ARTICLE_ID + "\' to submit this article."));
     }
 
     private void submitArticleAction(String arg) {
@@ -65,42 +78,71 @@ public class WriteArticlePage extends Page {
         Controller.goToLobbyPage();
     }
 
-    private void selectSportAction(String sport) {
-        Sport selectedSport = SportFactory.chooseSport(sport);
-        if (selectedSport != null) {
-            System.out.println("\t" + selectedSport + " has been selected.");
-            this.sport = selectedSport;
-            PageDisplay.getPageDisplay().showInputPrompt();
+    private void sportStage(String sportName) {
+        Sport sport = SportFactory.chooseSport(sportName);
+        if (sport == null) {
+            return;
         }
+        this.sport = sport;
+        setCurrentStage(Stage.HEADLINE);
     }
 
-    private void headlineAction(String headline) {
-        System.out.println("\tHeadline successfully set.");
+    private void headlineStage(String headline) {
         this.headline = headline;
-        PageDisplay.getPageDisplay().showInputPrompt();
+        setCurrentStage(Stage.AUTHOR);
     }
 
-    private void authorAction(String author) {
-        System.out.println("\tAuthor successfully set.");
+    private void authorStage(String author) {
         this.author = author;
-        PageDisplay.getPageDisplay().showInputPrompt();
+        setCurrentStage(Stage.BODY);
     }
 
-    private void bodyAction(String body) {
-        System.out.println("\tBody successfully set.");
+    private void bodyStage(String body) {
         this.body = body;
-        PageDisplay.getPageDisplay().showInputPrompt();
+        setCurrentStage(Stage.SUBMIT);
+        super.addPageAction(SUBMIT_ARTICLE_ID, this::submitArticleAction);
+    }
+
+    private void setCurrentStage(Stage stage) {
+        this.currentStage = stage;
+        ArticleStage articleStage = stageMap.get(stage);
+        if (articleStage == null || articleStage.getStageMessage() == null) {
+            return;
+        }
+        System.out.println(articleStage.getStageMessage());
+    }
+
+    @Override
+    public void performDefaultAction(String identifier, String arg) {
+        ArticleStage articleStage = stageMap.get(currentStage);
+        if (articleStage == null || articleStage.getStageAction() == null) {
+            return;
+        }
+        articleStage.getStageAction().accept(String.join(" ", identifier, arg).trim());
     }
 
     public void displayPage() {
         System.out.println("\n\tThank you for your interest in contributing to ESP-NGen News!\n");
-        System.out.println("\tPlease use the following commands to write your article: \n\t\t\'" +
-                SPORT_ID + " <sport>\' to select the sport the article will be " +
-                "about,\n\t\t" + "\'" + AUTHOR_ID + " <author>\' to specify the author of the article,\n\t\t\'" +
-                HEADLINE_ID + " <headline>\' to specify " +
-                "the headline of the article,\n\t\t\'" + BODY_ID + " <body>\' to specify the body of the article.\n\t" +
-                "Finally, please type \'" + SUBMIT_ARTICLE_ID + "\' to submit your article.");
-        PageDisplay.getPageDisplay().showInputPrompt();
+        System.out.println("\tPlease type the name of the sport that the article will be about.");
+    }
+
+    private class ArticleStage {
+
+        private final Consumer<String> stageAction;
+        private final String stageMessage;
+
+        public ArticleStage(Consumer<String> stageAction, String stageMessage) {
+            this.stageAction = stageAction;
+            this.stageMessage = stageMessage;
+        }
+
+        public Consumer<String> getStageAction() {
+            return stageAction;
+        }
+
+        public String getStageMessage() {
+            return stageMessage;
+        }
     }
 
 }
