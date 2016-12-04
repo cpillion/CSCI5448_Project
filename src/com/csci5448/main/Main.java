@@ -27,7 +27,7 @@ public class Main {
         Controller.setCurrentPage(new WelcomePage());
         Scanner userInput = new Scanner(System.in);
         while (true) {
-            processUserInput(userInput.nextLine().toLowerCase());
+            processUserInput(userInput.nextLine());
         }
     }
 
@@ -41,7 +41,7 @@ public class Main {
         String command = input.substring(0, endOfCommandIndex);
         String arg = input.substring(endOfCommandIndex+1);
 
-        Controller.sendCommandToPage(command, arg);
+        Controller.sendCommandToPage(command.toLowerCase(), arg);
     }
 
     private static void populateSports() {
