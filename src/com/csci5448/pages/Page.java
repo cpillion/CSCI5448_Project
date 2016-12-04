@@ -6,7 +6,6 @@ import com.csci5448.pages.common_pages.LogoutPage;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 public abstract class Page {
 
@@ -24,11 +23,15 @@ public abstract class Page {
     }
 
     public void addPageActionStringArr(String identifier, Consumer<String[]> pageAction) {
-        pageActions.put(identifier.toLowerCase(), new PageAction<>(pageAction, str -> str.split(" ")));
+        pageActions.put(identifier.toLowerCase(), new PageAction<>(pageAction, (id, arg) -> arg.split(" ")));
     }
 
     public void addPageAction(String identifier, Consumer<String> pageAction) {
-        pageActions.put(identifier.toLowerCase(), new PageAction<>(pageAction, Function.identity()));
+        pageActions.put(identifier.toLowerCase(), new PageAction<>(pageAction, (id, arg) -> arg));
+    }
+
+    public void addPageActionCommandConsumer(String identifier, Consumer<String> pageAction) {
+        pageActions.put(identifier.toLowerCase(), new PageAction<>(pageAction, (id, arg) -> id));
     }
 
     protected boolean removePageAction(String identifier) {
@@ -56,7 +59,7 @@ public abstract class Page {
         }
         PageAction<?> pageAction = pageActions.get(identifier);
         if (pageAction != null) {
-            pageAction.accept(arg);
+            pageAction.accept(identifier, arg);
         } else {
             performDefaultAction(identifier, arg);
         }
