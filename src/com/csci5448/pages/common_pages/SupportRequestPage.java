@@ -4,6 +4,7 @@ import com.csci5448.accounts.Account;
 import com.csci5448.control.Controller;
 import com.csci5448.control.EmailControl;
 import com.csci5448.pages.Page;
+import com.csci5448.pages.PageDisplay;
 
 import javax.mail.MessagingException;
 
@@ -30,7 +31,7 @@ public class SupportRequestPage extends Page {
                 "Instructions: Forward this email to " + currentAccount.getUsername() + " together " +
                 "with your reply.";
 
-        System.out.println("Sending support request...");
+        System.out.println("\tSending support request...");
 
         try {
             EmailControl.getEmailControl().sendSelfEmail("Support Request From " + currentAccount.getUsername(),
@@ -40,13 +41,17 @@ public class SupportRequestPage extends Page {
             return;
         }
 
-        System.out.println("You support request has been sent to an administrator and will be reviewed shortly.\n" +
-                "Please periodically check your inbox at " + currentAccount.getUsername() + " for a reply.");
+        System.out.println("\tYour support request has been sent to an administrator and will be reviewed shortly.\n" +
+                "\tPlease periodically check your inbox at " + currentAccount.getUsername() + " for a reply.");
+        Controller.goToLobbyPage();
     }
 
     @Override
     public void displayPage() {
-        System.out.println("Welcome to the support request page!\nPlease type \'" + SUBMIT_REQUEST_ID + "\' followed" +
+        PageDisplay.getPageDisplay().showPageWelcomeText("Support Request");
+        PageDisplay.getPageDisplay().showNavCommands();
+        System.out.println("\tPlease type \'" + SUBMIT_REQUEST_ID + "\' followed" +
                 " by a description of the problem you are experiencing.");
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 }

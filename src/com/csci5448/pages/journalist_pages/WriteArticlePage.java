@@ -7,6 +7,7 @@ import com.csci5448.control.Controller;
 import com.csci5448.control.EmailControl;
 import com.csci5448.data.SessionManager;
 import com.csci5448.pages.Page;
+import com.csci5448.pages.PageDisplay;
 import org.hibernate.Session;
 
 import javax.mail.MessagingException;
@@ -34,7 +35,7 @@ public class WriteArticlePage extends Page {
 
     private void submitArticleAction(String arg) {
         if (sport == null || headline == null || author == null || body == null) {
-            System.out.println("Please ensure that you have set the sport, headline, author," +
+            System.out.println("\tPlease ensure that you have set the sport, headline, author," +
                     " and body before submitting.");
             return;
         }
@@ -56,45 +57,50 @@ public class WriteArticlePage extends Page {
             return;
         }
 
-        System.out.println("Your news has been submitted for approval.");
-        System.out.println("Sport: " + news.getSport() +
-                "\nHeadline: " + news.getHeadline() +
-                "\nAuthor: " + news.getAuthor() +
-                "\nBody: " + news.getBody() + "\n\n");
+        System.out.println("\n\tYour news has been submitted for approval.");
+        System.out.println("\t\tSport: " + news.getSport() +
+                "\n\t\tHeadline: " + news.getHeadline() +
+                "\n\t\tAuthor: " + news.getAuthor() +
+                "\n\t\tBody: " + news.getBody());
         Controller.goToLobbyPage();
     }
 
     private void selectSportAction(String sport) {
         Sport selectedSport = SportFactory.chooseSport(sport);
         if (selectedSport != null) {
-            System.out.println(selectedSport + " has been selected.");
+            System.out.println("\t" + selectedSport + " has been selected.");
             this.sport = selectedSport;
+            PageDisplay.getPageDisplay().showInputPrompt();
         }
     }
 
     private void headlineAction(String headline) {
-        System.out.println("Headline successfully set.");
+        System.out.println("\tHeadline successfully set.");
         this.headline = headline;
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 
     private void authorAction(String author) {
-        System.out.println("Author successfully set.");
+        System.out.println("\tAuthor successfully set.");
         this.author = author;
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 
     private void bodyAction(String body) {
-        System.out.println("Body successfully set.");
+        System.out.println("\tBody successfully set.");
         this.body = body;
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 
     public void displayPage() {
-        System.out.println("Thank you for your interest in contributing to ESP-NGen News!\n\n");
-        System.out.println("Please type \'" + SPORT_ID + " <sport>\' to select the sport the article will be " +
-                "about,\n" + "\'" + AUTHOR_ID + " <author>\' to specify the author of the article,\n\'" +
+        System.out.println("\n\tThank you for your interest in contributing to ESP-NGen News!\n");
+        System.out.println("\tPlease use the following commands to write your article: \n\t\t\'" +
+                SPORT_ID + " <sport>\' to select the sport the article will be " +
+                "about,\n\t\t" + "\'" + AUTHOR_ID + " <author>\' to specify the author of the article,\n\t\t\'" +
                 HEADLINE_ID + " <headline>\' to specify " +
-                "the headline of the article\n, and \'" + BODY_ID + " <body>\' to specify the body of the article.\n" +
+                "the headline of the article,\n\t\t\'" + BODY_ID + " <body>\' to specify the body of the article.\n\t" +
                 "Finally, please type \'" + SUBMIT_ARTICLE_ID + "\' to submit your article.");
-
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 
 }
