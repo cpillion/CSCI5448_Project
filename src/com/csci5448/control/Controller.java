@@ -52,7 +52,7 @@ public class Controller {
             return;
         }
 
-        System.out.println("Logging out...");
+        System.out.println("\tLogging out...");
         currentAccount = null;
         currentPage = null;
         previousPages = new Stack<>();

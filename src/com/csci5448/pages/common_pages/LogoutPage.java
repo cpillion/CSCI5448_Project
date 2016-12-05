@@ -2,6 +2,7 @@ package com.csci5448.pages.common_pages;
 
 import com.csci5448.control.Controller;
 import com.csci5448.pages.Page;
+import com.csci5448.pages.PageDisplay;
 
 public class LogoutPage extends Page {
 
@@ -14,7 +15,7 @@ public class LogoutPage extends Page {
     @Override
     public boolean freezeInput(String identifier, String args) {
         if (!identifier.equalsIgnoreCase(CONFIRM_LOGOUT_ID)) {
-            System.out.println("Account will not be logged out.");
+            System.out.println("\tAccount will not be logged out.");
             Controller.returnToPreviousPage();
             return true;
         }
@@ -22,7 +23,9 @@ public class LogoutPage extends Page {
     }
 
     public void displayPage() {
-        System.out.println("Type \'" + CONFIRM_LOGOUT_ID + "\' to confirm your logout.");
+
+        System.out.println("\tType \'" + CONFIRM_LOGOUT_ID + "\' to confirm your logout.");
+        PageDisplay.getPageDisplay().showInputPrompt();
     }
 
 }
