@@ -2,7 +2,6 @@ package com.csci5448.pages.journalist_pages;
 
 import com.csci5448.accounts.JournalistAccount;
 import com.csci5448.control.Controller;
-import com.csci5448.pages.Page;
 import com.csci5448.pages.PageDisplay;
 import com.csci5448.pages.common_pages.LobbyPage;
 
@@ -21,6 +20,7 @@ public class JournalistLobbyPage extends LobbyPage {
             System.out.println("\tYour profession has not yet been verified. Please contact an administrator to " +
                     "verify your account.");
             Controller.goToLobbyPage();
+            return;
         }
         Controller.setCurrentPage(new WriteArticlePage());
     }
